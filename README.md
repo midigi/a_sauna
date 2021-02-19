@@ -3,15 +3,16 @@
 
 ---
 
-**Asauna** is a clone of **[Asana](https://www.asana.com/)** with an added "ranking" of questions by expertise level.
-The expertise level ranking allows the questions to be easily accessed by novice, 
-intermediate and expert levels of difficulty. 
+**Asauna** is a clone of **[Asana](https://www.asana.com/)** that allows a user create projects.
+Projects are compromised of tasks composed by members of the group. Tasks have status' that reflect the 
+state of the respective task. 
+
 <img alt="Logo" align="right" src="https://user-images.githubusercontent.com/70561117/103400052-8645d380-4af8-11eb-8c61-1f2bab847bfd.png" width="20%" />
-* Users can **log in** or **sign up** to access some functionality the site.
-* A logged in user has the ability to **post questions** with both a topic and expertise level.
-* Posted questions can be **answered**, and answers can be **commented on**.
-* The **search** bar can find questions using a search term and **SQL queries**.  
-* Search results can be **sorted** by topic or expertise level.
+* Users can **log in** or **sign up** to access functionality the site.
+* A user has the ability to **make projects** with both members and tasks.
+* Posted tasks can be **completed** with their due date, status and assignee all changeable.
+* The **profile page** hosts information about each user including their current projects and tasks.  
+
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/70362985/104137695-4981a400-5364-11eb-8ff9-7efc03e85bfd.png">
