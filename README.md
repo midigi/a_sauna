@@ -19,7 +19,7 @@ state of the respective task.
 <img src="https://user-images.githubusercontent.com/70362985/104137695-4981a400-5364-11eb-8ff9-7efc03e85bfd.png">
 </p>
 
-<h2>Try the site live: <a href=http://aurora-quora.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/cellomatt/aurora/wiki">documentation</a></h2>
+<h2>Try the site live: <a href=http://aurora-quora.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/midigi/a_sauna/wiki">documentation</a></h2>
 
 ## How to run the site locally
 
@@ -33,20 +33,20 @@ state of the respective task.
 
 ## Technologies used in Aurora
 <p align="left">
-<a href="https://sequelize.org/">
-<img src="https://img.shields.io/badge/Sequelize-v6.3.5-blue">
+<a href="https://flask.palletsprojects.com/en/1.1.x/">
+<img src="https://img.shields.io/badge/Flask-v1.12-blue">
 <a/>
 
-<a href="https://expressjs.com/">
-<img src="https://img.shields.io/badge/Express-v4.17.1-blue">
-<a/>
-   
-<a href="https://pugjs.org/api/getting-started.html">
-<img src="https://img.shields.io/badge/Pug-v3-blue">
+<a href="https://www.sqlalchemy.org/">
+<img src="https://img.shields.io/badge/SQLAlchemy-v1.3-blue">
 <a/>
   
-<a href="https://nodejs.org/en/">  
-<img src="https://img.shields.io/badge/Node-v14.15.3-blue">
+<a href="https://reactjs.org/">  
+<img src="https://img.shields.io/badge/React-v17-blue">
+<a/>
+ 
+ <a href="https://www.docker.com/">  
+<img src="https://img.shields.io/badge/Docker-v3-blue">
 <a/>
 
 <a href="https://www.heroku.com/">
@@ -54,21 +54,18 @@ state of the respective task.
 <a/>
 </p>
 
-**Sequelize** was used to store and easily manage data with its amazing 
-data models and migrations.
 
-**Express JS** was our framework and it reduced a ton of boiler plate 
+**Flask** was used for our backend and it reduced a ton of boiler plate 
 code, freeing us to implement more features. 
 
-**npm** was our software registry, and within it we installed many packages;
+**pyenv** was our software registry, and within it we installed many packages;
 some notable examples include:
-* nodemon,
-* morgan, 
-* express-validator,
-* *and more* 
+* 
+* 
+* 
+* 
 
-**Pug** is an excellent view engine we used to quickly and
-beautifully display HTML on our pages.
+**React** is the view engine of choice! 
 
 **Heroku** is the web hosting app of our choice that allowed us to 
 run our app on the cloud! 
@@ -83,76 +80,26 @@ The first big feature we tackled is the searching algorithm,
 which populates the page with results containing either a question's
 title or its message. 
     ```
-    const {
-           searchTerm
-       } = req.body;
-
-
-    const results = await Question.findAll({
-
-          where: {
-               [Op.or]: [{
-                       title: {
-                           [Op.iLike]: '%' + searchTerm + '%'
-                       }
-                   },
-                   {
-                       message: {
-                           [Op.iLike]: '%' + searchTerm + '%'
-                       }
-                   }
-               ]
-           },
-           include:
-                [Topic, Expertise, User]
-           ,
-           order: [
-               ['createdAt', 'DESC']
-           ]
-
-       })
+   TBD
     ```
 <details><summary><b>How it was done</b></summary>
 
 1. We started by extracting the search term from the POST request.
-
-    ```
-    const {
-        searchTerm
-    } = req.body;
-    ```
+```
+  TBD
+```
 2. Then we queried the database for questions where either the question title 
   or the question message (case insensitive) matched the search term.
   
     ```
-    const results = await Question.findAll({
-            where: {
-                [Op.or]: [{
-                        title: {
-                            [Op.iLike]: '%' + searchTerm + '%'
-                        }
-                    },
-                    {
-                        message: {
-                            [Op.iLike]: '%' + searchTerm + '%'
-                        }
-                    }
-                ]
-            },
-
-        })
+    TBD
     ```
     
 3. We included each question's topic, expertise level, and user, and 
   ordered the results so that the most recent question appears first. 
 
     ```
-    include:
-             [Topic, Expertise, User]
-        ,
-        order: [
-            ['createdAt', 'DESC']
-        ]
+    TBD
     ```    
 
 </details>
@@ -160,60 +107,7 @@ title or its message.
 The other big feature that we implemented was a sorting algorithm on our search results.
 
     ```
-    document.addEventListener('DOMContentLoaded', ev => {
-        localStorage.clear();
-    })
-
-    const filterText = id => {
-
-        let select = document.getElementById(id);
-        let option = select.value;
-
-        if (id === 'expertiseSelect') {
-            localStorage.setItem('expertiseSort', option);
-        } else {
-            localStorage.setItem('topicSort', option);
-        }
-
-        let localTopic = localStorage.getItem('topicSort');
-        let localExpertise = localStorage.getItem('expertiseSort');
-
-        if (!localTopic) localStorage.setItem('topicSort', 'All');
-        if (!localExpertise) localStorage.setItem('expertiseSort', 'All');
-
-        localTopic = localStorage.getItem('topicSort');
-        localExpertise = localStorage.getItem('expertiseSort');
-
-        let divs = document.querySelectorAll(".result");
-
-        divs.forEach((div) => {
-            displayCombinator(localTopic, localExpertise, div);
-        });
-    };
-
-    function displayCombinator(topic, expertise, div) {
-        if (topic === 'All' && expertise === 'All') {
-            div.style.display = 'flex';
-        } else {
-            if (topic === 'All' && expertise !== 'All') {
-                if (div.classList.contains(expertise)) {
-                    div.style.display = "flex";
-                } else {
-                    div.style.display = "none";
-                }
-            } else if (expertise === 'All' && topic !== 'All') {
-                if (div.classList.contains(topic)) {
-                    div.style.display = "flex";
-                } else {
-                    div.style.display = "none";
-                }
-            } else if (div.classList.contains(topic) && div.classList.contains(expertise)) {
-                div.style.display = 'flex';
-            } else {
-                div.style.display = 'none';
-            }
-        }
-    }
+    TBD
     ```
 <details><summary><b>How it was done</b></summary>
 
@@ -221,113 +115,30 @@ The other big feature that we implemented was a sorting algorithm on our search 
 search results page to reflect the topics and expertise levels of the result questions:
 
     ```
-    let topicIds = []
-    let expertiseIds = [];
-
-    results.forEach((result) => {
-        if (!topicIds.includes(result.Topic.id)) {
-            topicIds.push(result.Topic.id)
-        }
-        if (!expertiseIds.includes(result.Expertise.id)) {
-            expertiseIds.push(result.Expertise.id)
-        }
-    })
-
-    const topics = await Topic.findAll({ where: {
-        id: {
-            [Op.in]: topicIds
-        }
-    }})
-
-    const expertises = await Expertise.findAll({ where: {
-        id: {
-            [Op.in]: expertiseIds
-        }
-    }})
+     TBD
     ```
 2. Then we cleared local storage when the search results page was loaded 
 in order to make space for our sorting function variables:
 
     ```    
-    document.addEventListener('DOMContentLoaded', ev => {
-    localStorage.clear();
-    })
+    TBD
     ```
     
     
 3. We rendered the dropdown select menus with the content from our query in step 1, 
 then set up an event listener to save the selected value to local storage:
     ```
-    div.sort_bar
-      select#topicSelect(name="topicId" class="form__dropdown" onchange="filterText('topicSelect')")
-        option(value="" disabled selected hidden) Topic
-        option(value="All") All
-        each topic in topics
-          option(value=topic.id class="form__dropdown--option")=topic.name
-
-      select#expertiseSelect(name="expertiseId" class="form__dropdown" onchange="filterText('expertiseSelect')")
-        option(value="" disabled selected hidden) Expertise Level
-        option(value="All") All
-        each expertise in expertises
-          option(value=expertise.description class="form__dropdown--option")=expertise.description
-    ```
-    
-    ```
-    const filterText = id => {
-
-      let select = document.getElementById(id);
-      let option = select.value;
-
-      if (id === 'expertiseSelect') {
-          localStorage.setItem('expertiseSort', option);
-      } else {
-          localStorage.setItem('topicSort', option);
-      }
-
-      let localTopic = localStorage.getItem('topicSort');
-      let localExpertise = localStorage.getItem('expertiseSort');
-
-      if (!localTopic) localStorage.setItem('topicSort', 'All');
-      if (!localExpertise) localStorage.setItem('expertiseSort', 'All');
-
-      localTopic = localStorage.getItem('topicSort');
-      localExpertise = localStorage.getItem('expertiseSort');
-    };
+    TBD
     ```
       
 4. We called a helper function on each of our result divs to filter results
 based on the variables in local storage and render them dynamically:
 
     ```
-    let divs = document.querySelectorAll(".result");
-
-      divs.forEach((div) => {
-          displayCombinator(localTopic, localExpertise, div);
+    TBD
     ```
     ```
-    function displayCombinator(topic, expertise, div) {
-      if (topic === 'All' && expertise === 'All') {
-          div.style.display = 'flex';
-      } else {
-          if (topic === 'All' && expertise !== 'All') {
-              if (div.classList.contains(expertise)) {
-                  div.style.display = "flex";
-              } else {
-                  div.style.display = "none";
-              }
-          } else if (expertise === 'All' && topic !== 'All') {
-              if (div.classList.contains(topic)) {
-                  div.style.display = "flex";
-              } else {
-                  div.style.display = "none";
-              }
-          } else if (div.classList.contains(topic) && div.classList.contains(expertise)) {
-              div.style.display = 'flex';
-          } else {
-              div.style.display = 'none';
-          }
-      }
-    }
+     TBD
     ```
 </details>
 
@@ -348,21 +159,21 @@ that fit our project.
 <table style="width:100%">
   <tr>
     <th><a href="https://github.com/vantanova" rel="nofollow"><img src="https://avatars1.githubusercontent.com/u/70561117?s=460&u=85a68af6fc136866eb4f33ee657aeb751aba9935&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/cellomatt" rel="nofollow"><img src="https://avatars3.githubusercontent.com/u/70362985?s=460&u=f842593461c24188b7472e98ec2813b87221bca2&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/QuintinHull" rel="nofollow"><img src="https://avatars2.githubusercontent.com/u/70037265?s=460&u=c4f09b24fc3acea13c4c81e5f0eef835bf54780b&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/lettemax" rel="nofollow"><img src="https://avatars0.githubusercontent.com/u/11065513?s=460&u=0c6a04b31933e0835366b26a34b62c33f3c427ca&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/midigi" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/16071042?s=460&u=55b7ede1bdfa6882cda2ffcbfb94e24d2b2050e8&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/IamDgrant" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/68237215?s=460&u=cd87edf80199467670d2b4e87fc13b1001245f7e&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/bparsons17" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/67128124?s=460&v=4" height="auto" width="100"></a></th>
   </tr>
   <tr>
     <td>Antonio A.</td>
-    <td>Matt K.</td>
-    <td>Quintin H.</td>
-    <td>Max L.</td>
+    <td>Michael D.</td>
+    <td>Dre G.</td>
+    <td>Brandon P.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/vantanova">@vantanova</a></td>
-    <td><a href="https://github.com/cellomatt">@cellomatt</a></td>
-    <td><a href="https://github.com/QuintinHull">@QuintinHull</a></td>
-    <td><a href="https://github.com/lettemax">@lettemax</a></td>
+    <td><a href="https://github.com/midigi">@midigi</a></td>
+    <td><a href="https://github.com/IamDgrant">@IamDgrant</a></td>
+    <td><a href="https://github.com/bparsons17">@bparsons17</a></td>
   </tr>
 </table>
 
