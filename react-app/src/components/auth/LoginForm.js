@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import "./authStyling/form.css";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -30,34 +31,46 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
+    <div className="center_box">
+      <form onSubmit={onLogin} className="form">
+        <h1 className="form_title">Log In</h1>
+        <hr className="break"></hr>
+        <p className='form_text'>
+          Welcome back! Log in to make more lists! <br></br>
+          First time? 
+          <a href="/sign-up" className='form_link'>
+            Make an account
+          </a>
+        </p>
+
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <div>
+          <input
+            className="form_input"
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
         <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
+          className="form_input"
           name="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+        <button className="submit_button" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 
