@@ -16,7 +16,7 @@ const NavBar = ({ setAuthenticated }) => {
     setVisible(false);
   };
 
-  const menu = (
+  const profileMenu = (
     <Menu>
       <Menu.Item>
         <NavLink to="/profile" exact={true} activeClassName="active">
@@ -47,14 +47,33 @@ const NavBar = ({ setAuthenticated }) => {
     </Menu>
   );
 
+  const addMenu = (
+    <Menu>
+      <Menu.Item>
+        <NavLink to="/task" exact={true} activeClassName="active">
+          Task
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink to="/project" exact={true} activeClassName="active">
+          Project
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  );
   return (
-    <>
+    <div style={{ width: "100%", height: "5vh" }}>
       <button className="hamburger" onClick={showDrawer}>
         🧑‍💼
       </button>
-      <Dropdown overlay={menu}>
+      <Dropdown overlay={profileMenu} trigger={["click"]}>
         <button className="profile_button" onClick={(e) => e.preventDefault()}>
           🧑‍
+        </button>
+      </Dropdown>
+      <Dropdown overlay={addMenu} trigger={["click"]} placement="bottomCenter">
+        <button className="profile_button" onClick={(e) => e.preventDefault()}>
+          ➕
         </button>
       </Dropdown>
       <Drawer
@@ -108,7 +127,7 @@ const NavBar = ({ setAuthenticated }) => {
           </li>
         </ul>
       </Drawer>
-    </>
+    </div>
   );
 };
 
