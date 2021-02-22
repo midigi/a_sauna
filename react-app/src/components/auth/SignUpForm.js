@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
-import './authStyling/form.css'
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../services/auth";
+import "./authStyling/form.css";
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +47,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         <p className="form_text">
           Nice to meet you! Sign up for lists galore! <br></br>
           Already have an account?
-          <a href="/sign-up" className="form_link">
+          <a href="/login" className="form_link">
             Log in
           </a>
         </p>
