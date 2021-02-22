@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
-import './authStyling/SignUpForm.css'
+import './authStyling/form.css'
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
@@ -41,7 +41,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <div className="center_box">
-      <form onSubmit={onSignUp} className="right_column">
+      <form onSubmit={onSignUp} className="form">
         <h1 className='form_title'>Sign Up</h1>
         <div>
           <input
