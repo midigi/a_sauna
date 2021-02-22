@@ -5,7 +5,7 @@
     margin: auto;
     display: flex;
     padding-right: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
 
 }
 
@@ -23,9 +23,13 @@
     border-radius: 2px;
     padding: 0.75rem;
     margin: 5px;
-    background-color: rgba(184, 184, 184, 0.39);
+    background-color: none;
     width: 40vh;
-    border: none;
+    border: 2px solid #333;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    
 }
 .submit_button {
     background-color: #edae49;
@@ -38,10 +42,18 @@
 .form_title{
     color: #edae49;
     font-family: Arial, Helvetica, sans-serif; 
+    margin:0;
 }
 .form_link {
-    align-self: flex-end;
-    margin-right: 16%;
-    font-size: 13px;
     color: #1446ad;
+    margin-left: 5px;
+
+}
+.break {
+    width: 23%;
+
+}
+.form_text{
+    text-align: center;
+    margin: 10%;
 }

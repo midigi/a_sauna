@@ -34,6 +34,15 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     <div className="center_box">
       <form onSubmit={onLogin} className="form">
         <h1 className="form_title">Log In</h1>
+        <hr className="break"></hr>
+        <p className='form_text'>
+          Welcome back! Log in to make more lists! <br></br>
+          First time? 
+          <a href="/sign-up" className='form_link'>
+            Make an account
+          </a>
+        </p>
+
         <div>
           {errors.map((error) => (
             <div>{error}</div>
@@ -49,18 +58,17 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             onChange={updateEmail}
           />
         </div>
-          <input
-            className="form_input"
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-          <a href='/sign-up' className='form_link'>Dont have an account?</a>
-          <button className="submit_button" type="submit">
-            Login
-          </button>
+        <input
+          className="form_input"
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={updatePassword}
+        />
+        <button className="submit_button" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

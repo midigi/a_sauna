@@ -42,7 +42,15 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   return (
     <div className="center_box">
       <form onSubmit={onSignUp} className="form">
-        <h1 className='form_title'>Sign Up</h1>
+        <h1 className="form_title">Sign Up</h1>
+        <hr className="break"></hr>
+        <p className="form_text">
+          Nice to meet you! Sign up for lists galore! <br></br>
+          Already have an account?
+          <a href="/sign-up" className="form_link">
+            Log in
+          </a>
+        </p>
         <div>
           <input
             className="form_input"
@@ -84,8 +92,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
             required={true}
           ></input>
         </div>
-        <a href='/login' className='form_link'>Have an account?</a>
-        <button type="submit" className='submit_button'>Sign Up</button>
+        <button type="submit" className="submit_button">
+          Sign Up
+        </button>
       </form>
     </div>
   );
