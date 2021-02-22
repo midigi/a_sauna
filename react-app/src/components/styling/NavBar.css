@@ -1,0 +1,39 @@
+.drawer_links {
+  list-style: none;
+  padding: 0;
+}
+
+.ant-drawer-header,
+.ant-drawer-body {
+  background-color: #151b26;
+  border: none;
+}
+
+.ant-drawer-title {
+  color: white;
+}
+
+.ant-drawer-close svg {
+  fill: white;
+}
+
+.drawer_link {
+  color: #9ca6af;
+  font-weight: 400;
+  line-height: 32px;
+  font-size: 16px;
+}
+
+.profile_button {
+  float: right;
+  border: none;
+  background-color: #d1496b;
+  border-radius: 50%;
+  width: 3vh;
+  height: 3vh;
+  margin: 5px;
+}
+
+.ant-dropdown {
+  border-top: 3px solid #edae49;
+}

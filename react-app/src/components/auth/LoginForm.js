@@ -35,10 +35,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       <form onSubmit={onLogin} className="form">
         <h1 className="form_title">Log In</h1>
         <hr className="break"></hr>
-        <p className='form_text'>
+        <p className="form_text">
           Welcome back! Log in to make more lists! <br></br>
-          First time? 
-          <a href="/sign-up" className='form_link'>
+          First time?
+          <a href="/sign-up" className="form_link">
             Make an account
           </a>
         </p>
