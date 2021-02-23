@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../store/session";
+import { createUser, login } from "../../store/session";
 // import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
+import { faAmericanSignLanguageInterpreting } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -35,6 +36,11 @@ const SignUpForm = () => {
           }
         });
     }
+  };
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    return dispatch(login({email: "demo@asauna.com", password: "password"}));
   };
 
   const updateFirstName = (e) => {
@@ -126,6 +132,8 @@ const SignUpForm = () => {
         <button type="submit" className="submit_button">
           Sign Up
         </button>
+        <button className="submit_button"
+        onClick={demoLogin}>Demo User</button>
       </form>
     </div>
   );
