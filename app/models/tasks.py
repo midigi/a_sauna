@@ -17,3 +17,13 @@ class Task(db.Model):
 
     project = db.relationship("Project", back_populates="tasks")
     user = db.relationship("User", back_populates="tasks")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "taskTitle": self.taskTitle,
+            "dueDate": self.dueDate,
+            "priority": self.priority,
+            "status": self.status,
+            "description": self.description
+            }
