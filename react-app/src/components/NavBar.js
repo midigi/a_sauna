@@ -32,9 +32,6 @@ const NavBar = ({ setAuthenticated }) => {
   const profileMenu = (
     <Menu>
       <Menu.Item>
-        {/* <NavLink to="/profile" exact={true} activeClassName="active">
-          Profile
-        </NavLink> */}
         <button onClick={showModal}> Profile </button>
       </Menu.Item>
       <Menu.Item>
