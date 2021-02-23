@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "../../store/session";
 import "./authStyling/form.css";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {

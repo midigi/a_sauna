@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../store/session";
-import { signUp } from "./SignUpForm";
+// import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {

@@ -8,7 +8,7 @@ export const authenticate = async () => {
 };
 
 export const login = async (email, password) => {
-  const response = await fetch("/api/auth/login", {
+  const response = await fetch("/session/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
