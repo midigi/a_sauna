@@ -1,31 +1,54 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { signUp } from "../../services/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../store/session";
+import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  // const [errors, setErrors] = useState([]);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    let newErrors = [];
     if (password === repeatPassword) {
-      const user = await signUp(firstname, lastname, email, password);
+
+      dispatch(createUser({ firstName, lastName, email, password }))
+        .then(() => {
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+        })
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            newErrors = data.errors;
+            // setErrors(newErrors);
+          }
+        });
+
       if (!user.errors) {
         setAuthenticated(true);
       }
     }
   };
 
-  const updateFirstname = (e) => {
-    setFirstname(e.target.value);
-  };
 
-  const updateLastname = (e) => {
-    setLastname(e.target.value);
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -60,20 +83,20 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <input
             className="form_input"
             type="text"
-            name="firstname"
+            name="firstName"
             placeholder="First Name"
-            onChange={updateFirstname}
-            value={firstname}
+            onChange={updateFirstName}
+            value={firstName}
           ></input>
         </div>
         <div>
           <input
             className="form_input"
             type="text"
-            name="lastname"
+            name="lastName"
             placeholder="Last Name"
-            onChange={updateLastname}
-            value={lastname}
+            onChange={updateLastName}
+            value={lastName}
           ></input>
         </div>
         <div>
