@@ -96,16 +96,16 @@ const NavBar = () => {
         <p>Some contents...</p>
       </Modal>
       <button className="hamburger" onClick={showDrawer}>
-        {/* 🧑‍💼 */}
+        🧑‍💼
       </button>
       <Dropdown overlay={profileMenu} trigger={["click"]}>
         <button className="profile_button" onClick={(e) => e.preventDefault()}>
-          {/* 🧑‍ */}
+          🧑‍
         </button>
       </Dropdown>
       <Dropdown overlay={addMenu} trigger={["click"]} placement="bottomCenter">
         <button className="profile_button" onClick={(e) => e.preventDefault()}>
-          {/* ➕ */}
+          ➕
         </button>
       </Dropdown>
       <Drawer
@@ -114,7 +114,8 @@ const NavBar = () => {
         closable={true}
         onClose={onClose}
         visible={visible}
-        mask={false}
+        // mask={false}
+        maskClosable={true}
       >
         <ul className="drawer_links">
           <li>
@@ -124,7 +125,7 @@ const NavBar = () => {
               exact={true}
               activeClassName="active"
             >
-              {/* 🏠 Home */}
+               Home
             </NavLink>
           </li>
           <li>
@@ -134,7 +135,7 @@ const NavBar = () => {
               exact={true}
               activeClassName="active"
             >
-              {/* 📲 Login */}
+              📲 Login
             </NavLink>
           </li>
           <li>
@@ -144,7 +145,7 @@ const NavBar = () => {
               exact={true}
               activeClassName="active"
             >
-              {/* ⬆️ Sign Up */}
+              ⬆️ Sign Up
             </NavLink>
           </li>
           <li>
@@ -154,7 +155,7 @@ const NavBar = () => {
               exact={true}
               activeClassName="active"
             >
-              {/* 🧍‍♂️ Users */}
+              🧍‍♂️ Users
             </NavLink>
           </li>
         </ul>
