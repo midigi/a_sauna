@@ -6,6 +6,7 @@ import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +21,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     e.preventDefault();
     let newErrors = [];
     if (password === repeatPassword) {
+
       dispatch(createUser({ firstName, lastName, email, password }))
         .then(() => {
           setFirstName("");
@@ -34,11 +36,13 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
             // setErrors(newErrors);
           }
         });
+
       if (!user.errors) {
         setAuthenticated(true);
       }
     }
   };
+
 
   const updateFirstName = (e) => {
     setFirstName(e.target.value);

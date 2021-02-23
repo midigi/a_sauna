@@ -1,59 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
-
 .center_box {
-    width: 35%;
-    margin: auto;
-    display: flex;
-    padding-right: 10px;
-    
-
+  width: 50vh;
+  margin: auto;
+  display: flex;
+  margin-top: 5%;
+  background-color: white;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  border-radius: 2%;
+  padding-top: 3%;
 }
-
 
 .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    border-radius: 0 2% 2% 0;
-    padding: 2%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 2% 2% 0;
+  padding: 2%;
 }
 .form_input {
-    border-radius: 2px;
-    padding: 0.75rem;
-    margin: 5px;
-    background-color: none;
-    width: 40vh;
-    border: 2px solid #333;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    
+  border-radius: 2px;
+  padding: 0.75rem;
+  margin: 5px;
+  background-color: none;
+  width: 40vh;
+  border: 2px solid rgba(51, 51, 51, 0.534);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 }
 .submit_button {
-    background-color: #edae49;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 12px;
-    width: 20vh;
-    margin: 2%;
+  background-color: #edae49;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  width: 20vh;
+  margin: 2%;
 }
-.form_title{
-    color: #edae49;
-    font-family: Arial, Helvetica, sans-serif; 
-    margin:0;
+.form_title {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
 .form_link {
-    color: #1446ad;
-    margin-left: 5px;
-
+  color: #1446ad;
+  margin-left: 5px;
 }
 .break {
-    width: 23%;
-
+  width: 23%;
 }
-.form_text{
-    text-align: center;
-    margin: 10%;
+.form_text {
+  text-align: center;
+  margin: 10%;
 }
