@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
 import "./authStyling/form.css";
 
-const LoginForm = ({ authenticated, setAuthenticated }) => {
+const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
-  const onLogin = async (e) => {
+  function onLogin(e) {
     e.preventDefault();
-    const user = await login(email, password);
-    if (!user.errors) {
-      setAuthenticated(true);
-    } else {
-      setErrors(user.errors);
-    }
-  };
+    return dispatch(login({ email, password }));
+  }
+
+  if (sessionUser) {
+    return <Redirect to="/" />;
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -25,10 +27,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  if (authenticated) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className="center_box">

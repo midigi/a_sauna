@@ -10,28 +10,43 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-export const login = ({ credential, password }) => async (dispatch) => {
-  const res = await fetch("/api/session", {
+export const login = ({ email, password }) => async (dispatch) => {
+  console.log(email, password);
+  const res = await fetch("/api/auth/login", {
     method: "POST",
-    body: JSON.stringify({ credential, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
   });
   const data = await res.json();
-  dispatch(setUser(data.user));
+  dispatch(setUser(data));
 };
 
 export const restoreUser = () => async (dispatch) => {
-  const res = await fetch("/api/session");
+  const res = await fetch("/api/auth");
   const data = await res.json();
   dispatch(setUser(data.user));
 };
 
 export const createUser = (user) => async (dispatch) => {
   const { firstName, lastName, email, password } = user;
-  const formData = new FormData();
-  formData.append("first name", firstName);
-  formData.append("last name", lastName);
-  formData.append("email", email);
-  formData.append("password", password);
+  const res = await fetch(`/api/auth/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  const data = await res.json();
+  console.log(data);
+  dispatch(setUser(data));
+  // const formData = new FormData();
+  // formData.append("first name", firstName);
+  // formData.append("last name", lastName);
+  // formData.append("email", email);
+  // formData.append("password", password);
 
   // for multiple files
   // if (images && images.length !== 0) {
@@ -42,26 +57,15 @@ export const createUser = (user) => async (dispatch) => {
 
   // for single file
   // if (image) formData.append("image", image);
-
-  // const res = await fetch(`/api/users/`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  //   body: formData,
-  // });
-
-  // const data = await res.json();
-  // dispatch(setUser(data.user));
 };
 
 export const logout = () => async (dispatch) => {
-  const res = await fetch("/api/session", {
+  const res = await fetch("/api/auth/logout", {
     method: "DELETE",
   });
 
   const data = await res.json();
-  if (data.message === "success") {
+  if (data.message === "User logged out") {
     dispatch(removeUser());
   }
 };
