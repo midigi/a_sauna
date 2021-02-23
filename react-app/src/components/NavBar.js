@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Drawer, Menu, Dropdown } from "antd";
+import { Drawer, Menu, Dropdown, Modal } from "antd";
 import LogoutButton from "./auth/LogoutButton";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
 const NavBar = ({ setAuthenticated }) => {
   const [visible, setVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const showDrawer = () => {
     setVisible(true);
@@ -19,9 +32,7 @@ const NavBar = ({ setAuthenticated }) => {
   const profileMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink to="/profile" exact={true} activeClassName="active">
-          Profile
-        </NavLink>
+        <button onClick={showModal}> Profile </button>
       </Menu.Item>
       <Menu.Item>
         <a
@@ -63,6 +74,27 @@ const NavBar = ({ setAuthenticated }) => {
   );
   return (
     <div style={{ width: "100%", height: "5vh" }}>
+      <Modal
+        title="My Profile"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width="75vh"
+      >
+        <div className="modal_title">
+          <img
+            src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
+            alt="Avatar"
+            className="profile_picture"
+          ></img>
+          <div className="modal_username">
+            <h3 className="firstname">Firstname</h3>
+            <p className="lastname">Lastname</p>
+          </div>
+        </div>
+        <h4>About Me</h4>
+        <p>Some contents...</p>
+      </Modal>
       <button className="hamburger" onClick={showDrawer}>
         🧑‍💼
       </button>
