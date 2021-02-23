@@ -5,7 +5,7 @@ import LogoutButton from "./auth/LogoutButton";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = () => {
   const [visible, setVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -53,7 +53,7 @@ const NavBar = ({ setAuthenticated }) => {
         </a>
       </Menu.Item>
       <Menu.Item danger>
-        <LogoutButton setAuthenticated={setAuthenticated} />
+        <LogoutButton />
       </Menu.Item>
     </Menu>
   );
