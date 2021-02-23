@@ -38,3 +38,29 @@
 .ant-dropdown {
   border-top: 3px solid #edae49;
 }
+
+.profile_picture {
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+}
+
+.ant-modal {
+  width: 100vh;
+}
+
+.modal_title {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal_username {
+  align-self: center;
+  margin-left: 2vh;
+}
+
+.firstname {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
