@@ -4,7 +4,8 @@ import { signUp } from "../../services/auth";
 import "./authStyling/form.css";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
-  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -12,15 +13,19 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
+      const user = await signUp(firstname, lastname, email, password);
       if (!user.errors) {
         setAuthenticated(true);
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateFirstname = (e) => {
+    setFirstname(e.target.value);
+  };
+
+  const updateLastname = (e) => {
+    setLastname(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -55,10 +60,20 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <input
             className="form_input"
             type="text"
-            name="username"
-            placeholder="User Name"
-            onChange={updateUsername}
-            value={username}
+            name="firstname"
+            placeholder="First Name"
+            onChange={updateFirstname}
+            value={firstname}
+          ></input>
+        </div>
+        <div>
+          <input
+            className="form_input"
+            type="text"
+            name="lastname"
+            placeholder="Last Name"
+            onChange={updateLastname}
+            value={lastname}
           ></input>
         </div>
         <div>
