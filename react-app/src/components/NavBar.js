@@ -64,16 +64,16 @@ const NavBar = ({ setAuthenticated }) => {
   return (
     <div style={{ width: "100%", height: "5vh" }}>
       <button className="hamburger" onClick={showDrawer}>
-        🧑‍💼
+        {/* 🧑‍💼 */}
       </button>
       <Dropdown overlay={profileMenu} trigger={["click"]}>
         <button className="profile_button" onClick={(e) => e.preventDefault()}>
-          🧑‍
+          {/* 🧑‍ */}
         </button>
       </Dropdown>
       <Dropdown overlay={addMenu} trigger={["click"]} placement="bottomCenter">
         <button className="profile_button" onClick={(e) => e.preventDefault()}>
-          ➕
+          {/* ➕ */}
         </button>
       </Dropdown>
       <Drawer
@@ -92,7 +92,7 @@ const NavBar = ({ setAuthenticated }) => {
               exact={true}
               activeClassName="active"
             >
-              🏠 Home
+              {/* 🏠 Home */}
             </NavLink>
           </li>
           <li>
@@ -102,7 +102,7 @@ const NavBar = ({ setAuthenticated }) => {
               exact={true}
               activeClassName="active"
             >
-              📲 Login
+              {/* 📲 Login */}
             </NavLink>
           </li>
           <li>
@@ -112,7 +112,7 @@ const NavBar = ({ setAuthenticated }) => {
               exact={true}
               activeClassName="active"
             >
-              ⬆️ Sign Up
+              {/* ⬆️ Sign Up */}
             </NavLink>
           </li>
           <li>
@@ -122,7 +122,7 @@ const NavBar = ({ setAuthenticated }) => {
               exact={true}
               activeClassName="active"
             >
-              🧍‍♂️ Users
+              {/* 🧍‍♂️ Users */}
             </NavLink>
           </li>
         </ul>

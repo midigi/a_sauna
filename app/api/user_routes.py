@@ -23,13 +23,13 @@ def user(id):
     return user.to_dict()
 
 
-# UPLOAD_FOLDER = '/path/to/the/uploads'
-# ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+# UPLOAD_FOLDER = '/api/users/update/profile'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
-# def allowed_file(filename):
-#     return '.' in filename and \
-#            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @user_routes.route('/update/profile', methods=['POST'])
@@ -45,6 +45,7 @@ def update_profile():
 
     if file and allowed_file(file.filename):
         file.filename = secure_filename(file.filename)
+        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         output = upload_file_to_s3(file, "S3_BUCKET")
         return str(output)
 

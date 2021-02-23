@@ -9,8 +9,8 @@ class Config:
 
 
 S3_BUCKET = os.environ.get("asauna-user-images")
-S3_KEY = os.environ.get("AKIAIBLVQSFMM2EWIQTQ")
-S3_SECRET = os.environ.get("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")
+S3_KEY = os.environ.get("S3_KEY")
+S3_SECRET = os.environ.get("S3_SECRET")
 S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
 
 SECRET_KEY = os.urandom(32)
