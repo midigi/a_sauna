@@ -2,6 +2,7 @@ import boto3
 import botocore
 from .config import S3_KEY, S3_SECRET, S3_BUCKET
 
+
 s3 = boto3.client(
     "s3",
     aws_access_key_id=S3_KEY,
