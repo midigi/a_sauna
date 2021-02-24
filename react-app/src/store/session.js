@@ -61,6 +61,18 @@ export const createUser = (user) => async (dispatch) => {
   // if (image) formData.append("image", image);
 };
 
+export const photoUpload = (file) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("user_file", file);
+  const res = await fetch("/api/users/update/profile", {
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+};
+
 export const logout = () => async (dispatch) => {
   const res = await fetch("/api/auth/logout", {
     method: "DELETE",
