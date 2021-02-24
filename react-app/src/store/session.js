@@ -66,9 +66,6 @@ export const photoUpload = (file) => async (dispatch) => {
   formData.append("user_file", file);
   const res = await fetch("/api/users/update/profile", {
     method: "POST",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
     body: formData,
   });
 };

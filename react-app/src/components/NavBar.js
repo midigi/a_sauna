@@ -22,7 +22,6 @@ const NavBar = () => {
 
   function submit(e) {
     e.preventDefault();
-    console.log(photoFile);
     return dispatch(photoUpload(photoFile));
   }
 
@@ -79,6 +78,7 @@ const NavBar = () => {
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
+          footer={null}
           width="75vh"
         >
           <div className="modal_title">

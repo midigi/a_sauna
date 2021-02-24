@@ -35,8 +35,6 @@ def allowed_file(filename):
 @user_routes.route('/update/profile', methods=['POST'])
 @login_required
 def update_profile():
-    print("hello")
-    print(request.files)
 
     if "user_file" not in request.files:
         print("1")
@@ -51,7 +49,6 @@ def update_profile():
     if file and allowed_file(file.filename):
         print("3")
         file.filename = secure_filename(file.filename)
-        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         output = upload_file_to_s3(file, "S3_BUCKET")
         return str(output)
 
