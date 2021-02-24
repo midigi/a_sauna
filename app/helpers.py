@@ -11,7 +11,7 @@ s3 = boto3.client(
 
 
 def upload_file_to_s3(file, bucket_name=S3_BUCKET, acl="public-read"):
-    print(S3_BUCKET, S3_KEY, S3_SECRET)
+    print(bucket_name, S3_KEY, S3_SECRET)
     try:
         s3.upload_fileobj(
             file,

@@ -49,8 +49,8 @@ def update_profile():
     if file and allowed_file(file.filename):
         print("3")
         file.filename = secure_filename(file.filename)
-        output = upload_file_to_s3(file, "S3_BUCKET")
-        return str(output)
+        output = upload_file_to_s3(file)
+        return {"url": str(output)}
 
     else:
         print("4")

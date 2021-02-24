@@ -68,6 +68,10 @@ export const photoUpload = (file) => async (dispatch) => {
     method: "POST",
     body: formData,
   });
+  if (res.ok) {
+    let photoUrl = await res.json();
+    console.log(photoUrl);
+  }
 };
 
 export const logout = () => async (dispatch) => {
