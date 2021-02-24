@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Menu, Dropdown, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotTub } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
+import { photoUpload } from "../store/session";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
@@ -12,6 +13,17 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [visible, setVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [photoFile, setPhotoFile] = useState();
+  const dispatch = useDispatch();
+
+  function handleUpload(e) {
+    setPhotoFile(e.target.files[0]);
+  }
+
+  function submit(e) {
+    e.preventDefault();
+    return dispatch(photoUpload(photoFile));
+  }
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -66,6 +78,7 @@ const NavBar = () => {
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
+          footer={null}
           width="75vh"
         >
           <div className="modal_title">
@@ -87,6 +100,14 @@ const NavBar = () => {
               <h3 className="firstname">{sessionUser.firstName}</h3>
               <p className="lastname">{sessionUser.lastName}</p>
             </div>
+            <form encType="multipart/form-data" onSubmit={submit}>
+              <input
+                type="file"
+                name="user_file"
+                onChange={handleUpload}
+              ></input>
+              <button type="submit"></button>
+            </form>
           </div>
           <h4>About Me</h4>
           <p>{sessionUser.about}</p>
@@ -112,7 +133,8 @@ const NavBar = () => {
                 src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
                 alt="Avatar"
                 className="button_picture"
-              ></img>)}
+              ></img>
+            )}
           </button>
         </Dropdown>
         <Dropdown
@@ -148,11 +170,11 @@ const NavBar = () => {
             <li>
               <NavLink
                 className="drawer_link"
-                to="/login"
+                to="/tasks"
                 exact={true}
                 activeClassName="active"
               >
-                {/* 📲 Login */}
+                Tasks
               </NavLink>
             </li>
             <li>

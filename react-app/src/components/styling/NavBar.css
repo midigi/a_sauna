@@ -37,9 +37,7 @@
 
 .button_picture {
   border-radius: 50%;
-  width: 3vh;
-  height: 3vh;
-  /* margin: 5px; */
+  width: 100%;
 }
 
 .ant-dropdown {
@@ -79,5 +77,3 @@
   /* height: 7vh;
   width: 7vh */
 }
-
-

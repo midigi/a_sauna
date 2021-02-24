@@ -8,10 +8,10 @@ class Config:
     SQLALCHEMY_ECHO = True
 
 
-S3_BUCKET = os.environ.get("asauna-user-images")
+S3_BUCKET = "asauna-user-images"
 S3_KEY = os.environ.get("S3_KEY")
 S3_SECRET = os.environ.get("S3_SECRET")
-S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
+S3_LOCATION = 'https://asauna-user-images.s3-us-east-2.amazonaws.com/'
 
 SECRET_KEY = os.urandom(32)
 DEBUG = True

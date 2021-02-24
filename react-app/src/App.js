@@ -9,7 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
-
+import Home from "./components/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +47,8 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          {/* <Home></Home> */}
+          <h1>Hello</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
