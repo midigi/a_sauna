@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import {createTask} from "../../store/task"
 import { useDispatch, useSelector } from "react-redux";
+import Task from "../../components/Task";
+import {Row, Col} from "antd";
+import "../styling/TaskForm.css";
 
 const PRIORITIES = [
     'Low',
@@ -17,7 +19,8 @@ const STATUSES = [
 ];
 
 const TaskForm = () => {
-    const [taskTitle, setTaskTitle] = useState('New Task');
+    const sessionUser = useSelector((state) => state.session.user);
+    const [taskTitle, setTaskTitle] = useState('');
     const [dueDate, setDueDate] = useState('2021-03-07');
     const [priority, setPriority] = useState('Low');
     const [status, setStatus] = useState('Incomplete');
@@ -30,20 +33,134 @@ const TaskForm = () => {
     }
 
     return(
+        sessionUser && (
+        <div className='outside'>
+        <div>
+            {sessionUser.photoUrl != null ? (
+              <img
+                src={sessionUser.photoUrl}
+                alt="UserPhoto"
+                className="profile_picture"
+              ></img>
+            ) : (
+              <img
+                src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
+                alt="Avatar"
+                className="profile_picture"
+              ></img>
+            )}
+            <h2 className='header'>My Tasks</h2>
+        </div>
         <div className='outer_box'>
-            <form onSubmit={onTaskCreation} className='task_form'>
-                <div>Add Task</div>
-                <div>
+            <div className='task_form'>
+                <div className='title_header'>
+                    <h4>Title</h4>
+                </div>
+                <div className='due_date_header'>
+                    <h4>Due Date</h4>
+                </div>
+                <div className='priority_header'>
+                    <h4>Priority</h4>
+                </div>
+                <div className='status_header'>
+                    <h4>Status</h4>
+                </div>
+                <div className='description_header'>
+                    <h4>Description</h4>
+                </div>
+                <div className='task_submit_header'>
+                    <h4></h4>
+                </div>
+            </div>
+            <form onSubmit={onTaskCreation}>
+            <Row>
+                <Col span={7}>
                     <input
+                    className='task_title'
                     name='task_title'
                     type='text'
-                    placeholder='Task Title'
+                    placeholder='Enter a task name'
+                    value={taskTitle}
+                    onChange={(e) => setTaskTitle(e.target.value)}
+                    />
+                </Col>
+                <Col span={5}>
+                    <input
+                    className='due_date'
+                    name='due_date'
+                    type='date'
+                    placeholder='2021-03-07'
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
+                    />
+                </Col>
+                <Col span={3}>
+                    <select
+                        className='priority'
+                        value={priority}
+                        onChange={(e) => setPriority(e.target.value)}
+                        >
+                            {PRIORITIES.map(prio =>(
+                                <option
+                                key={prio}
+                                value={prio}
+                                >
+                                    {prio}
+                                </option>
+                            ))}
+                        </select>
+                </Col>
+                <Col span={3}>
+                    <select
+                        className='task_status'
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                    >
+                            {STATUSES.map(stat =>(
+                                <option
+                                key={stat}
+                                value={stat}
+                                >
+                                    {stat}
+                                </option>
+                            ))}
+                    </select>
+                </Col>
+                <Col span={3}>
+                <button>Description</button>
+                    <textarea
+                    className='task_description'
+                    name='description'
+                    type='text'
+                    placeholder='Additional task information'
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    />
+                </Col>
+                <Col span={3}>
+                <button
+                    className='task_submit_button'
+                    type='submit'
+                    >
+                        Create task
+                    </button>
+                </Col>
+            </Row>
+            </form>
+            {/* <form onSubmit={onTaskCreation} className='task_form'>
+                <div className='column_title'>
+                    <input
+                    className='task_title'
+                    name='task_title'
+                    type='text'
+                    placeholder='Enter a task name'
                     value={taskTitle}
                     onChange={(e) => setTaskTitle(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='column_due_date'>
                     <input
+                    className='due_date'
                     name='due_date'
                     type='date'
                     placeholder='2021-03-07'
@@ -51,8 +168,9 @@ const TaskForm = () => {
                     onChange={(e) => setDueDate(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className='column_priority'>
                     <select
+                    className='priority'
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
                     >
@@ -66,8 +184,9 @@ const TaskForm = () => {
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className='column_status'>
                     <select
+                    className='task_status'
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                     >
@@ -81,8 +200,10 @@ const TaskForm = () => {
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className='column_description'>
+                    <button>Description</button>
                     <textarea
+                    className='task_description'
                     name='description'
                     type='text'
                     placeholder='Additional task information'
@@ -90,14 +211,19 @@ const TaskForm = () => {
                     onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
-                <button
-                className='task_submit_button'
-                type='submit'
-                >
-                    Create task
-                </button>
-            </form>
+                <div className='column_task_submit '>
+                    <button
+                    className='task_submit_button'
+                    type='submit'
+                    >
+                        Create task
+                    </button>
+                </div>
+            </form> */}
         </div>
+            <Task/>
+        </div>
+        )
     )
 }
 

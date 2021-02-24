@@ -34,9 +34,9 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path="/tasks" exact={true}>
+        <ProtectedRoute path="/tasks" exact={true}>
           <TaskForm />
-        </Route>
+        </ProtectedRoute>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>

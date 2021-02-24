@@ -59,7 +59,7 @@ const NavBar = () => {
   const addMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink to="/task" exact={true} activeClassName="active">
+        <NavLink to="/tasks" exact={true} activeClassName="active">
           Task
         </NavLink>
       </Menu.Item>
