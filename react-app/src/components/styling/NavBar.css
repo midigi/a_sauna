@@ -12,6 +12,7 @@
 .ant-drawer-title {
   color: white;
   font-family: "Poppins", sans-serif;
+  font-size: larger;
 }
 
 .ant-drawer-close svg {

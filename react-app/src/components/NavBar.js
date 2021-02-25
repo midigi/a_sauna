@@ -9,6 +9,14 @@ import { photoUpload } from "../store/session";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
+import {
+  HomeOutlined,
+  SettingFilled,
+  LineChartOutlined,
+  SnippetsOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons";
+
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [visible, setVisible] = useState(false);
@@ -164,7 +172,7 @@ const NavBar = () => {
                 exact={true}
                 activeClassName="active"
               >
-                {/* 🏠 Home */}
+                <HomeOutlined /> Home
               </NavLink>
             </li>
             <li>
@@ -174,17 +182,17 @@ const NavBar = () => {
                 exact={true}
                 activeClassName="active"
               >
-                Tasks
+                <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
             <li>
               <NavLink
                 className="drawer_link"
-                to="/sign-up"
+                to="/projects"
                 exact={true}
                 activeClassName="active"
               >
-                {/* ⬆️ Sign Up */}
+                <LineChartOutlined /> Projects
               </NavLink>
             </li>
             <li>
