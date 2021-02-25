@@ -12,8 +12,8 @@ class Task(db.Model):
     description = db.Column(db.String(500), nullable=True)
     assigneeId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    projectId = db.Column(db.Integer, db.ForeignKey(
-        "projects.id"), nullable=True)
+    projectId = db.Column(db.Integer, db.ForeignKey("projects.id"))
+
 
     project = db.relationship("Project", back_populates="tasks")
     user = db.relationship("User", back_populates="tasks")
