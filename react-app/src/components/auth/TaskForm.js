@@ -37,7 +37,7 @@ const TaskForm = () => {
   const onTaskCreation = async (e) => {
     e.preventDefault();
     dispatch(createTask({ taskTitle, dueDate, priority, status, description }));
-    await history.push("/");
+    // await history.push("/tasks");
   };
 
 
@@ -156,7 +156,7 @@ const TaskForm = () => {
       </div>
     )
 
-  
+
   );
 };
 
