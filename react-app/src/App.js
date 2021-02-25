@@ -10,6 +10,7 @@ import User from "./components/User";
 import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
+import Calendar from "./components/Calendar";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/tasks" exact={true}>
           <TaskForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/calendar" exact={true}>
+          <Calendar></Calendar>
         </ProtectedRoute>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />

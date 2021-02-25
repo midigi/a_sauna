@@ -12,6 +12,12 @@ def tasks():
     tasks = Task.query.all()
     return {"tasks": [task.to_dict() for task in tasks]}
 
+
+@task_routes.route('/<id>')
+def task(id):
+    tasks = Task.query.filter_by(dueDate=id).all()
+    return {"tasks": [task.to_dict() for task in tasks]}
+
 # TODO we need to set up the task form before we can continue
 # @task_routes.route('/task', methods=['POST'])
 # @login_required
@@ -24,7 +30,3 @@ def tasks():
 #         db.session.commit()
 #         return redirect('/')
 #     return('Invalid Info')
-
-        
-
-    

@@ -5,6 +5,7 @@ import { Drawer, Menu, Dropdown, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
+import Calender from "./Calendar";
 import { photoUpload } from "../store/session";
 import RecentProjects from "./RecentProjects";
 import "antd/dist/antd.css";
@@ -14,6 +15,7 @@ import {
   HomeOutlined,
   LineChartOutlined,
   SnippetsOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
 
 const NavBar = () => {
@@ -205,11 +207,11 @@ const NavBar = () => {
             <li>
               <NavLink
                 className="drawer_link"
-                to="/users"
+                to="/calendar"
                 exact={true}
                 activeClassName="active"
               >
-                {/* 🧍‍♂️ Users */}
+                <CalendarOutlined /> Calendar
               </NavLink>
             </li>
           </ul>
