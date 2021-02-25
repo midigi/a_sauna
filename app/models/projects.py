@@ -8,7 +8,6 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     projectName = db.Column(db.String(100), nullable=False)
     ownerId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    taskId = db.Column(db.Integer, nullable=False)
     teamName = db.Column(db.String(100))
 
     tasks = db.relationship("Task", back_populates="project")

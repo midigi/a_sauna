@@ -10,6 +10,7 @@ import User from "./components/User";
 import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
+import ProjectForm from "./components/auth/ProjectForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/tasks" exact={true}>
           <TaskForm />
+        </Route>
+        <Route path="/project" exact={true}>
+          <ProjectForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
