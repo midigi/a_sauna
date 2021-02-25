@@ -24,6 +24,7 @@ const NavBar = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [photoFile, setPhotoFile] = useState();
   const dispatch = useDispatch();
+  console.log("this is the sessionUser,", sessionUser)
 
   function handleUpload(e) {
     setPhotoFile(e.target.files[0]);
