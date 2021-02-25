@@ -7,12 +7,15 @@ import { Row, Col } from "antd";
 import "../styling/TaskForm.css";
 
 import { useHistory } from "react-router-dom";
+import { NumberOutlined } from "@ant-design/icons";
 
 const PRIORITIES = ["Low", "Medium", "High"];
 
 const STATUSES = ["Incomplete", "In Progress", "Need Help", "Complete"];
 
-const TaskForm = () => {
+const TaskForm = ({ id }) => {
+  console.log(id);
+
   function getCurrentDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -31,33 +34,45 @@ const TaskForm = () => {
   const [priority, setPriority] = useState("Low");
   const [status, setStatus] = useState("Incomplete");
   const [description, setDescription] = useState("");
+  // const [header, setHeader] = useState(true);
   const dispatch = useDispatch();
 
   const onTaskCreation = async (e) => {
     e.preventDefault();
-    dispatch(createTask({ taskTitle, dueDate, priority, status, description }));
+    dispatch(
+      createTask({
+        taskTitle,
+        dueDate,
+        priority,
+        status,
+        description,
+        id,
+      })
+    );
     await history.push("/");
   };
 
   return (
     sessionUser && (
       <div className="outside">
-        <div style={{ marginBottom: "5vh" }}>
-          {sessionUser.photoUrl != null ? (
-            <img
-              src={sessionUser.photoUrl}
-              alt="UserPhoto"
-              className="profile_picture"
-            ></img>
-          ) : (
-            <img
-              src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
-              alt="Avatar"
-              className="profile_picture"
-            ></img>
-          )}
-          <h2 className="header">My Tasks</h2>
-        </div>
+        {id == undefined && (
+          <div style={{ marginBottom: "5vh" }}>
+            {sessionUser.photoUrl != null ? (
+              <img
+                src={sessionUser.photoUrl}
+                alt="UserPhoto"
+                className="profile_picture"
+              ></img>
+            ) : (
+              <img
+                src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
+                alt="Avatar"
+                className="profile_picture"
+              ></img>
+            )}
+            <h2 className="header">My Tasks</h2>
+          </div>
+        )}
         <div className="task_size">
           <Row>
             <Col span={7}>

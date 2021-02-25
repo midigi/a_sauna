@@ -11,6 +11,7 @@ import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
 import Calendar from "./components/Calendar";
+import Project from "./components/Project";
 import ProjectForm from "./components/auth/ProjectForm";
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <Home></Home>
+        </ProtectedRoute>
+        <ProtectedRoute path="/project/:id" exact={true}>
+          <Project></Project>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
