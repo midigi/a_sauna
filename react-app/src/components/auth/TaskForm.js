@@ -8,7 +8,6 @@ import "../styling/TaskForm.css";
 
 import { useHistory } from "react-router-dom";
 
-
 const PRIORITIES = ["Low", "Medium", "High"];
 
 const STATUSES = ["Incomplete", "In Progress", "Need Help", "Complete"];
@@ -39,7 +38,6 @@ const TaskForm = () => {
     dispatch(createTask({ taskTitle, dueDate, priority, status, description }));
     await history.push("/");
   };
-
 
   return (
     sessionUser && (
@@ -155,8 +153,6 @@ const TaskForm = () => {
         <Task />
       </div>
     )
-
-  
   );
 };
 

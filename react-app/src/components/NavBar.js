@@ -197,7 +197,7 @@ const NavBar = () => {
             <li>
               <NavLink
                 className="drawer_link"
-                to="/projects"
+                to="/project"
                 exact={true}
                 activeClassName="active"
               >
