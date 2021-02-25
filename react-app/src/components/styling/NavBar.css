@@ -77,3 +77,15 @@
   font-size: 3vh;
   /* color: #edae49; */
 }
+
+.drawer_text {
+  color: #9ca6af;
+
+  line-height: 32px;
+}
+
+.squircle {
+  margin-right: 1vh;
+  color: #35a7ff;
+  font-size: 1vh;
+}

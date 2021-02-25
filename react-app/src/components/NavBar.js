@@ -3,18 +3,17 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Menu, Dropdown, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHotTub } from "@fortawesome/free-solid-svg-icons";
+import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
 import { photoUpload } from "../store/session";
+import RecentProjects from "./RecentProjects";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
 import {
   HomeOutlined,
-  SettingFilled,
   LineChartOutlined,
   SnippetsOutlined,
-  LoadingOutlined,
 } from "@ant-design/icons";
 
 const NavBar = () => {
@@ -158,7 +157,15 @@ const NavBar = () => {
           </button>
         </Dropdown>
         <Drawer
-          title="Asauna"
+          title={
+            <div>
+              <FontAwesomeIcon
+                icon={faHotTub}
+                style={{ marginRight: "0.5vh" }}
+              />{" "}
+              asauna
+            </div>
+          }
           placement="left"
           closable={true}
           onClose={onClose}
@@ -206,6 +213,13 @@ const NavBar = () => {
               </NavLink>
             </li>
           </ul>
+          <div>
+            <h4 className="drawer_text">Most Recent Project:</h4>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FontAwesomeIcon icon={faSquare} className="squircle" />
+              <p className="drawer_text">First Project</p>
+            </div>
+          </div>
         </Drawer>
       </div>
     )
