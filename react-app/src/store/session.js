@@ -11,7 +11,7 @@ const removeUser = () => ({
 });
 
 export const login = ({ email, password }) => async (dispatch) => {
-  console.log(email, password);
+  // console.log(email, password);
   const res = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
@@ -20,6 +20,7 @@ export const login = ({ email, password }) => async (dispatch) => {
     body: JSON.stringify({ email, password }),
   });
   const data = await res.json();
+  console.log(data.id);
   dispatch(setUser(data));
 };
 
@@ -42,7 +43,7 @@ export const createUser = (user) => async (dispatch) => {
   });
 
   const data = await res.json();
-  console.log(data);
+  
   dispatch(setUser(data));
   // const formData = new FormData();
   // formData.append("first name", firstName);
