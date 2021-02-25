@@ -3,11 +3,20 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Menu, Dropdown, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHotTub } from "@fortawesome/free-solid-svg-icons";
+import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
+import Calender from "./Calendar";
 import { photoUpload } from "../store/session";
+import RecentProjects from "./RecentProjects";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
+
+import {
+  HomeOutlined,
+  LineChartOutlined,
+  SnippetsOutlined,
+  CalendarOutlined,
+} from "@ant-design/icons";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -150,7 +159,15 @@ const NavBar = () => {
           </button>
         </Dropdown>
         <Drawer
-          title="Asauna"
+          title={
+            <div>
+              <FontAwesomeIcon
+                icon={faHotTub}
+                style={{ marginRight: "0.5vh" }}
+              />{" "}
+              asauna
+            </div>
+          }
           placement="left"
           closable={true}
           onClose={onClose}
@@ -164,7 +181,7 @@ const NavBar = () => {
                 exact={true}
                 activeClassName="active"
               >
-                {/* 🏠 Home */}
+                <HomeOutlined /> Home
               </NavLink>
             </li>
             <li>
@@ -174,30 +191,37 @@ const NavBar = () => {
                 exact={true}
                 activeClassName="active"
               >
-                Tasks
+                <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
             <li>
               <NavLink
                 className="drawer_link"
-                to="/sign-up"
+                to="/projects"
                 exact={true}
                 activeClassName="active"
               >
-                {/* ⬆️ Sign Up */}
+                <LineChartOutlined /> Projects
               </NavLink>
             </li>
             <li>
               <NavLink
                 className="drawer_link"
-                to="/users"
+                to="/calendar"
                 exact={true}
                 activeClassName="active"
               >
-                {/* 🧍‍♂️ Users */}
+                <CalendarOutlined /> Calendar
               </NavLink>
             </li>
           </ul>
+          <div>
+            <h4 className="drawer_text">Most Recent Project:</h4>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FontAwesomeIcon icon={faSquare} className="squircle" />
+              <p className="drawer_text">First Project</p>
+            </div>
+          </div>
         </Drawer>
       </div>
     )

@@ -13,6 +13,13 @@ def tasks():
     return {"tasks": [task.to_dict() for task in tasks]}
 
 
+
+@task_routes.route('/<id>')
+def task(id):
+    tasks = Task.query.filter_by(dueDate=id).all()
+    return {"tasks": [task.to_dict() for task in tasks]}
+
+  
 @task_routes.route('/task', methods=['POST'])
 @login_required
 def create_task():
@@ -26,3 +33,4 @@ def create_task():
         db.session.commit()
         return data.to_dict()
     return('Invalid Info')
+

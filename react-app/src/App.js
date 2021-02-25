@@ -10,7 +10,9 @@ import User from "./components/User";
 import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
+import Calendar from "./components/Calendar";
 import ProjectForm from "./components/auth/ProjectForm";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -35,8 +37,12 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path="/tasks" exact={true}>
+        <ProtectedRoute path="/tasks" exact={true}>
           <TaskForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/calendar" exact={true}>
+          <Calendar></Calendar>
+        </ProtectedRoute>
         </Route>
         <Route path="/project" exact={true}>
           <ProjectForm />
@@ -51,8 +57,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          {/* <Home></Home> */}
-          <h1>Hello</h1>
+          <Home></Home>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

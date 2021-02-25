@@ -1,0 +1,75 @@
+.task_form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.column_border {
+  border: 1px solid rgba(104, 104, 104, 0.103);
+  border-right: 0;
+  border-left: 0;
+  padding-top: 0.4vh;
+}
+
+.task_title {
+  border: none;
+  background: none;
+  padding-bottom: 0.4vh;
+}
+
+.due_date {
+  border: none;
+  background: none;
+}
+
+.priority {
+  border: none;
+  background: none;
+}
+
+.task_status {
+  border: none;
+  background: none;
+}
+
+.task_submit_button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #1890ff;
+}
+
+.profile_picture {
+  width: 7vh;
+  height: 7vh;
+  border-radius: 50%;
+  margin-left: 7vh;
+  margin-top: -4vh;
+}
+
+.header {
+  margin-left: 16vh;
+  margin-top: -5vh;
+}
+
+.task_size {
+  width: 95%;
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.bottom_buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 92%;
+  bottom: 0;
+  margin-bottom: 1vh;
+}
