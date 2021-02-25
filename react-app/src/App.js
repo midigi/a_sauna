@@ -13,7 +13,6 @@ import Home from "./components/Home";
 import Calendar from "./components/Calendar";
 import ProjectForm from "./components/auth/ProjectForm";
 
-
 function App() {
   const dispatch = useDispatch();
   // const sessionUser = useSelector((state) => state.session.user);
@@ -43,7 +42,6 @@ function App() {
         <ProtectedRoute path="/calendar" exact={true}>
           <Calendar></Calendar>
         </ProtectedRoute>
-        </Route>
         <Route path="/project" exact={true}>
           <ProjectForm />
         </Route>
