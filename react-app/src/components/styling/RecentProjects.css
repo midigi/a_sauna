@@ -1,0 +1,55 @@
+.project {
+  width: 8vh;
+  height: 8vh;
+  background-color: #35a7ff;
+  border-radius: 50%;
+  margin: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.projects {
+  display: flex;
+}
+
+.add_project {
+  width: 8vh;
+  height: 8vh;
+  border: 5px dashed rgb(158, 166, 174);
+  border-radius: 50%;
+  margin: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.add_project_button {
+  border: none;
+  background: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+.project_button {
+  border: none;
+  background: none;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5;
+}
+
+.add_project:hover {
+  border: 5px dashed rgb(90, 95, 99);
+  color: rgb(90, 95, 99);
+  transform: translateY(-5px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
+}
+
+.project:hover {
+  transform: translateY(-5px);
+}

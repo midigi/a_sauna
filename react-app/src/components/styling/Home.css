@@ -1,0 +1,21 @@
+.ant-collapse {
+  background: none;
+}
+
+.main_content {
+  width: 75%;
+  margin: auto;
+}
+
+.collapse {
+  margin-top: 5vh;
+}
+
+.ant-collapse-header {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}
+
+.ant-collapse-arrow svg {
+  margin-top: 0.3vh;
+}

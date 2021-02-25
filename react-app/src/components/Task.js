@@ -66,17 +66,7 @@ const Task = () => {
           {statusType(test.status)}
         </Col>
 
-        <Col span={3} className="column_border">
-          <button className="task_title">Edit Desc.</button>
-          {/* <textarea
-                    className='task_description'
-                    name='description'
-                    type='text'
-                    placeholder='Additional task information'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                /> */}
-        </Col>
+        <Col span={3} className="column_border"></Col>
 
         <Col span={3} className="column_border">
           <button className="task_submit_button" onClick={showDrawer}>

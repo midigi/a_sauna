@@ -47,8 +47,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          {/* <Home></Home> */}
-          <h1>Hello</h1>
+          <Home></Home>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
