@@ -24,4 +24,4 @@ class Task(db.Model):
             "priority": self.priority,
             "status": self.status,
             "description": self.description
-            }
+        }

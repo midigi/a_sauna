@@ -39,6 +39,7 @@ const TaskForm = ({ id }) => {
 
   const onTaskCreation = async (e) => {
     e.preventDefault();
+
     dispatch(
       createTask({
         taskTitle,
@@ -49,7 +50,6 @@ const TaskForm = ({ id }) => {
         id,
       })
     );
-    await history.push("/");
   };
 
   return (
