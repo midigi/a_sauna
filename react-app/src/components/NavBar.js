@@ -16,6 +16,7 @@ import {
   LineChartOutlined,
   SnippetsOutlined,
   CalendarOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 
 const NavBar = () => {
@@ -197,16 +198,6 @@ const NavBar = () => {
             <li>
               <NavLink
                 className="drawer_link"
-                to="/projects"
-                exact={true}
-                activeClassName="active"
-              >
-                <LineChartOutlined /> Projects
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="drawer_link"
                 to="/calendar"
                 exact={true}
                 activeClassName="active"
@@ -216,7 +207,12 @@ const NavBar = () => {
             </li>
           </ul>
           <div>
-            <h4 className="drawer_text">Most Recent Project:</h4>
+            <NavLink to="/project" exact={true} activeClassName="active">
+              <h4 className="drawer_text">
+                New Project <PlusOutlined />
+              </h4>
+            </NavLink>
+            <h4 className="drawer_text">My Projects:</h4>
             <div style={{ display: "flex", alignItems: "center" }}>
               <FontAwesomeIcon icon={faSquare} className="squircle" />
               <p className="drawer_text">First Project</p>

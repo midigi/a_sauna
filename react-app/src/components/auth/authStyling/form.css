@@ -53,3 +53,62 @@
   text-align: center;
   margin: 10%;
 }
+
+.project_box {
+  width: 35%;
+  align-self: center;
+}
+
+.project_title {
+  border: none;
+  border-bottom: 1px solid #9ca6af;
+  background-color: #f6f8f9;
+  width: 100%;
+  height: 3vh;
+}
+
+.team_name {
+  border: none;
+  border-bottom: 1px solid #9ca6af;
+  background-color: #f6f8f9;
+  width: 100%;
+  height: 3vh;
+}
+
+.skeleton {
+  width: 50%;
+  height: 50vh;
+  border: 1px solid #333;
+  align-self: center;
+  border: 2px solid #9ca6af;
+  border-radius: 1%;
+}
+
+.project_page {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.skeleton_picture {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  margin-right: 1vh;
+}
+
+.header_div {
+  width: 100%;
+  display: flex;
+  padding: 1vh;
+  justify-content: space-between;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 5vh;
+  height: 5vh;
+  background-color: #9ca6af41;
+  margin: 1vh;
+}
