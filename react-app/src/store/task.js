@@ -17,6 +17,14 @@ const removeTask = (taskId) => ({
   payload: taskId,
 });
 
+export const markComplete = (taskId) => async (dispatch) => {
+
+  const res = await fetch(`/api/tasks/${taskId}`, {
+    method: "PUT",
+  });
+  const deleted = await res.json();
+  console.log(deleted)
+} 
 export const createTask = ({
   taskTitle,
   dueDate,
@@ -78,6 +86,7 @@ function reducer(state = initialState, action) {
       return { ...state, task: action.payload };
     // case REMOVE_TASK:
     //   return { ...state, task: action.payload };
+
     default:
       return state;
   }

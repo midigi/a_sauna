@@ -42,3 +42,13 @@ def delete_task(id):
     db.session.delete(task)
     db.session.commit()
     return task.to_dict()
+
+@task_routes.route('/<id>', methods=['PUT'])
+@login_required
+def update_task(id):
+    print('hit')
+    task = Task.query.filter_by(id=id).first()
+    task.status = 'Complete'
+    db.session.commit()
+    return 'Complete'
+

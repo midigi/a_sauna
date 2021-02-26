@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import "./styling/Info.css";
-import { deleteTask, seeTask } from "../store/task";
+import { deleteTask, seeTask, markComplete } from "../store/task";
 
 import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
 
@@ -17,8 +17,10 @@ const Info = ({ task }) => {
     await dispatch(seeTask());
   }
 
-  function complete() {
+  async function complete() {
     console.log("hitr");
+    await dispatch(markComplete(task.id))
+    await dispatch(seeTask())
   }
 
   const showDrawer = ({ task }) => {
