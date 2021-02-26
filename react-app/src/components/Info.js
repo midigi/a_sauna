@@ -9,7 +9,7 @@ import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
 
 const Info = ({ task }) => {
   const [visible, setVisible] = useState(false);
-  const [desc, setDesc] = useState('')
+  const [desc, setDesc] = useState("Enter a description");
   const dispatch = useDispatch();
 
   async function deleteOneTask() {
@@ -19,8 +19,8 @@ const Info = ({ task }) => {
   }
 
   async function complete() {
-    await dispatch(markComplete(task.id))
-    await dispatch(seeTask())
+    await dispatch(markComplete(task.id, "task"));
+    await dispatch(seeTask());
   }
   async function description() {
     await dispatch(markComplete(task.id, desc));
@@ -86,8 +86,16 @@ const Info = ({ task }) => {
           </h4>
           <h4 className="task_menu_text">Status: {statusType(task.status)}</h4>
           <h4 className="task_menu_text">Description:</h4>
-          <textarea className="task_menu_textarea" value={desc} onChange={(e)=> setDesc(e.target.value)}>{task.description}</textarea>
-            <Button type='primary' onClick={description}>Add Description</Button>
+          <textarea
+            className="task_menu_textarea"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          >
+            {task.description}
+          </textarea>
+          <Button type="primary" onClick={description}>
+            Add Description
+          </Button>
           <div className="bottom_buttons">
             <Button type="primary" onClick={complete}>
               Mark Complete

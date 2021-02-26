@@ -50,12 +50,13 @@ def update_task(id):
     task = Task.query.filter_by(id=id).first()
     print(request.data.decode('utf-8'), '---------------')
     test = request.data.decode('utf-8')
-    print(test.to_dict(), '-----')
-    # print(test.get('description'))
-    if request.data:
-        task.description = request.data.description
-    else:
+    if "description" in test:
+        print(True)
+    if "Enter a description" in test:
         task.status = 'Complete'
-    db.session.commit()
-    return task.to_dict()
 
+    if "Enter a description" not in test:
+        task.description = test[16: -2]
+
+    db.session.commit()
+    return test[16: -2]
