@@ -1,3 +1,25 @@
 .projects_page {
   padding: 5vh;
 }
+
+.project_page_icon {
+  width: 4vh;
+  height: 4vh;
+  background-color: #35a7ff;
+  border-radius: 50%;
+  margin-left: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.projects_page_title {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.projects_page_center {
+  display: flex;
+  align-items: center;
+}

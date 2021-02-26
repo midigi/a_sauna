@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Drawer, Menu, Dropdown, Modal } from "antd";
+import { Drawer, Menu, Dropdown, Modal, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
@@ -13,7 +13,7 @@ import "./styling/NavBar.css";
 
 import {
   HomeOutlined,
-  LineChartOutlined,
+  SmileOutlined,
   SnippetsOutlined,
   CalendarOutlined,
   PlusOutlined,
@@ -23,8 +23,27 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [visible, setVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [buttonVisible, setButtonVisible] = useState("hidden");
   const [photoFile, setPhotoFile] = useState();
+  const [projects, setProjects] = useState();
+  const [photoUrl, setPhotoUrl] = useState(
+    sessionUser ? sessionUser.photoUrl : ""
+  );
+
+  // let projects;
   const dispatch = useDispatch();
+
+  const getAllProjects = async () => {
+    const res = await fetch("/api/projects/user");
+    const data = await res.json();
+    if (res.ok) {
+      setProjects(data.projects);
+    }
+  };
+
+  useEffect(() => {
+    getAllProjects();
+  }, [dispatch]);
 
   function handleUpload(e) {
     setPhotoFile(e.target.files[0]);
@@ -32,8 +51,19 @@ const NavBar = () => {
 
   function submit(e) {
     e.preventDefault();
-    return dispatch(photoUpload(photoFile));
+    dispatch(photoUpload(photoFile)).then((res) => {
+      setPhotoUrl(res.url);
+    });
   }
+
+  const showButtonVisible = () => {
+    if (buttonVisible === "visible") {
+      setButtonVisible("hidden");
+    }
+    if (buttonVisible === "hidden") {
+      setButtonVisible("visible");
+    }
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -58,9 +88,11 @@ const NavBar = () => {
   const profileMenu = (
     <Menu>
       <Menu.Item>
-        <button onClick={showModal}> Profile </button>
+        <Button type="link" onClick={showModal}>
+          My Profile <SmileOutlined />
+        </Button>
       </Menu.Item>
-      <Menu.Item danger>
+      <Menu.Item>
         <LogoutButton />
       </Menu.Item>
     </Menu>
@@ -88,21 +120,24 @@ const NavBar = () => {
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
-          footer={null}
+          footer={[
+            <Button key="back" onClick={showButtonVisible}>
+              Edit Profile
+            </Button>,
+            <Button key="submit" type="primary" onClick={submit}>
+              Submit Changes
+            </Button>,
+          ]}
           width="75vh"
         >
           <div className="modal_title">
-            {sessionUser.photoUrl != null ? (
-              <img
-                src={sessionUser.photoUrl}
-                alt="UserPhoto"
-                className="profile_picture"
-              ></img>
+            {photoUrl != null ? (
+              <img src={photoUrl} alt="UserPhoto" className="profile_pic"></img>
             ) : (
               <img
                 src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
                 alt="Avatar"
-                className="profile_picture"
+                className="profile_pic"
               ></img>
             )}
 
@@ -110,14 +145,18 @@ const NavBar = () => {
               <h3 className="firstname">{sessionUser.firstName}</h3>
               <p className="lastname">{sessionUser.lastName}</p>
             </div>
-            <form encType="multipart/form-data" onSubmit={submit}>
-              <input
-                type="file"
-                name="user_file"
-                onChange={handleUpload}
-              ></input>
-              <button type="submit"></button>
-            </form>
+            <div style={{ visibility: buttonVisible }}>
+              <form encType="multipart/form-data" onSubmit={submit}>
+                <input
+                  id="myuniqueid"
+                  type="file"
+                  name="user_file"
+                  onChange={handleUpload}
+                ></input>
+                <label for="myuniqueid">Upload Photo</label>
+                {/* <button type="submit"></button> */}
+              </form>
+            </div>
           </div>
           <h4>About Me</h4>
           <p>{sessionUser.about}</p>
@@ -128,36 +167,29 @@ const NavBar = () => {
           </span>
         </button>
         <Dropdown overlay={profileMenu} trigger={["click"]}>
-          <button
+          <Button
             className="profile_button"
+            shape="circle"
+            type="primary"
             onClick={(e) => e.preventDefault()}
           >
-            {sessionUser.photoUrl != null ? (
-              <img
-                src={sessionUser.photoUrl}
-                alt="UserPhoto"
-                className="button_picture"
-              ></img>
-            ) : (
-              <img
-                src="https://user-images.githubusercontent.com/70561117/108804980-ae2f4180-7553-11eb-8240-9746d71ad242.png"
-                alt="Avatar"
-                className="button_picture"
-              ></img>
-            )}
-          </button>
+            <p>
+              {sessionUser.firstName[0].toUpperCase() +
+                sessionUser.lastName[0].toUpperCase()}
+            </p>
+          </Button>
         </Dropdown>
         <Dropdown
           overlay={addMenu}
           trigger={["click"]}
           placement="bottomCenter"
         >
-          <button
+          <Button
             className="profile_button"
             onClick={(e) => e.preventDefault()}
           >
-            {/* ➕ */}
-          </button>
+            <PlusOutlined />
+          </Button>
         </Dropdown>
         <Drawer
           title={
@@ -181,6 +213,7 @@ const NavBar = () => {
                 to="/"
                 exact={true}
                 activeClassName="active"
+                onClick={onClose}
               >
                 <HomeOutlined /> Home
               </NavLink>
@@ -191,6 +224,7 @@ const NavBar = () => {
                 to="/tasks"
                 exact={true}
                 activeClassName="active"
+                onClick={onClose}
               >
                 <SnippetsOutlined /> Tasks
               </NavLink>
@@ -201,22 +235,38 @@ const NavBar = () => {
                 to="/calendar"
                 exact={true}
                 activeClassName="active"
+                onClick={onClose}
               >
                 <CalendarOutlined /> Calendar
               </NavLink>
             </li>
           </ul>
           <div>
-            <NavLink to="/project" exact={true} activeClassName="active">
+            <NavLink
+              to="/project"
+              exact={true}
+              activeClassName="active"
+              onClick={onClose}
+            >
               <h4 className="drawer_text">
                 New Project <PlusOutlined />
               </h4>
             </NavLink>
             <h4 className="drawer_text">My Projects:</h4>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <FontAwesomeIcon icon={faSquare} className="squircle" />
-              <p className="drawer_text">First Project</p>
-            </div>
+
+            {projects &&
+              projects.map((project) => {
+                return (
+                  <NavLink to={`/project/${project.id}`}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <FontAwesomeIcon icon={faSquare} className="squircle" />
+                      <p onClick={onClose} className="drawer_text">
+                        {project.projectName}
+                      </p>
+                    </div>
+                  </NavLink>
+                );
+              })}
           </div>
         </Drawer>
       </div>

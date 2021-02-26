@@ -43,7 +43,7 @@ export const createUser = (user) => async (dispatch) => {
   });
 
   const data = await res.json();
-  
+
   dispatch(setUser(data));
   // const formData = new FormData();
   // formData.append("first name", firstName);
@@ -63,6 +63,7 @@ export const createUser = (user) => async (dispatch) => {
 };
 
 export const photoUpload = (file) => async (dispatch) => {
+  let photoUrl;
   const formData = new FormData();
   formData.append("user_file", file);
   const res = await fetch("/api/users/update/profile", {
@@ -70,8 +71,8 @@ export const photoUpload = (file) => async (dispatch) => {
     body: formData,
   });
   if (res.ok) {
-    let photoUrl = await res.json();
-    console.log(photoUrl);
+    photoUrl = await res.json();
+    return photoUrl;
   }
 };
 
