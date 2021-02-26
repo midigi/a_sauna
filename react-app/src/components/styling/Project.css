@@ -2,7 +2,7 @@
   padding: 5vh;
 }
 
-.project {
+.project_page_icon {
   width: 4vh;
   height: 4vh;
   background-color: #35a7ff;
@@ -16,6 +16,7 @@
 
 .projects_page_title {
   margin: 0;
+  text-transform: capitalize;
 }
 
 .projects_page_center {

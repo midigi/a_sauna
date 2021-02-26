@@ -28,7 +28,7 @@ const Project = () => {
       <div className="projects_page">
         <Row style={{ paddingLeft: "1vh" }}>
           <Col span={2}>
-            <div className="project">
+            <div className="project_page_icon">
               <UnorderedListOutlined
                 style={{ fontSize: "2vh", color: "white" }}
               />

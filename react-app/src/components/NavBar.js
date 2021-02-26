@@ -13,7 +13,7 @@ import "./styling/NavBar.css";
 
 import {
   HomeOutlined,
-  LineChartOutlined,
+  SmileOutlined,
   SnippetsOutlined,
   CalendarOutlined,
   PlusOutlined,
@@ -26,7 +26,10 @@ const NavBar = () => {
   const [buttonVisible, setButtonVisible] = useState("hidden");
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
-  const [photoUrl, setPhotoUrl] = useState(sessionUser.photoUrl);
+  const [photoUrl, setPhotoUrl] = useState(
+    sessionUser ? sessionUser.photoUrl : ""
+  );
+
   // let projects;
   const dispatch = useDispatch();
 
@@ -85,9 +88,11 @@ const NavBar = () => {
   const profileMenu = (
     <Menu>
       <Menu.Item>
-        <button onClick={showModal}> Profile </button>
+        <Button type="link" onClick={showModal}>
+          My Profile <SmileOutlined />
+        </Button>
       </Menu.Item>
-      <Menu.Item danger>
+      <Menu.Item>
         <LogoutButton />
       </Menu.Item>
     </Menu>
@@ -162,27 +167,29 @@ const NavBar = () => {
           </span>
         </button>
         <Dropdown overlay={profileMenu} trigger={["click"]}>
-          <button
+          <Button
             className="profile_button"
+            shape="circle"
+            type="primary"
             onClick={(e) => e.preventDefault()}
           >
             <p>
               {sessionUser.firstName[0].toUpperCase() +
                 sessionUser.lastName[0].toUpperCase()}
             </p>
-          </button>
+          </Button>
         </Dropdown>
         <Dropdown
           overlay={addMenu}
           trigger={["click"]}
           placement="bottomCenter"
         >
-          <button
+          <Button
             className="profile_button"
             onClick={(e) => e.preventDefault()}
           >
-            {/* ➕ */}
-          </button>
+            <PlusOutlined />
+          </Button>
         </Dropdown>
         <Drawer
           title={

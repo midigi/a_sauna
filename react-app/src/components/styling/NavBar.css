@@ -28,11 +28,11 @@
 
 .profile_button {
   float: right;
-  border: none;
+  /* border: none;
   background-color: #d1496b;
   border-radius: 50%;
   width: 3vh;
-  height: 3vh;
+  height: 3vh;*/
   margin: 5px;
 }
 
@@ -63,6 +63,7 @@
 .modal_username {
   align-self: center;
   margin-left: 2vh;
+  width: 65%;
 }
 
 .firstname {
