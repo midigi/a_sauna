@@ -48,7 +48,14 @@ def delete_task(id):
 def update_task(id):
     print('hit')
     task = Task.query.filter_by(id=id).first()
-    task.status = 'Complete'
+    print(request.data.decode('utf-8'), '---------------')
+    test = request.data.decode('utf-8')
+    print(test.to_dict(), '-----')
+    # print(test.get('description'))
+    if request.data:
+        task.description = request.data.description
+    else:
+        task.status = 'Complete'
     db.session.commit()
-    return 'Complete'
+    return task.to_dict()
 

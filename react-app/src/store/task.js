@@ -17,13 +17,13 @@ const removeTask = (taskId) => ({
   payload: taskId,
 });
 
-export const markComplete = (taskId) => async (dispatch) => {
+export const markComplete = (taskId, description=undefined) => async (dispatch) => {
 
   const res = await fetch(`/api/tasks/${taskId}`, {
     method: "PUT",
+    body: JSON.stringify({ description }),
   });
-  const deleted = await res.json();
-  console.log(deleted)
+  return await res.json()
 } 
 export const createTask = ({
   taskTitle,
