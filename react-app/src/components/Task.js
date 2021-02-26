@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
-import {seeTask} from "../store/task";
+import { seeTask } from "../store/task";
 
 import { DeleteOutlined } from "@ant-design/icons";
 
 const Task = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const sessionTasks = useSelector((state)=>state.task.task)
+  const sessionTasks = useSelector((state) => state.task.task);
   const [visible, setVisible] = useState(false);
 
-  useEffect(()=>{
-    dispatch(seeTask())
-  }, [])
+  useEffect(() => {
+    dispatch(seeTask());
+  }, []);
 
   const showDrawer = () => {
     setVisible(true);
@@ -48,55 +48,56 @@ const Task = () => {
 
   return (
     <div className="task_size">
-      {sessionTasks && sessionTasks.map((task) =>
-        <Row key={task.id}>
-          <Col span={7} className="column_border">
-            <p className="task_title">{task.taskTitle}</p>
-          </Col>
+      {sessionTasks &&
+        sessionTasks.map((task) => (
+          <Row key={task.id}>
+            <Col span={7} className="column_border">
+              <p className="task_title">{task.taskTitle}</p>
+            </Col>
 
-          <Col span={5} className="column_border">
-            <p className="due_date">{task.dueDate}</p>
-          </Col>
+            <Col span={5} className="column_border">
+              <p className="due_date">{task.dueDate}</p>
+            </Col>
 
-          <Col span={3} className="column_border">
-            {taskType(task.priority)}
-          </Col>
+            <Col span={3} className="column_border">
+              {taskType(task.priority)}
+            </Col>
 
-          <Col span={3} className="column_border">
-            {statusType(task.status)}
-          </Col>
+            <Col span={3} className="column_border">
+              {statusType(task.status)}
+            </Col>
 
-          <Col span={3} className="column_border"></Col>
+            <Col span={3} className="column_border"></Col>
 
-          <Col span={3} className="column_border">
-            <button className="task_submit_button" onClick={showDrawer}>
-              More info
-            </button>
-            <Drawer
-              title="Task Menu"
-              placement="right"
-              onClose={onClose}
-              visible={visible}
-              width={"50vh"}
-              height={"100%"}
-              bodyStyle={{
-                backgroundColor: "white",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <h1>{task.taskTitle}</h1>
-              <p>Some contents...</p>
-              <div className="bottom_buttons">
-                <Button type="primary">Mark Complete</Button>
-                <Button type="primary" shape="circle">
-                  <DeleteOutlined />
-                </Button>
-              </div>
-            </Drawer>
-          </Col>
-        </Row>
-      )}
+            <Col span={3} className="column_border">
+              <button className="task_submit_button" onClick={showDrawer}>
+                More info
+              </button>
+              <Drawer
+                title="Task Menu"
+                placement="right"
+                onClose={onClose}
+                visible={visible}
+                width={"50vh"}
+                height={"100%"}
+                bodyStyle={{
+                  backgroundColor: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <h1>{task.taskTitle}</h1>
+                <p>Some contents...</p>
+                <div className="bottom_buttons">
+                  <Button type="primary">Mark Complete</Button>
+                  <Button type="primary" shape="circle">
+                    <DeleteOutlined />
+                  </Button>
+                </div>
+              </Drawer>
+            </Col>
+          </Row>
+        ))}
     </div>
   );
 };

@@ -45,7 +45,7 @@
   border-top: 3px solid #edae49;
 }
 
-.profile_picture {
+.profile_pic {
   height: 10vh;
   width: 10vh;
   border-radius: 50%;
@@ -88,4 +88,32 @@
   margin-right: 1vh;
   color: #35a7ff;
   font-size: 1vh;
+}
+
+input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+input[type="file"] + label {
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+  background: #1890ff;
+  border-color: #1890ff;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+  outline: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
 }
