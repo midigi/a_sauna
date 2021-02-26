@@ -35,9 +35,10 @@ def create_task():
     return('Invalid Info')
 
 
-@task_routes.route('/', methods=['DELETE'])
-def delete_task():
-    # tasks = Task.query.filter_by(dueDate=id).all()
+@task_routes.route('/<id>', methods=['DELETE'])
+def delete_task(id):
+    task = Task.query.filter_by(id=id).first()
     # return {"tasks": [task.to_dict() for task in tasks]}
-    print('hit')
-    return
+    db.session.delete(task)
+    db.session.commit()
+    return task.to_dict()
