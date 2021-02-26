@@ -33,3 +33,11 @@ def create_task():
         db.session.commit()
         return data.to_dict()
     return('Invalid Info')
+
+
+@task_routes.route('/', methods=['DELETE'])
+def delete_task():
+    # tasks = Task.query.filter_by(dueDate=id).all()
+    # return {"tasks": [task.to_dict() for task in tasks]}
+    print('hit')
+    return

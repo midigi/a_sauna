@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import "./styling/Info.css";
+import deleteTask from '../store/task'
 
 import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
 
 const Info = ({ task }) => {
   const [visible, setVisible] = useState(false);
-
+  const dispatch = useDispatch()
   console.log(task);
-
+  dispatch(deleteTask(1))
   const showDrawer = ({ task }) => {
     setVisible(true);
   };
@@ -69,6 +70,10 @@ const Info = ({ task }) => {
             Priority: {taskType(task.priority)}
           </h4>
           <h4 className="task_menu_text">Status: {statusType(task.status)}</h4>
+          <h4 className="task_menu_text">Description:</h4>
+          <textarea className='task_menu_textarea'>
+            {task.description}
+          </textarea>
           <div className="bottom_buttons">
             <Button type="primary">Mark Complete</Button>
             <Button type="primary" shape="circle">

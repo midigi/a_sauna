@@ -12,8 +12,9 @@ const getTask = (task) => ({
   payload: task,
 });
 
-const removeTask = () => ({
+const removeTask = (taskId) => ({
   type: REMOVE_TASK,
+  payload: taskId
 });
 
 export const createTask = ({
@@ -33,6 +34,20 @@ export const createTask = ({
   const data = await res.json();
   dispatch(setTask(data));
 };
+
+export const deleteTask = (taskId) => async (dispatch) => {
+  console.log('hit')
+  const res = await fetch('/api/tasks', {
+    method: 'DELETE',
+     headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({taskId})
+  })
+
+  dispatch(removeTask(taskId))
+  
+}
 
 export const seeTask = () => async (dispatch) => {
   const res = await fetch('/api/tasks/');
@@ -57,7 +72,7 @@ function reducer(state = initialState, action) {
     case GET_TASK:
       return { ...state, task: action.payload };
     case REMOVE_TASK:
-    // ToDo
+      return { ...state, task: action.payload };
     default:
       return state;
   }
