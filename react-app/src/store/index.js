@@ -4,12 +4,14 @@ import session from "./session";
 import users from "./users";
 import task from "./task";
 import project from "./project";
+import search from "./search";
 
 const rootReducer = combineReducers({
   session,
   users,
   task,
-  project
+  project,
+  search,
 });
 
 let enhancer;
