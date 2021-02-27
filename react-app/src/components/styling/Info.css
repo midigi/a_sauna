@@ -1,0 +1,18 @@
+.task_info_title {
+  text-transform: capitalize;
+}
+
+.text_menu_text {
+  margin: 1vh;
+}
+.task_menu_textarea {
+  border: 1px solid rgba(51, 51, 51, 0.077);
+  width: 100%;
+  height: 20%;
+  resize: none;
+}
+
+.choose_status {
+  display: flex;
+  background-color: rgba(138, 138, 138, 0.048);
+}

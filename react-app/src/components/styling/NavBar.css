@@ -118,3 +118,24 @@ input[type="file"] + label {
   font-size: 14px;
   border-radius: 2px;
 }
+
+.about_me {
+  width: 15vh;
+}
+
+.about_title {
+  margin-top: 1vh;
+}
+
+.profile_textarea {
+  border: 1px solid rgba(51, 51, 51, 0.077);
+}
+
+.status_button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
+}

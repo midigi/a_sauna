@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import { seeTask } from "../store/task";
+import Info from "./Info";
 
 import { DeleteOutlined } from "@ant-design/icons";
 
@@ -70,31 +71,7 @@ const Task = () => {
             <Col span={3} className="column_border"></Col>
 
             <Col span={3} className="column_border">
-              <button className="task_submit_button" onClick={showDrawer}>
-                More info
-              </button>
-              <Drawer
-                title="Task Menu"
-                placement="right"
-                onClose={onClose}
-                visible={visible}
-                width={"50vh"}
-                height={"100%"}
-                bodyStyle={{
-                  backgroundColor: "white",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <h1>{task.taskTitle}</h1>
-                <p>Some contents...</p>
-                <div className="bottom_buttons">
-                  <Button type="primary">Mark Complete</Button>
-                  <Button type="primary" shape="circle">
-                    <DeleteOutlined />
-                  </Button>
-                </div>
-              </Drawer>
+              <Info task={task}></Info>
             </Col>
           </Row>
         ))}

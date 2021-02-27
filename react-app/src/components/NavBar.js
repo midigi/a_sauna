@@ -17,6 +17,7 @@ import {
   SnippetsOutlined,
   CalendarOutlined,
   PlusOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 
 const NavBar = () => {
@@ -26,9 +27,19 @@ const NavBar = () => {
   const [buttonVisible, setButtonVisible] = useState("hidden");
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
+  const [bio, setBio] = useState("visible");
   const [photoUrl, setPhotoUrl] = useState(
     sessionUser ? sessionUser.photoUrl : ""
   );
+
+  const changeBio = () => {
+    if (bio === "hidden") {
+      setBio("visible");
+    }
+    if (bio === "visible") {
+      setBio("hidden");
+    }
+  };
 
   // let projects;
   const dispatch = useDispatch();
@@ -158,8 +169,21 @@ const NavBar = () => {
               </form>
             </div>
           </div>
-          <h4>About Me</h4>
-          <p>{sessionUser.about}</p>
+          <div style={{ display: "flex", alignContent: "center" }}>
+            <h4 className="about_title">About Me</h4>
+            <Button
+              shape="circle"
+              style={{ marginTop: "0.5vh", marginLeft: "2vh" }}
+              onClick={changeBio}
+            >
+              <EditOutlined />
+            </Button>
+          </div>
+          {bio === "visible" ? (
+            <p className="about_me">{sessionUser.about}</p>
+          ) : (
+            <textarea className="profile_textarea"></textarea>
+          )}
         </Modal>
         <button className="hamburger" onClick={showDrawer}>
           <span>
@@ -229,7 +253,7 @@ const NavBar = () => {
                 <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 className="drawer_link"
                 to="/calendar"
@@ -239,7 +263,7 @@ const NavBar = () => {
               >
                 <CalendarOutlined /> Calendar
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <div>
             <NavLink
