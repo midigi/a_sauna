@@ -3,7 +3,7 @@ import { createTask } from "../../store/task";
 
 import { useDispatch, useSelector } from "react-redux";
 import Task from "../../components/Task";
-import { Row, Col } from "antd";
+import { Row, Col, message } from "antd";
 import "../styling/TaskForm.css";
 
 import { useHistory } from "react-router-dom";
@@ -14,8 +14,6 @@ const PRIORITIES = ["Low", "Medium", "High"];
 const STATUSES = ["Incomplete", "In Progress", "Need Help", "Complete"];
 
 const TaskForm = ({ id }) => {
-  console.log(id);
-
   function getCurrentDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -26,6 +24,10 @@ const TaskForm = ({ id }) => {
     const day = currentDate.getDate();
     return `${year}-${month}-${day}`;
   }
+
+  const error = () => {
+    message.error("Please enter a task title!");
+  };
 
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -39,6 +41,10 @@ const TaskForm = ({ id }) => {
 
   const onTaskCreation = async (e) => {
     e.preventDefault();
+    if (!taskTitle) {
+      error();
+      return;
+    }
 
     dispatch(
       createTask({

@@ -18,6 +18,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_MEMBERS:
       return { ...state, inputs: action.payload };
+    default:
+      return state;
   }
 }
 
