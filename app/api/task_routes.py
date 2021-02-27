@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Task, db
 from app.forms import TaskForm
+import ast
 
 task_routes = Blueprint('tasks', __name__)
 
@@ -43,20 +44,23 @@ def delete_task(id):
     db.session.commit()
     return task.to_dict()
 
-@task_routes.route('/<id>', methods=['PUT'])
+@task_routes.route('/update/<id>', methods=['POST'])
 @login_required
 def update_task(id):
-    print('hit')
     task = Task.query.filter_by(id=id).first()
-    print(request.data.decode('utf-8'), '---------------')
-    test = request.data.decode('utf-8')
-    if "description" in test:
-        print(True)
-    if "Enter a description" in test:
-        task.status = 'Complete'
-
-    if "Enter a description" not in test:
-        task.description = test[16: -2]
+    print('---------------', request.data.decode("utf-8"))
+    update = request.data.decode("utf-8")
+    updated = ast.literal_eval(update)
+    if "status" in updated.keys():
+        status = updated["status"]
+        task.status = status
+    if "priority" in updated.keys():
+        priority = updated["priority"]
+        task.priority = priority
+    if "desc" in updated.keys():
+        desc = updated["desc"]
+        task.description = desc
 
     db.session.commit()
-    return test[16: -2]
+
+    return task.to_dict()

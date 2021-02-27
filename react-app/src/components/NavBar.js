@@ -253,7 +253,7 @@ const NavBar = () => {
                 <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 className="drawer_link"
                 to="/calendar"
@@ -263,7 +263,7 @@ const NavBar = () => {
               >
                 <CalendarOutlined /> Calendar
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <div>
             <NavLink

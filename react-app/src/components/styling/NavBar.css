@@ -130,3 +130,12 @@ input[type="file"] + label {
 .profile_textarea {
   border: 1px solid rgba(51, 51, 51, 0.077);
 }
+
+.status_button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
+}
