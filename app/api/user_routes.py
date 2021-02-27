@@ -23,6 +23,14 @@ def user(id):
     return user.to_dict()
 
 
+@user_routes.route('/:search')
+@login_required
+def search(search):
+    member = User.query.filter_by("email" == search).first()
+    print('MEMBER!!!!!!!!!!!', member.to_dict())
+    return member.to_dict()
+
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
