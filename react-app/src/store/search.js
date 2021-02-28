@@ -8,8 +8,9 @@ const getBanana = (inputs) => ({
 export const getMembers = (search) => async (dispatch) => {
   const res = await fetch(`/api/users/${search}`, { method: "GET" });
   const data = await res.json();
-
+  console.log(data);
   dispatch(getBanana(data));
+  return data;
 };
 
 const initialState = { inputs: null };
