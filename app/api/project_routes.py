@@ -18,11 +18,6 @@ def projects():
 @login_required
 def user_projects(projectId):
     project = Project.query.filter_by(id=projectId).first()
-    print("PROJECT MEMBERS!!!!!!!!!!", [user.to_dict() for user in project.users])
-    # members = Member.query.filter_by(project_id=projectId).all()
-    # print("-----------------", current_user.to_dict())
-    # print("-------------------",  [member.to_dict() for member in members])
-
     return {"projects": project.to_dict()}
 
 
@@ -31,10 +26,6 @@ def user_projects(projectId):
 def user_project():
     userId = current_user.id
     projects = Project.query.filter_by(ownerId=userId).all()
-    # members = Member.query.filter_by(project_id=projectId).all()
-    # print("-----------------", current_user.to_dict())
-    # print("-------------------",  [member.to_dict() for member in members])
-
     return {"projects": [project.to_dict() for project in projects]}
 
 

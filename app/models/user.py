@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     about = db.Column(db.String(300), nullable=True)
     photoUrl = db.Column(db.String)
-    
+
     tasks = db.relationship("Task", back_populates="user")
     projects = db.relationship(
         "Project", secondary=members, back_populates="users")

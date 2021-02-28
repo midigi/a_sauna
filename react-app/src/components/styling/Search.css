@@ -1,3 +1,22 @@
 .search_bar {
   display: flex;
 }
+
+.scrollable {
+  overflow-y: scroll;
+  height: 35vh;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 0.3vh;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #188fff2f;
+}

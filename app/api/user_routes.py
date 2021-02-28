@@ -1,11 +1,10 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, db
+from app.models import User, Project, db
 from flask import Flask, render_template, request, redirect
 from werkzeug.utils import secure_filename
-
-
 from ..helpers import *
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -24,18 +23,23 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/<search>')
+@user_routes.route('/<search>/<id>')
 @login_required
-def search(search):
+def search(search, id):
+    print("---------------",  id)
     if search is None:
         return
     member = User.query.filter_by(email=search).first()
+    project = Project.query.filter_by(id=id).first()
+    print("-------------", project.to_dict())
 
     if member is None:
         member = {"Member": "Not found"}
     else:
-        # print("----------", member)
+        project.users.append(member)
+        db.session.commit()
         member = member.to_dict()
+        print("----------", member)
 
     return member
 
