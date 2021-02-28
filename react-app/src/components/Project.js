@@ -16,6 +16,21 @@ import "./styling/Project.css";
 
 const Project = () => {
   const project = useSelector((project) => project.project.project);
+  const tasks = useSelector((state) => state.task.task);
+  console.log(tasks);
+
+  function progress(input) {
+    let count = input.length;
+    let amountCompleted;
+    console.log(input);
+    amountCompleted;
+    console.log(amountCompleted);
+  }
+
+  if (tasks) {
+    progress(tasks);
+  }
+
   const dispatch = useDispatch();
   const projectId = useParams();
   console.log(project);
