@@ -13,7 +13,7 @@ const PRIORITIES = ["Low", "Medium", "High"];
 
 const STATUSES = ["Incomplete", "In Progress", "Need Help", "Complete"];
 
-const TaskForm = ({ id }) => {
+const TaskForm = ({ projectId }) => {
   function getCurrentDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -53,7 +53,7 @@ const TaskForm = ({ id }) => {
         priority,
         status,
         description,
-        id,
+        projectId,
       })
     );
   };
@@ -61,7 +61,7 @@ const TaskForm = ({ id }) => {
   return (
     sessionUser && (
       <div className="outside">
-        {id == undefined && (
+        {projectId == undefined && (
           <div style={{ marginBottom: "5vh" }}>
             {sessionUser.photoUrl != null ? (
               <img
@@ -171,7 +171,6 @@ const TaskForm = ({ id }) => {
             </Row>
           </form>
         </div>
-        <Task />
       </div>
     )
   );

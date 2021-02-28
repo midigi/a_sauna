@@ -281,7 +281,7 @@ const NavBar = () => {
             {projects &&
               projects.map((project) => {
                 return (
-                  <NavLink to={`/project/${project.id}`}>
+                  <NavLink onClick={onClose} to={`/project/${project.id}`}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <FontAwesomeIcon icon={faSquare} className="squircle" />
                       <p onClick={onClose} className="drawer_text">

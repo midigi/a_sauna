@@ -10,6 +10,7 @@ import User from "./components/User";
 import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
+import Task from "./components/Task";
 import Calendar from "./components/Calendar";
 import Project from "./components/Project";
 import ProjectForm from "./components/auth/ProjectForm";
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <ProtectedRoute path="/tasks" exact={true}>
           <TaskForm />
+          <Task></Task>
         </ProtectedRoute>
         <ProtectedRoute path="/calendar" exact={true}>
           <Calendar></Calendar>

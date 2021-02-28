@@ -15,6 +15,14 @@ def tasks():
     return {"tasks": [task.to_dict() for task in tasks]}
 
 
+@task_routes.route('/project/<id>')
+@login_required
+def project_tasks(id):
+    tasks = Task.query.filter_by(projectId=id).all()
+    print("-----------------------", tasks)
+    return {"tasks": [task.to_dict() for task in tasks]}
+
+
 @task_routes.route('/<id>')
 def task(id):
     tasks = Task.query.filter_by(dueDate=id).all()
@@ -24,11 +32,13 @@ def task(id):
 @task_routes.route('/', methods=['POST'])
 @login_required
 def create_task():
+    print("-----------------", request.data)
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = Task()
         form.populate_obj(data)
+        print(str(form))
         data.assigneeId = current_user.id
         db.session.add(data)
         db.session.commit()

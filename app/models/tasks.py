@@ -23,5 +23,6 @@ class Task(db.Model):
             "dueDate": self.dueDate,
             "priority": self.priority,
             "status": self.status,
-            "description": self.description
+            "description": self.description,
+            "projectId": self.projectId
         }
