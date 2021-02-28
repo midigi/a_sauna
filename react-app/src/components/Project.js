@@ -17,14 +17,9 @@ import "./styling/Project.css";
 const Project = () => {
   const project = useSelector((project) => project.project.project);
   const tasks = useSelector((state) => state.task.task);
-  console.log(tasks);
 
   function progress(input) {
     let count = input.length;
-    let amountCompleted;
-    console.log(input);
-    amountCompleted;
-    console.log(amountCompleted);
   }
 
   if (tasks) {
@@ -33,8 +28,7 @@ const Project = () => {
 
   const dispatch = useDispatch();
   const projectId = useParams();
-  console.log(project);
-  console.log(projectId.id);
+
   const testProject = {
     id: 1,
     projectName: "My First Project",

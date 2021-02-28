@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import { getProjectId } from "../store/project";
+import { getAllMembers } from "../store/members";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
 
@@ -14,6 +15,8 @@ import { ConsoleSqlOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import "./styling/Project.css";
 
 const Member = ({ id }) => {
+  const dispatch = useDispatch();
+  const [members, setMembers] = useState(useSelector((state) => state.member));
   const testMember = [
     {
       about: "A busy, busy person, who needs asauna",
@@ -26,25 +29,14 @@ const Member = ({ id }) => {
     },
   ];
 
-  console.log(id);
-  let memberList;
-  const [members, setMembers] = useState();
-  const dispatch = useDispatch();
-  const getAllMembers = async () => {
-    const res = await fetch(`/api/users/member/${id}`);
-    const data = await res.json();
-    if (res.ok) {
-      if (data.members.length > 0) {
-        memberList = data.members;
-        console.log(memberList);
-      } else {
-        return;
-      }
-    }
-  };
+  useEffect(() => {
+    dispatch(getAllMembers(id)).then((res) => {
+      console.log(res);
+    });
+  }, [members]);
 
-  getAllMembers();
-  //   useEffect(() => {}, [dispatch]);
+  console.log(members);
+
   return (
     <div>
       {testMember.map((member) => {

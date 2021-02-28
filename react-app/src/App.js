@@ -33,12 +33,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <ProtectedRoute path="/tasks" exact={true}>
+          <NavBar />
           <TaskForm />
           <Task></Task>
         </ProtectedRoute>
@@ -46,21 +46,26 @@ function App() {
           <Calendar></Calendar>
         </ProtectedRoute>
         <Route path="/project" exact={true}>
+          <NavBar />
           <ProjectForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
+          <NavBar />
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
+          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
+          <NavBar />
           <Home></Home>
         </ProtectedRoute>
         <ProtectedRoute path="/project/:id" exact={true}>
+          <NavBar />
           <Project></Project>
         </ProtectedRoute>
       </Switch>

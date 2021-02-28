@@ -10,7 +10,6 @@ const Search = () => {
   const sessionProjectId = useSelector(
     (state) => state.project.project.projects.id
   );
-  console.log(sessionProjectId);
 
   const onSearch = async (e) => {
     e.preventDefault();
