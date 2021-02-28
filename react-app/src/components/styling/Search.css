@@ -20,3 +20,20 @@
 ::-webkit-scrollbar-thumb {
   background: #188fff2f;
 }
+
+.center_search {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.center_title {
+  display: flex;
+  align-items: center;
+  margin-left: 10vh;
+  text-transform: capitalize;
+}
+.center_title2 {
+  display: flex;
+  align-items: center;
+  margin-left: 40vh;
+}

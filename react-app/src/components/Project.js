@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
+import "./styling/Search.css";
+import Member from "./Member";
 
 import Task from "./Task";
 
@@ -57,7 +59,23 @@ const Project = () => {
             </div>
           </Col>
         </Row>
-        <Search />
+        <Row style={{ marginTop: "1vh" }}>
+          <Col span={7}>
+            <h2 className="center_search">Team Members</h2>
+          </Col>
+          <Col span={14} className="center_search">
+            <Search />
+            <h2 className="center_title">Progress:</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={7}>
+            <Member id={project.projects.id}></Member>
+          </Col>
+          <Col span={14}>
+            <h2 className="center_title2">Progress:</h2>
+          </Col>
+        </Row>
       </div>
     )
   );

@@ -10,7 +10,7 @@ class Project(db.Model):
     ownerId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     teamName = db.Column(db.String(100))
     tasks = db.relationship("Task", back_populates="project")
-    users = db.relationship("User", secondary=members,
+    users = db.relationship("User", lazy="dynamic", secondary=members,
                             back_populates="projects")
 
     def to_dict(self):

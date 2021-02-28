@@ -16,6 +16,17 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
+@user_routes.route('/member/<projectId>')
+@login_required
+def members(projectId):
+    project = Project.query.filter_by(id=projectId).first()
+    members = project.users.all()
+    print("----------------", members)
+    print("----------------", project.to_dict())
+    # return {"users": [member.to_dict() for member in members]}
+    return {"members": [member.to_dict() for member in members]}
+
+
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):

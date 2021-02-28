@@ -32,7 +32,7 @@ const Search = () => {
           onChange={(e) => setSearch(e.target.value)}
         ></Input>
       </form>
-      <Button onClick={onSearch}>Add User</Button>
+      <Button onClick={onSearch}>Add Member</Button>
     </div>
   );
 };

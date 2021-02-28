@@ -5,7 +5,6 @@ import TaskHeaders from "./TaskHeaders";
 import RecentProjects from "./RecentProjects";
 import "./styling/Home.css";
 import "antd/dist/antd.css";
-
 const { Panel } = Collapse;
 
 function Home() {
