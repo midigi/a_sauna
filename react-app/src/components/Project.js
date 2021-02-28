@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
+
 import Task from "./Task";
+
+import Search  from "./Search"
+
 import { UnorderedListOutlined } from "@ant-design/icons";
 import "./styling/Project.css";
 
@@ -27,6 +31,9 @@ const Project = () => {
   return (
     project && (
       <div className="projects_page">
+        <div>
+          <Search />
+        </div>
         <Row style={{ paddingLeft: "1vh" }}>
           <Col span={2}>
             <div className="project_page_icon">
