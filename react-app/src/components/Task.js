@@ -2,20 +2,31 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
-import { seeTask } from "../store/task";
+import { seeTask, seeProjectTask } from "../store/task";
 import Info from "./Info";
 
 import { DeleteOutlined } from "@ant-design/icons";
+import { useParams } from "react-router-dom";
 
-const Task = () => {
+const Task = ({ id }) => {
+  const url = useParams();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const sessionTasks = useSelector((state) => state.task.task);
+  const sessionProject = useSelector((state) => state.project.project);
+
   const [visible, setVisible] = useState(false);
+  const [change, setChange] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
-    dispatch(seeTask());
-  }, []);
+    if (!id) {
+      dispatch(seeTask());
+    } else {
+      dispatch(seeProjectTask(id));
+      setData(id);
+    }
+  }, [id]);
 
   const showDrawer = () => {
     setVisible(true);

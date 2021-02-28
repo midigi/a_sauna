@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import "./styling/Info.css";
-import { deleteTask, seeTask, markComplete } from "../store/task";
+import {
+  deleteTask,
+  seeTask,
+  markComplete,
+  seeProjectTask,
+} from "../store/task";
 
 import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
 
@@ -15,6 +20,8 @@ const Info = ({ task }) => {
   const [priority, setPriority] = useState();
 
   const taskId = task.id;
+  const projectID = task.projectId;
+  // console.log(task.projectId);
 
   const dispatch = useDispatch();
 
@@ -38,21 +45,20 @@ const Info = ({ task }) => {
       body: JSON.stringify(task),
     });
     const data = await res.json();
-    dispatch(seeTask());
+    if (projectID) {
+      dispatch(seeProjectTask(projectID));
+    } else {
+      dispatch(seeTask());
+    }
   };
 
   async function deleteOneTask() {
     await dispatch(deleteTask(task.id));
-    await dispatch(seeTask());
-  }
-
-  async function complete() {
-    await dispatch(markComplete(task.id, "task"));
-    await dispatch(seeTask());
-  }
-  async function description() {
-    await dispatch(markComplete(task.id, desc));
-    await dispatch(seeTask());
+    if (projectID) {
+      dispatch(seeProjectTask(projectID));
+    } else {
+      dispatch(seeTask());
+    }
   }
 
   const showDrawer = ({ task }) => {
