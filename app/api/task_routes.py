@@ -11,7 +11,6 @@ task_routes = Blueprint('tasks', __name__)
 @login_required
 def tasks():
     tasks = Task.query.filter_by(assigneeId=current_user.id)
-    print(tasks)
     return {"tasks": [task.to_dict() for task in tasks]}
 
 
@@ -19,7 +18,6 @@ def tasks():
 @login_required
 def project_tasks(id):
     tasks = Task.query.filter_by(projectId=id).all()
-    print("-----------------------", tasks)
     return {"tasks": [task.to_dict() for task in tasks]}
 
 
@@ -32,7 +30,6 @@ def task(id):
 @task_routes.route('/', methods=['POST'])
 @login_required
 def create_task():
-    print("-----------------", request.data)
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -58,7 +55,6 @@ def delete_task(id):
 @login_required
 def update_task(id):
     task = Task.query.filter_by(id=id).first()
-    print('---------------', request.data.decode("utf-8"))
     update = request.data.decode("utf-8")
     updated = ast.literal_eval(update)
     if "status" in updated.keys():

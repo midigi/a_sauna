@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, db
+from app.models import User, Project, db
 from flask import Flask, render_template, request, redirect
 from werkzeug.utils import secure_filename
-
 from ..helpers import *
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -16,6 +16,14 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
+@user_routes.route('/member/<projectId>')
+@login_required
+def members(projectId):
+    project = Project.query.filter_by(id=projectId).first()
+    members = project.users.all()
+    return {"members": [member.to_dict() for member in members]}
+
+
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -23,12 +31,25 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/:search')
+@user_routes.route('/<search>/<id>')
 @login_required
-def search(search):
-    member = User.query.filter_by("email" == search).first()
-    print('MEMBER!!!!!!!!!!!', member.to_dict())
-    return member.to_dict()
+def search(search, id):
+    print("---------------",  id)
+    if search is None:
+        return
+    member = User.query.filter_by(email=search).first()
+    project = Project.query.filter_by(id=id).first()
+    print("-------------", project.to_dict())
+
+    if member is None:
+        member = {"Member": "Not found"}
+    else:
+        project.users.append(member)
+        db.session.commit()
+        member = member.to_dict()
+        print("----------", member)
+
+    return member
 
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}

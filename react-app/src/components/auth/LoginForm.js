@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "antd";
 import "./authStyling/form.css";
 
 const LoginForm = () => {
@@ -29,45 +30,53 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="center_box">
-      <form onSubmit={onLogin} className="form">
-        <h1 className="form_title">Log In</h1>
-        <hr className="break"></hr>
-        <p className="form_text">
-          Welcome back! Log in to make more lists! <br></br>
-          First time?
-          <a href="/sign-up" className="form_link">
-            Make an account
-          </a>
-        </p>
+    <div className="background">
+      <div className="center_box">
+        <form onSubmit={onLogin} className="form">
+          <h1 className="form_title">Log In</h1>
+          <hr className="break"></hr>
+          <p className="form_text">
+            Welcome back! Log in to make more lists! <br></br>
+            First time?
+            <a href="/sign-up" className="form_link">
+              Make an account
+            </a>
+          </p>
 
-        <div>
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
-        </div>
-        <div>
+          <div>
+            {errors.map((error) => (
+              <div>{error}</div>
+            ))}
+          </div>
+          <div>
+            <input
+              className="form_input"
+              name="email"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
           <input
             className="form_input"
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
           />
-        </div>
-        <input
-          className="form_input"
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button className="submit_button" type="submit">
-          Login
-        </button>
-      </form>
+          <Button
+            className="submit_button"
+            shape="round"
+            htmlType="submit"
+            size="large"
+            type="primary"
+          >
+            Login
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

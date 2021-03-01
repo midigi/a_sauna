@@ -5,11 +5,12 @@ const getBanana = (inputs) => ({
   payload: inputs,
 });
 
-export const getMembers = (search) => async (dispatch) => {
-  const res = await fetch(`/api/users/${search}`, { method: "GET" });
+export const getMembers = (search, id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${search}/${id}`, { method: "GET" });
   const data = await res.json();
-
+  console.log(data);
   dispatch(getBanana(data));
+  return data;
 };
 
 const initialState = { inputs: null };

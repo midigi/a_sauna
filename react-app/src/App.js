@@ -14,10 +14,10 @@ import Task from "./components/Task";
 import Calendar from "./components/Calendar";
 import Project from "./components/Project";
 import ProjectForm from "./components/auth/ProjectForm";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
   // const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -33,34 +33,42 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
+        <Route path="/splash" exact={true}>
+          <SplashPage></SplashPage>
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <ProtectedRoute path="/tasks" exact={true}>
+          <NavBar />
           <TaskForm />
           <Task></Task>
         </ProtectedRoute>
         <ProtectedRoute path="/calendar" exact={true}>
           <Calendar></Calendar>
         </ProtectedRoute>
-        <Route path="/project" exact={true}>
+        <ProtectedRoute path="/project" exact={true}>
+          <NavBar />
           <ProjectForm />
-        </Route>
+        </ProtectedRoute>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
+          <NavBar />
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
+          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
+          <NavBar />
           <Home></Home>
         </ProtectedRoute>
         <ProtectedRoute path="/project/:id" exact={true}>
+          <NavBar />
           <Project></Project>
         </ProtectedRoute>
       </Switch>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser, login } from "../../store/session";
 // import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
+import { Button } from "antd";
 // import { faAmericanSignLanguageInterpreting } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpForm = () => {
@@ -40,7 +41,7 @@ const SignUpForm = () => {
 
   const demoLogin = async (e) => {
     e.preventDefault();
-    return dispatch(login({email: "demo@asauna.com", password: "password"}));
+    return dispatch(login({ email: "demo@asauna.com", password: "password" }));
   };
 
   const updateFirstName = (e) => {
@@ -67,74 +68,90 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="center_box">
-      <form onSubmit={onSignUp} className="form">
-        <h1 className="form_title">Sign Up</h1>
-        <hr className="break"></hr>
-        <p className="form_text">
-          Nice to meet you! Sign up for lists galore! <br></br>
-          Already have an account?
-          <a href="/login" className="form_link">
-            Log in
-          </a>
-        </p>
-        <div>
-          <input
-            className="form_input"
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            onChange={updateFirstName}
-            value={firstName}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="form_input"
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            onChange={updateLastName}
-            value={lastName}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="form_input"
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="form_input"
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <input
-            className="form_input"
-            type="password"
-            name="repeat_password"
-            placeholder="Confirm Password"
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <button type="submit" className="submit_button">
-          Sign Up
-        </button>
-        <button className="submit_button"
-        onClick={demoLogin}>Demo User</button>
-      </form>
+    <div className="background">
+      <div className="center_box">
+        <form onSubmit={onSignUp} className="form">
+          <h1 className="form_title">Sign Up</h1>
+          <hr className="break"></hr>
+          <p className="form_text">
+            Nice to meet you! Sign up for lists galore! <br></br>
+            Already have an account?
+            <a href="/login" className="form_link">
+              Log in
+            </a>
+          </p>
+          <div>
+            <input
+              className="form_input"
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              onChange={updateFirstName}
+              value={firstName}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="form_input"
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              onChange={updateLastName}
+              value={lastName}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="form_input"
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={updateEmail}
+              value={email}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="form_input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={updatePassword}
+              value={password}
+            ></input>
+          </div>
+          <div>
+            <input
+              className="form_input"
+              type="password"
+              name="repeat_password"
+              placeholder="Confirm Password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+            ></input>
+          </div>
+          <Button
+            className="submit_button"
+            shape="round"
+            htmlType="submit"
+            size="large"
+            type="primary"
+          >
+            Sign Up
+          </Button>
+          <Button
+            className="submit_button"
+            onClick={demoLogin}
+            shape="round"
+            htmlType="submit"
+            size="large"
+            type="primary"
+          >
+            Demo User
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
