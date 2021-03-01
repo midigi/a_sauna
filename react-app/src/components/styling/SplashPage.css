@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+.splash_header {
+  margin-bottom: 0vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.left_content {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash_title {
+  justify-self: center;
+  align-self: center;
+  font-size: 40px;
+  margin-top: 10%;
+}
+
+.divider {
+  margin-top: 5vh;
+  width: 20vh;
+  align-self: center;
+}
+
+.splash_text {
+  align-self: center;
+  font-size: 15px;
+  margin: 2vh;
+}
+
+.splash_button {
+  align-self: center;
+  margin-left: 2vh;
+}
+
+.image {
+  height: 100%;
+  background-image: url("../../images/peoples.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+}

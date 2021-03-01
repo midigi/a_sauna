@@ -74,15 +74,13 @@ const Project = () => {
           </Col>
           <Col span={14} className="center_search">
             <Search />
-            <h2 className="center_title">Progress:</h2>
+            {/* <h2 className="center_title">Progress:</h2> */}
           </Col>
         </Row>
         <Row>
-          <Col span={7}>
-            <Member id={project.projects.id}></Member>
-          </Col>
+          <Col span={7}>{/* <Member id={project.projects.id}></Member> */}</Col>
           <Col span={14}>
-            <h2 className="center_title2">Progress:</h2>
+            {/* <h2 className="center_title2">Progress:</h2> */}
           </Col>
         </Row>
       </div>

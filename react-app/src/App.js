@@ -14,10 +14,10 @@ import Task from "./components/Task";
 import Calendar from "./components/Calendar";
 import Project from "./components/Project";
 import ProjectForm from "./components/auth/ProjectForm";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
   // const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -34,6 +34,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/splash" exact={true}>
+          <SplashPage></SplashPage>
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -45,10 +48,10 @@ function App() {
         <ProtectedRoute path="/calendar" exact={true}>
           <Calendar></Calendar>
         </ProtectedRoute>
-        <Route path="/project" exact={true}>
+        <ProtectedRoute path="/project" exact={true}>
           <NavBar />
           <ProjectForm />
-        </Route>
+        </ProtectedRoute>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>

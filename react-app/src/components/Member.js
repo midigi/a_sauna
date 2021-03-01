@@ -29,11 +29,7 @@ const Member = ({ id }) => {
     },
   ];
 
-  useEffect(() => {
-    dispatch(getAllMembers(id)).then((res) => {
-      console.log(res);
-    });
-  }, [members]);
+  useEffect(() => {}, [members]);
 
   console.log(members);
 
