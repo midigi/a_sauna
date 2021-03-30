@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Row, Col, Drawer, Tag, Button, Modal } from "antd";
+import { Row, Col, Button, Tag, Input, Modal } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
 import Member from "./Member";
+import { HexColorPicker } from "react-colorful";
 
 import Task from "./Task";
 
@@ -13,10 +14,15 @@ import Search from "./Search";
 
 import { UnorderedListOutlined, SettingFilled } from "@ant-design/icons";
 import "./styling/Project.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Project = () => {
+  const history = useHistory();
+  const [colorEdit, setColorEdit] = useState("#aabbcc");
   const project = useSelector((project) => project.project.project);
   const tasks = useSelector((state) => state.task.task);
+  const [updatedProjectName, setUpdatedProjectName] = useState();
+  const [updatedTeamName, setUpdatedTeamName] = useState();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -24,7 +30,23 @@ const Project = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async (id) => {
+    console.log(colorEdit);
+    console.log(updatedProjectName);
+    console.log(updatedTeamName);
+    console.log(project.projects.id);
+    const res = await fetch(`/api/projects/edit/${project.projects.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ colorEdit, updatedProjectName, updatedTeamName }),
+    });
+    const data = await res.json();
+
+    await history.push(`/project/${project.projects.id}`);
+    console.log(data);
+
     setIsModalVisible(false);
   };
 
@@ -86,12 +108,54 @@ const Project = () => {
               visible={isModalVisible}
               onOk={handleOk}
               onCancel={handleCancel}
-              width={"90%"}
-              bodyStyle={{ height: "70vh" }}
+              footer={[
+                <Button key="back" onClick={handleCancel}>
+                  Cancel
+                </Button>,
+                <Button key="submit" type="primary" onClick={handleOk}>
+                  Submit
+                </Button>,
+              ]}
+              width={"90vh"}
+              // bodyStyle={{ height: "70vh" }}
             >
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
+              <Row>
+                <Col span={11}>
+                  <h1>Project Name</h1>
+                  <Input
+                    size="large"
+                    placeholder={project.projects.projectName}
+                    onChange={(e) => setUpdatedProjectName(e.target.value)}
+                  ></Input>
+
+                  <h2>Team Name</h2>
+                  <Input
+                    size="large"
+                    onChange={(e) => setUpdatedTeamName(e.target.value)}
+                    placeholder={project.projects.teamName}
+                  ></Input>
+                </Col>
+                <Col span={6} className="left_color_edit">
+                  <h2>Project Color</h2>
+                  <div className="selected_color_div">
+                    <div
+                      style={{
+                        width: "5vh",
+                        height: "5vh",
+                        borderRadius: "3%",
+                        backgroundColor: colorEdit,
+                        marginRight: "2vh",
+                      }}
+                    ></div>
+                    <h3>{colorEdit}</h3>
+                  </div>
+                </Col>
+                <Col span={6} className="right_project_edit">
+                  <div>
+                    <HexColorPicker color={colorEdit} onChange={setColorEdit} />
+                  </div>
+                </Col>
+              </Row>
             </Modal>
           </Col>
         </Row>

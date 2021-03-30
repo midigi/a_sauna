@@ -37,3 +37,19 @@
   border: none;
   background: none;
 }
+
+.right_project_edit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left_color_edit {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.selected_color_div {
+  display: flex;
+  align-items: center;
+}
