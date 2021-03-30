@@ -7,6 +7,8 @@ import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
 import Member from "./Member";
 import { HexColorPicker } from "react-colorful";
+import MemberProfile from "../components/MemberProfile";
+
 
 import Task from "./Task";
 

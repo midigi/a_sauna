@@ -29,6 +29,14 @@ def user_project():
     return {"projects": [project.to_dict() for project in projects]}
 
 
+@project_routes.route('/<projectId>/members')
+@login_required
+def project_members(projectId):
+    project = Project.query.get(projectId)
+    members = project.users.all()
+    return {"members": [member.to_dict() for member in members]}
+
+
 @project_routes.route("/project", methods=["POST"])
 @login_required
 def create_project():

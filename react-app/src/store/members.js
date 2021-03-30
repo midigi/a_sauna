@@ -1,6 +1,6 @@
 const GET_MEMBERS = "members/get_members";
 
-const getMembers = (members) => ({
+export const getMembers = (members) => ({
   type: GET_MEMBERS,
   payload: members,
 });

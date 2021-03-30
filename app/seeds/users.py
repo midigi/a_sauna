@@ -6,9 +6,12 @@ from app.models import db, User
 def seed_users():
 
     demo = User(firstName='Demo', lastName="User", email='demo@asauna.com',
-                hashed_password='password', about="A busy, busy person, who needs asauna", photoUrl="https://st.depositphotos.com/1814084/1640/i/950/depositphotos_16404909-stock-photo-brad-pitt.jpg")
+                password='password', about="A busy, busy person, who needs asauna", photoUrl="https://st.depositphotos.com/1814084/1640/i/950/depositphotos_16404909-stock-photo-brad-pitt.jpg")
+    demo2 = User(firstName='Demo Brother', lastName="Bro", email='demo2@asauna.com',
+                 password='password', about="Brother of a busy person", photoUrl="https://st.depositphotos.com/1814084/1640/i/950/depositphotos_16404909-stock-photo-brad-pitt.jpg")
 
     db.session.add(demo)
+    db.session.add(demo2)
 
     db.session.commit()
 
@@ -18,5 +21,5 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_users():
-    db.session.execute('TRUNCATE users CASCADE;')
+    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()
