@@ -31,8 +31,6 @@ const Member = ({ id }) => {
 
   useEffect(() => {}, [members]);
 
-  console.log(members);
-
   return (
     <div>
       {testMember.map((member) => {

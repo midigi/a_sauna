@@ -28,6 +28,7 @@ export const createProject = ({ projectName, teamName }) => async (
   });
   const data = await res.json();
   dispatch(setProject(data));
+  return data;
 };
 
 export const getProjectId = (id) => async (dispatch) => {

@@ -6,7 +6,7 @@ const getUsers = (users) => ({
 });
 
 export const getAllUsers = () => async (dispatch) => {
-  const res = await fetch ("/api/users");
+  const res = await fetch("/api/users");
   const data = await res.json();
   dispatch(getUsers(data));
 };
@@ -14,7 +14,6 @@ export const getAllUsers = () => async (dispatch) => {
 const initialState = {};
 
 function reducer(state = initialState, action) {
-  // console.log(action);
   switch (action.type) {
     case GET_USERS:
       const allUsers = {};

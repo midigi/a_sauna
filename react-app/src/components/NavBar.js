@@ -89,6 +89,7 @@ const NavBar = () => {
   };
 
   const showDrawer = () => {
+    getAllProjects();
     setVisible(true);
   };
 
@@ -197,10 +198,12 @@ const NavBar = () => {
             type="primary"
             onClick={(e) => e.preventDefault()}
           >
-            <p>
-              {sessionUser.firstName[0].toUpperCase() +
-                sessionUser.lastName[0].toUpperCase()}
-            </p>
+            {sessionUser && (
+              <p>
+                {sessionUser.firstName[0].toUpperCase() +
+                  sessionUser.lastName[0].toUpperCase()}
+              </p>
+            )}
           </Button>
         </Dropdown>
         <Dropdown
@@ -280,10 +283,18 @@ const NavBar = () => {
 
             {projects &&
               projects.map((project) => {
+                let color = "#35a7ff";
+                if (project.color) {
+                  color = project.color;
+                }
                 return (
                   <NavLink onClick={onClose} to={`/project/${project.id}`}>
                     <div style={{ display: "flex", alignItems: "center" }}>
-                      <FontAwesomeIcon icon={faSquare} className="squircle" />
+                      <FontAwesomeIcon
+                        icon={faSquare}
+                        className="squircle"
+                        style={{ color: color }}
+                      />
                       <p onClick={onClose} className="drawer_text">
                         {project.projectName}
                       </p>

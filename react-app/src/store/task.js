@@ -51,25 +51,11 @@ export const createTask = ({
   dispatch(setTask(data));
 };
 
-// export const deleteTask = (taskId) => async (dispatch) => {
-//   // const res = await fetch('/api/tasks', {
-//   //   method: 'DELETE',
-//   //    headers: {
-//   //     "Content-Type": "application/json",
-//   //   },
-//   //   body: JSON.stringify({taskId})
-//   // })
-
-//   dispatch(removeTask(taskId));
-// };
-
 export const deleteTask = (taskId) => async (dispatch) => {
-  console.log("hit");
   const res = await fetch(`/api/tasks/${taskId}`, {
     method: "DELETE",
   });
   const deleted = await res.json();
-  console.log(deleted);
 };
 
 export const seeTask = () => async (dispatch) => {

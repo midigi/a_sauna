@@ -16,8 +16,9 @@ const ProjectForm = () => {
 
   const onProjectCreation = async (e) => {
     e.preventDefault();
-    dispatch(createProject({ projectName, teamName }));
-    await history.push("/");
+    dispatch(createProject({ projectName, teamName })).then((res) => {
+      history.push(`/project/${res.id}`);
+    });
   };
 
   // useEffect(() => {

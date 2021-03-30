@@ -5,7 +5,6 @@
 .project_page_icon {
   width: 4vh;
   height: 4vh;
-  background-color: #35a7ff;
   border-radius: 50%;
   margin-left: 24%;
   display: flex;
@@ -22,4 +21,39 @@
 .projects_page_center {
   display: flex;
   align-items: center;
+}
+
+.settings_icon {
+  font-size: 1.5rem;
+  transition: 0.5s;
+}
+
+.settings_icon:hover {
+  font-size: 1.6rem;
+}
+
+.settings_button {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.right_project_edit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left_color_edit {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.selected_color_div {
+  display: flex;
+  align-items: center;
+}
+
+.delete_project {
+  margin-top: 5vh;
 }

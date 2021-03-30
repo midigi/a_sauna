@@ -8,7 +8,6 @@ function Calender() {
     const res = await fetch(`/api/tasks/${date}`);
     const data = await res.json();
     if (res.ok) {
-      console.log(data);
     }
   }
   getTask("2021-02-24");
@@ -17,7 +16,6 @@ function Calender() {
     let listData = [];
     const currentDate = value.year() + "-" + value.month() + "-" + value.date();
     // getTask(currentDate);
-    console.log(currentDate);
     // switch (value.date()) {
     //   case 8:
     //     listData = [
@@ -51,7 +49,6 @@ function Calender() {
   }
 
   function dateCellRender(value) {
-    console.log(value._d.toString());
     const listData = getListData(value);
     return (
       <ul className="events">

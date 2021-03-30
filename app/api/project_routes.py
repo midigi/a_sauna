@@ -50,3 +50,39 @@ def create_project():
         db.session.commit()
         return data.to_dict()
     return('Invalid Info')
+
+
+@project_routes.route("/edit/<projectId>", methods=["POST"])
+@login_required
+def edit_project(projectId):
+    project = Project.query.get(projectId)
+    json_data = request.get_json()
+    print(json_data)
+
+    if json_data["colorEdit"]:
+        project.color = json_data["colorEdit"]
+        print(json_data["colorEdit"])
+
+    if json_data["updatedProjectName"]:
+        project.projectName = json_data["updatedProjectName"]
+        print(json_data["updatedProjectName"])
+
+    if json_data["updatedTeamName"]:
+        project.teamName = json_data["updatedTeamName"]
+        print(json_data["updatedTeamName"])
+
+    db.session.add(project)
+    db.session.commit()
+
+    return project.to_dict()
+
+
+@project_routes.route("/delete/<projectId>", methods=["DELETE"])
+@login_required
+def delete_project(projectId):
+    project = Project.query.get(projectId)
+
+    db.session.delete(project)
+    db.session.commit()
+
+    return project.to_dict()
