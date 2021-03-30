@@ -89,6 +89,7 @@ const NavBar = () => {
   };
 
   const showDrawer = () => {
+    getAllProjects();
     setVisible(true);
   };
 

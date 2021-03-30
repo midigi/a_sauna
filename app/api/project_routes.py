@@ -49,13 +49,16 @@ def create_project():
 def edit_project(projectId):
     project = Project.query.get(projectId)
     json_data = request.get_json()
+    print(json_data)
 
     if json_data["colorEdit"]:
         project.color = json_data["colorEdit"]
         print(json_data["colorEdit"])
+
     if json_data["updatedProjectName"]:
         project.projectName = json_data["updatedProjectName"]
         print(json_data["updatedProjectName"])
+
     if json_data["updatedTeamName"]:
         project.teamName = json_data["updatedTeamName"]
         print(json_data["updatedTeamName"])

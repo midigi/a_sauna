@@ -17,12 +17,13 @@ import "./styling/Project.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Project = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [colorEdit, setColorEdit] = useState("#aabbcc");
   const project = useSelector((project) => project.project.project);
   const tasks = useSelector((state) => state.task.task);
-  const [updatedProjectName, setUpdatedProjectName] = useState();
-  const [updatedTeamName, setUpdatedTeamName] = useState();
+  const [updatedProjectName, setUpdatedProjectName] = useState("");
+  const [updatedTeamName, setUpdatedTeamName] = useState("");
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -31,10 +32,6 @@ const Project = () => {
   };
 
   const handleOk = async (id) => {
-    console.log(colorEdit);
-    console.log(updatedProjectName);
-    console.log(updatedTeamName);
-    console.log(project.projects.id);
     const res = await fetch(`/api/projects/edit/${project.projects.id}`, {
       method: "POST",
       headers: {
@@ -42,10 +39,12 @@ const Project = () => {
       },
       body: JSON.stringify({ colorEdit, updatedProjectName, updatedTeamName }),
     });
-    const data = await res.json();
 
-    await history.push(`/project/${project.projects.id}`);
-    console.log(data);
+    const data = await res.json();
+    await dispatch(getProjectId(project.projects.id));
+    setUpdatedProjectName("");
+    setUpdatedTeamName("");
+    // await history.push(`/project/${project.projects.id}`);
 
     setIsModalVisible(false);
   };
@@ -69,7 +68,6 @@ const Project = () => {
     progress(tasks);
   }
 
-  const dispatch = useDispatch();
   const projectId = useParams();
 
   useEffect(() => {
@@ -125,12 +123,14 @@ const Project = () => {
                   <Input
                     size="large"
                     placeholder={project.projects.projectName}
+                    value={updatedProjectName}
                     onChange={(e) => setUpdatedProjectName(e.target.value)}
                   ></Input>
 
                   <h2>Team Name</h2>
                   <Input
                     size="large"
+                    value={updatedTeamName}
                     onChange={(e) => setUpdatedTeamName(e.target.value)}
                     placeholder={project.projects.teamName}
                   ></Input>
