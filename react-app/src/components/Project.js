@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Row, Col, Drawer, Tag, Button } from "antd";
+import { Row, Col, Drawer, Tag, Button, Modal } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
@@ -11,12 +11,27 @@ import Task from "./Task";
 
 import Search from "./Search";
 
-import { UnorderedListOutlined } from "@ant-design/icons";
+import { UnorderedListOutlined, SettingFilled } from "@ant-design/icons";
 import "./styling/Project.css";
 
 const Project = () => {
   const project = useSelector((project) => project.project.project);
   const tasks = useSelector((state) => state.task.task);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   let color = "#35a7ff";
   function progress(input) {
     let count = input.length;
@@ -25,7 +40,6 @@ const Project = () => {
   if (project) {
     if (project.projects.color) {
       color = project.projects.color;
-      console.log(color);
     }
   }
 
@@ -60,8 +74,25 @@ const Project = () => {
               {project.projects.projectName}
             </h1>
           </Col>
-          <Col span={5} className="projects_page_center">
+          <Col span={4} className="projects_page_center">
             <h2 className="projects_page_title">{project.projects.teamName}</h2>
+          </Col>
+          <Col span={1} className="projects_page_center">
+            <button className="settings_button" onClick={showModal}>
+              <SettingFilled className="settings_icon" />
+            </button>
+            <Modal
+              title="Edit Project"
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              width={"90%"}
+              bodyStyle={{ height: "70vh" }}
+            >
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </Modal>
           </Col>
         </Row>
         <Row>
