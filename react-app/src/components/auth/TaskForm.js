@@ -15,7 +15,8 @@ const STATUSES = ["Incomplete", "In Progress", "Need Help", "Complete"];
 
 const TaskForm = ({ projectId }) => {
   function getCurrentDate() {
-    const currentDate = new Date();
+    let currentDate = new Date();
+
     const year = currentDate.getFullYear();
     let month = currentDate.getMonth() + 1;
     if (month.toString().length === 1) {

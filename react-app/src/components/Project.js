@@ -6,6 +6,7 @@ import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
 import Member from "./Member";
+import MemberProfile from "../components/MemberProfile";
 
 import Task from "./Task";
 
@@ -83,6 +84,7 @@ const Project = () => {
             {/* <h2 className="center_title2">Progress:</h2> */}
           </Col>
         </Row>
+        <MemberProfile />
       </div>
     )
   );
