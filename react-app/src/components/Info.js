@@ -21,7 +21,6 @@ const Info = ({ task }) => {
 
   const taskId = task.id;
   const projectID = task.projectId;
-  // console.log(task.projectId);
 
   const dispatch = useDispatch();
 

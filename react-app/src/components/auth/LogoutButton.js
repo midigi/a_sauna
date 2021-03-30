@@ -7,7 +7,6 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
 
   const onLogout = async (e) => {
-    console.log("hello");
     return dispatch(logout());
   };
 

@@ -17,9 +17,16 @@ import "./styling/Project.css";
 const Project = () => {
   const project = useSelector((project) => project.project.project);
   const tasks = useSelector((state) => state.task.task);
-
+  let color = "#35a7ff";
   function progress(input) {
     let count = input.length;
+  }
+
+  if (project) {
+    if (project.projects.color) {
+      color = project.projects.color;
+      console.log(color);
+    }
   }
 
   if (tasks) {
@@ -28,12 +35,6 @@ const Project = () => {
 
   const dispatch = useDispatch();
   const projectId = useParams();
-
-  const testProject = {
-    id: 1,
-    projectName: "My First Project",
-    teamName: "Best Group",
-  };
 
   useEffect(() => {
     dispatch(getProjectId(projectId.id));
@@ -45,7 +46,10 @@ const Project = () => {
         <div></div>
         <Row style={{ paddingLeft: "1vh" }}>
           <Col span={2}>
-            <div className="project_page_icon">
+            <div
+              className="project_page_icon"
+              style={{ backgroundColor: color }}
+            >
               <UnorderedListOutlined
                 style={{ fontSize: "2vh", color: "white" }}
               />

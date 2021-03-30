@@ -6,12 +6,10 @@ const getMembers = (members) => ({
 });
 
 export const getAllMembers = (id) => async (dispatch) => {
-  console.log("hit");
   const res = await fetch(`/api/users/member/${id}`);
   const data = await res.json();
   if (res.ok) {
     const memberList = data.members;
-    console.log(memberList);
     dispatch(getMembers(memberList));
   }
 };

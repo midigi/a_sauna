@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 import "./styling/RecentProjects.css";
 import { PlusOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
-const test = { projectName: "First Project" };
-
 const RecentProjects = () => {
+  let color = "#35a7ff";
   const [projects, setProjects] = useState();
   const dispatch = useDispatch();
   const getAllProjects = async () => {
@@ -26,8 +25,6 @@ const RecentProjects = () => {
     }
   };
 
-  console.log(projects);
-
   useEffect(() => {
     getAllProjects();
   }, [dispatch]);
@@ -36,10 +33,13 @@ const RecentProjects = () => {
     <div className="projects">
       {projects &&
         projects.slice(0, 3).map((project) => {
+          if (project.color) {
+            console.log(color);
+          }
           return (
             <NavLink to={`/project/${project.id}`}>
               <button className="project_button">
-                <div className="project">
+                <div className="project" style={{ backgroundColor: color }}>
                   <UnorderedListOutlined
                     style={{ fontSize: "3.5vh", color: "white" }}
                   />
