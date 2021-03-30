@@ -46,6 +46,7 @@ function App() {
           <Task></Task>
         </ProtectedRoute>
         <ProtectedRoute path="/calendar" exact={true}>
+          <NavBar />
           <Calendar></Calendar>
         </ProtectedRoute>
         <ProtectedRoute path="/project" exact={true}>

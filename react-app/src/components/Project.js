@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Row, Col, Button, Tag, Input, Modal } from "antd";
+import { Row, Col, Button, message, Popconfirm, Input, Modal } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
@@ -47,6 +47,14 @@ const Project = () => {
     // await history.push(`/project/${project.projects.id}`);
 
     setIsModalVisible(false);
+  };
+
+  const deleteProject = async () => {
+    await fetch(`/api/projects/delete/${project.projects.id}`, {
+      method: "DELETE",
+    });
+    message.success(`Project ${project.projects.projectName} deleted`);
+    await history.push("/");
   };
 
   const handleCancel = () => {
@@ -132,6 +140,14 @@ const Project = () => {
                   onChange={(e) => setUpdatedTeamName(e.target.value)}
                   placeholder={project.projects.teamName}
                 ></Input>
+
+                <Button
+                  onClick={deleteProject}
+                  danger
+                  className="delete_project"
+                >
+                  Delete Project?
+                </Button>
               </Col>
               <Col span={6} className="left_color_edit">
                 <h2>Project Color</h2>

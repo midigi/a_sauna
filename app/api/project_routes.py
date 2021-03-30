@@ -67,3 +67,14 @@ def edit_project(projectId):
     db.session.commit()
 
     return project.to_dict()
+
+
+@project_routes.route("/delete/<projectId>", methods=["DELETE"])
+@login_required
+def delete_project(projectId):
+    project = Project.query.get(projectId)
+
+    db.session.delete(project)
+    db.session.commit()
+
+    return project.to_dict()

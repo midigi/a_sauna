@@ -53,3 +53,7 @@
   display: flex;
   align-items: center;
 }
+
+.delete_project {
+  margin-top: 5vh;
+}
