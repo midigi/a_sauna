@@ -198,6 +198,7 @@ const Project = () => {
           {/* <h2 className="center_title2">Progress:</h2> */}
         </Col>
       </Row>
+      <MemberProfile />
     </div>
   ) : null;
 };

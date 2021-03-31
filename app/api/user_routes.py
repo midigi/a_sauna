@@ -34,22 +34,22 @@ def user(id):
 @user_routes.route('/<search>/<id>')
 @login_required
 def search(search, id):
-    print("---------------",  id)
+    # print("---------------",  id)
     if search is None:
-        return
+        return {"negative": "Not found"}
     member = User.query.filter_by(email=search).first()
     project = Project.query.filter_by(id=id).first()
-    print("-------------", project.to_dict())
+    # print("-------------", project.to_dict())
 
     if member is None:
-        member = {"Member": "Not found"}
+        return {"negative": "Not found"}
     else:
         project.users.append(member)
+        db.session.add(member)
         db.session.commit()
-        member = member.to_dict()
-        print("----------", member)
-
-    return member
+        return {"members": member.to_dict()}
+        # print("----------", member)
+    # return member
 
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}

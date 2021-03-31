@@ -5,33 +5,32 @@ import {getMembers} from "../store/members"
 const MemberProfile = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const allMembers= useSelector((state)=> state.member)
+    const allMembers= useSelector((state)=> state.member.members[0])
 
     useEffect(() => {
         async function fetchMembers(){
             if (id){
                 const res = await fetch(`/api/projects/${id}/members`)
                 const resData = await res.json();
-                console.log("This is the members", resData)
-                console.log(allMembers)
+                // console.log("This is the members", resData)
                 dispatch(getMembers(resData.members))
+                // console.log("all members----", allMembers)
             }
         }
         fetchMembers();
       }, [id]);
 
     return(
-        <div>
-            Hi we made it!
-            The project id is {id}
-            {/* {allMembers && allMembers.map((member) => (
+            allMembers && allMembers.length>0 ?(
+                (allMembers.map((member) => (
                 <div key={member.id}>
                     <div>
-                        <div>Name: {member.firstName}</div>
+                        <img src={member.photoUrl} className="profile_pic"></img>
+                        <div>First Name: {member.firstName}</div>
+                        <div>Last Name: {member.lastName}</div>
                     </div>
-                </div>
-            ))} */}
-        </div>
+                </div>)))) :
+                <div>There are no team members on this project. You should add some! </div>
     )
 }
 

@@ -14,16 +14,17 @@ export const getAllMembers = (id) => async (dispatch) => {
   }
 };
 
-const initialState = {};
+const initialState = { members: []};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_MEMBERS:
-      const allMembers = {};
-      action.payload.forEach((user) => {
-        allMembers[user.id] = user;
-      });
-      return allMembers;
+      // const allMembers = {};
+      // action.payload.forEach((user) => {
+      //   allMembers[user.id] = user;
+      // });
+      // return allMembers;
+      return { ...state, members: [...state.members, action.payload]};
     default:
       return state;
   }
