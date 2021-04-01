@@ -19,3 +19,20 @@
 .ant-collapse-arrow svg {
   margin-top: 0.3vh;
 }
+
+.footer {
+  /* background-color: rgba(158, 158, 158, 0.144); */
+  height: 7vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dev_link {
+  font-family: "Poppins", sans-serif;
+  color: rgba(0, 0, 0, 0.747);
+}
