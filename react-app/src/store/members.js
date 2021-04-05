@@ -1,16 +1,16 @@
 const GET_MEMBERS = "members/get_members";
 
-export const getMembers = (members) => ({
+export const getMember = (member) => ({
   type: GET_MEMBERS,
-  payload: members,
+  payload: member,
 });
 
 export const getAllMembers = (id) => async (dispatch) => {
   const res = await fetch(`/api/users/member/${id}`);
   const data = await res.json();
   if (res.ok) {
-    const memberList = data.members;
-    dispatch(getMembers(memberList));
+    const memberList = data.member;
+    dispatch(getMember(memberList));
   }
 };
 
@@ -24,7 +24,8 @@ function reducer(state = initialState, action) {
       //   allMembers[user.id] = user;
       // });
       // return allMembers;
-      return { ...state, members: [...state.members, action.payload]};
+      console.log("this is the state.member", state.member)
+      return { ...state, members: [...state.member, action.payload]};
     default:
       return state;
   }

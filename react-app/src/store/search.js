@@ -1,6 +1,6 @@
-import {getMembers} from "./members";
+import {getMember} from "./members";
 
-const ADD_MEMBERS = "members/getMembers";
+const ADD_MEMBERS = "members/getMember";
 
 const addMember = (inputs) => ({
   type: ADD_MEMBERS,
@@ -10,14 +10,14 @@ const addMember = (inputs) => ({
 export const addMembers = (search, id) => async (dispatch) => {
   const res = await fetch(`/api/users/${search}/${id}`, { method: "GET" });
   const data = await res.json();
-  console.log("---added member data----", data.members)
+  console.log("---added member data----", data.member)
   // dispatch(addMember(data));
   if (data.negtive) {
     return data
   }
-  if (data.members){
+  if (data.member){
     console.log("we made it!!!!")
-    dispatch(getMembers(data.members));
+    dispatch(getMember(data.member));
   }
   // dispatch(getMembers(data.members));
   return data;

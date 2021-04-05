@@ -47,8 +47,8 @@ def search(search, id):
         project.users.append(member)
         db.session.add(member)
         db.session.commit()
-        return {"members": member.to_dict()}
-        # print("----------", member)
+        print("----------", member)
+        return {"member": member.to_dict()}
     # return member
 
 

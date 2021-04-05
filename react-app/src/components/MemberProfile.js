@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMembers } from "../store/members";
+import { getMember } from "../store/members";
 import { Avatar } from "antd";
 import "antd/dist/antd.css";
 import "./styling/MemberProfile.css";
@@ -17,7 +17,7 @@ const MemberProfile = () => {
         const res = await fetch(`/api/projects/${id}/members`);
         const resData = await res.json();
         // console.log("This is the members", resData)
-        dispatch(getMembers(resData.members));
+        dispatch(getMember(resData.members));
         // console.log("all members----", allMembers)
       }
     }
