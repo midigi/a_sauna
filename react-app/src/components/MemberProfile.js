@@ -5,6 +5,7 @@ import { getMember } from "../store/members";
 import { Avatar } from "antd";
 import "antd/dist/antd.css";
 import "./styling/MemberProfile.css";
+import UniqueMember from "./UniqueMember";
 
 const MemberProfile = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const MemberProfile = () => {
         const resData = await res.json();
         dispatch(getMember(resData.members));
 
-        // console.log("all members----", allMembers)
+        console.log("all members----", allMembers);
       }
     }
     fetchMembers();
@@ -29,19 +30,7 @@ const MemberProfile = () => {
       {allMembers && allMembers.length > 0 ? (
         allMembers.map((member) => (
           <div key={member.id}>
-            <div>
-              {/* <img src={member.photoUrl} className="profile_pic"></img> */}
-              <NavLink to={`/users/${member.id}`}>
-                <Avatar size={80} className="team_members">
-                  <p className="member_text">
-                    {member.firstName[0]}
-                    {member.lastName[0]}
-                  </p>
-                </Avatar>
-              </NavLink>
-              {/* <div>First Name: </div>
-          <div>Last Name: </div> */}
-            </div>
+            <UniqueMember member={member}></UniqueMember>
           </div>
         ))
       ) : (

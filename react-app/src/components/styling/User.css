@@ -1,0 +1,33 @@
+.main_contents {
+  padding: 5vh;
+}
+
+.first_name {
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.profile_header {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.name_header {
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.last_name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.button_clear {
+  outline: none;
+  background: none;
+  border: none;
+}

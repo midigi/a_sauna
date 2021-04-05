@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./styling/User.css";
+import { Row, Col, Avatar } from "antd";
+import "antd/dist/antd.css";
 
 function User() {
   const [user, setUser] = useState({});
@@ -25,26 +28,17 @@ function User() {
   console.log(user);
 
   return (
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>First Name</strong> {user.firstName}
-      </li>
-      <li>
-        <strong>Last Name</strong> {user.lastName}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-      <li>
-        <strong>About</strong> {user.about}
-      </li>
-      <li>
-        <img src={user.photoUrl} style={{ width: "200px" }}></img>
-      </li>
-    </ul>
+    <div className="main_contents">
+      <div className="profile_header">
+        <Avatar size={150} src={user.photoUrl}></Avatar>
+        <div className="name_header">
+          <strong className="first_name">{user.firstName}</strong>
+          <p className="last_name">{user.lastName}</p>
+        </div>
+      </div>
+      <strong>Email</strong> {user.email}
+      <strong>About</strong> {user.about}
+    </div>
   );
 }
 export default User;
