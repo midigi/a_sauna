@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMembers } from "../store/members";
 import { Avatar } from "antd";
@@ -31,12 +31,14 @@ const MemberProfile = () => {
           <div key={member.id}>
             <div>
               {/* <img src={member.photoUrl} className="profile_pic"></img> */}
-              <Avatar size={80} className="team_members">
-                <p className="member_text">
-                  {member.firstName[0]}
-                  {member.lastName[0]}
-                </p>
-              </Avatar>
+              <NavLink to={`/users/${member.id}`}>
+                <Avatar size={80} className="team_members">
+                  <p className="member_text">
+                    {member.firstName[0]}
+                    {member.lastName[0]}
+                  </p>
+                </Avatar>
+              </NavLink>
               {/* <div>First Name: </div>
           <div>Last Name: </div> */}
             </div>
@@ -44,7 +46,7 @@ const MemberProfile = () => {
         ))
       ) : (
         <div>
-          There are no team members on this project. You should add some!{" "}
+          There are no team members on this project. You should add some!
         </div>
       )}
     </div>
