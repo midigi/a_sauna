@@ -180,13 +180,18 @@ const Info = ({ task }) => {
               </div>
             )}
             <h4 className="task_menu_text">Description:</h4>
-            <textarea
-              className="task_menu_textarea"
-              placeholder="Enter a description"
-              onChange={(e) => setDesc(e.target.value)}
-            >
-              {task.description}
-            </textarea>
+
+            {editVisibility ? (
+              <textarea
+                className="task_menu_textarea"
+                placeholder="Enter a description"
+                onChange={(e) => setDesc(e.target.value)}
+              >
+                {task.description}
+              </textarea>
+            ) : (
+              <p>{task.description}</p>
+            )}
 
             <div className="bottom_buttons">
               <div>
