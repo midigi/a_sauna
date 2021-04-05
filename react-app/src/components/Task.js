@@ -58,6 +58,17 @@ const Task = ({ id }) => {
     }
   };
 
+  function getCurrentDate(timeString) {
+    let currentDate = new Date(timeString);
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    if (month.toString().length === 1) {
+      month = "0" + month;
+    }
+    const day = currentDate.getDate();
+    return `${day}/${month}/${year}`;
+  }
+
   return (
     <div className="task_size">
       {sessionTasks &&
@@ -68,7 +79,7 @@ const Task = ({ id }) => {
             </Col>
 
             <Col span={5} className="column_border">
-              <p className="due_date">{task.dueDate}</p>
+              <p className="due_date">{getCurrentDate(task.dueDate)}</p>
             </Col>
 
             <Col span={3} className="column_border">

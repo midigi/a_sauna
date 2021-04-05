@@ -1,0 +1,13 @@
+.team_members {
+  background-color: rgb(53, 167, 255);
+  font-size: large;
+  margin: 5px;
+}
+
+.member_text {
+  font-size: 25px;
+}
+
+.team_member_flex {
+  display: flex;
+}
