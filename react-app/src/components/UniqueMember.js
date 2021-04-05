@@ -16,7 +16,10 @@ import "./styling/Project.css";
 
 const UniqueMember = ({ member }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
+  const sessionProject = useSelector((state) => state.project.project.projects);
 
+  console.log(member.email);
   const showModal = () => {
     setIsModalVisible(true);
     console.log(member);
@@ -53,9 +56,16 @@ const UniqueMember = ({ member }) => {
             <strong className="first_name">{member.firstName}</strong>
             <p className="last_name">{member.lastName}</p>
           </div>
+
+          <a
+            className="email_button"
+            href={`mailto:${member.email}?subject=A message from ${sessionUser.firstName} about the ${sessionProject.projectName} project.`}
+          >
+            Send email
+          </a>
         </div>
-        <strong>About</strong> {member.about}
-        <strong>Email</strong> {member.email}
+        {/* <strong className="about_me">About</strong>
+        <p>{member.about}</p> */}
       </Modal>
     </div>
   );
