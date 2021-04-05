@@ -14,7 +14,7 @@ export const getAllMembers = (id) => async (dispatch) => {
   }
 };
 
-const initialState = { members: []};
+const initialState = { members: [] };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -24,8 +24,7 @@ function reducer(state = initialState, action) {
       //   allMembers[user.id] = user;
       // });
       // return allMembers;
-      console.log("this is the state.member", state.member)
-      return { ...state, members: [...state.member, action.payload]};
+      return { ...state, members: [...state.members, action.payload] };
     default:
       return state;
   }

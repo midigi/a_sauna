@@ -18,6 +18,7 @@ const Search = () => {
         message.error(`User ${search} not found`);
       } else {
         message.success(`User ${search} added to project!`);
+        window.location.reload();
       }
     });
   };
