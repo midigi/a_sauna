@@ -1,48 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMember } from "../store/members";
+import { getMember, getAllMembers } from "../store/members";
 import { Avatar } from "antd";
 import "antd/dist/antd.css";
 import "./styling/MemberProfile.css";
+import UniqueMember from "./UniqueMember";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const MemberProfile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const allMembers = useSelector((state) => state.member.members[0]);
+  const [allMembers, setAllMembers] = useState();
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchMembers() {
-      if (id) {
-        const res = await fetch(`/api/projects/${id}/members`);
-        const resData = await res.json();
-        dispatch(getMember(resData.members));
-
-        // console.log("all members----", allMembers)
-      }
+  async function fetchMembers() {
+    if (id) {
+      const res = await fetch(`/api/projects/${id}/members`);
+      const resData = await res.json();
+      console.log(resData.members);
+      setAllMembers(resData.members);
+      await setLoading(false);
+      await dispatch(getMember(resData.members));
     }
+  }
+  useEffect(() => {
     fetchMembers();
   }, [id]);
 
-  return (
+  return loading ? null : (
     <div className="team_member_flex">
       {allMembers && allMembers.length > 0 ? (
         allMembers.map((member) => (
           <div key={member.id}>
-            <div>
-              {/* <img src={member.photoUrl} className="profile_pic"></img> */}
-              <NavLink to={`/users/${member.id}`}>
-                <Avatar size={80} className="team_members">
-                  <p className="member_text">
-                    {member.firstName[0]}
-                    {member.lastName[0]}
-                  </p>
-                </Avatar>
-              </NavLink>
-              {/* <div>First Name: </div>
-          <div>Last Name: </div> */}
-            </div>
-T          </div>
+            <UniqueMember member={member}></UniqueMember>
+          </div>
         ))
       ) : (
         <div>
