@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Row, Col, Button, message, Popconfirm, Input, Modal } from "antd";
+import { Row, Col, Button, message, Input, Modal } from "antd";
 import { getProjectId } from "../store/project";
 import TaskForm from "./auth/TaskForm";
 import "./styling/Search.css";
-import Member from "./Member";
 import { HexColorPicker } from "react-colorful";
 import MemberProfile from "../components/MemberProfile";
-
-
 import Task from "./Task";
-
 import Search from "./Search";
-
 import { UnorderedListOutlined, SettingFilled } from "@ant-design/icons";
 import "./styling/Project.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -23,7 +18,6 @@ const Project = () => {
   const history = useHistory();
   const [colorEdit, setColorEdit] = useState("#aabbcc");
   const project = useSelector((project) => project.project.project);
-  const tasks = useSelector((state) => state.task.task);
   const [updatedProjectName, setUpdatedProjectName] = useState("");
   const [updatedTeamName, setUpdatedTeamName] = useState("");
 
@@ -33,8 +27,8 @@ const Project = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = async (id) => {
-    const res = await fetch(`/api/projects/edit/${project.projects.id}`, {
+  const handleOk = async () => {
+    await fetch(`/api/projects/edit/${project.projects.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,12 +36,9 @@ const Project = () => {
       body: JSON.stringify({ colorEdit, updatedProjectName, updatedTeamName }),
     });
 
-    const data = await res.json();
     await dispatch(getProjectId(project.projects.id));
     setUpdatedProjectName("");
     setUpdatedTeamName("");
-    // await history.push(`/project/${project.projects.id}`);
-
     setIsModalVisible(false);
   };
 
@@ -64,9 +55,7 @@ const Project = () => {
   };
 
   let color = "#35a7ff";
-  function progress(input) {
-    let count = input.length;
-  }
+
 
   if (project) {
     if (project.projects) {
@@ -76,15 +65,11 @@ const Project = () => {
     }
   }
 
-  if (tasks) {
-    progress(tasks);
-  }
-
   const projectId = useParams();
 
   useEffect(() => {
     dispatch(getProjectId(projectId.id));
-  }, [projectId]);
+  }, [projectId, dispatch]);
 
   return project && project.projects ? (
     <div className="projects_page">
@@ -123,7 +108,6 @@ const Project = () => {
               </Button>,
             ]}
             width={"90vh"}
-            // bodyStyle={{ height: "70vh" }}
           >
             <Row>
               <Col span={11}>
@@ -189,13 +173,6 @@ const Project = () => {
         </Col>
         <Col span={14} className="center_search">
           <Search />
-          {/* <h2 className="center_title">Progress:</h2> */}
-        </Col>
-      </Row>
-      <Row>
-        <Col span={7}>{/* <Member id={project.projects.id}></Member> */}</Col>
-        <Col span={14}>
-          {/* <h2 className="center_title2">Progress:</h2> */}
         </Col>
       </Row>
       <MemberProfile />

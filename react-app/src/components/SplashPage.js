@@ -1,11 +1,10 @@
 import React from "react";
-import { Menu, Layout, Row, Col, Button } from "antd";
+import { Menu, Row, Col, Button } from "antd";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
+import { faHotTub } from "@fortawesome/free-solid-svg-icons";
 import "./styling/SplashPage.css";
 
-const { Header } = Layout;
 
 function SplashPage() {
   return (

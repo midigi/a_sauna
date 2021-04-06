@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Drawer, Tag, Button } from "antd";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import "./styling/Info.css";
 import {
   deleteTask,
   seeTask,
-  markComplete,
   seeProjectTask,
 } from "../store/task";
 
@@ -36,14 +35,13 @@ const Info = ({ task }) => {
   const onTaskUpdate = async (e) => {
     e.preventDefault();
     task = { desc, priority, status };
-    const res = await fetch(`/api/tasks/update/${taskId}`, {
+    await fetch(`/api/tasks/update/${taskId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
     });
-    const data = await res.json();
     if (projectID) {
       dispatch(seeProjectTask(projectID));
     } else {

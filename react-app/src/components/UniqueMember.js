@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Avatar, Modal } from "antd";
-import { getProjectId } from "../store/project";
-import TaskForm from "./auth/TaskForm";
 import "antd/dist/antd.css";
 import "./styling/User.css";
-
-import Task from "./Task";
-
-import Search from "./Search";
-
-import { ConsoleSqlOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import "./styling/Project.css";
 
 const UniqueMember = ({ member }) => {
@@ -63,8 +54,6 @@ const UniqueMember = ({ member }) => {
             Send email
           </a>
         </div>
-        {/* <strong className="about_me">About</strong>
-        <p>{member.about}</p> */}
       </Modal>
     </div>
   );

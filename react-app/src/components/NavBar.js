@@ -5,9 +5,7 @@ import { Drawer, Menu, Dropdown, Modal, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
-import Calender from "./Calendar";
 import { photoUpload } from "../store/session";
-import RecentProjects from "./RecentProjects";
 import { update_user } from "../store/users";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
@@ -16,7 +14,6 @@ import {
   HomeOutlined,
   SmileOutlined,
   SnippetsOutlined,
-  CalendarOutlined,
   PlusOutlined,
   EditOutlined,
 } from "@ant-design/icons";
@@ -273,17 +270,6 @@ const NavBar = () => {
                 <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                className="drawer_link"
-                to="/calendar"
-                exact={true}
-                activeClassName="active"
-                onClick={onClose}
-              >
-                <CalendarOutlined /> Calendar
-              </NavLink>
-            </li> */}
           </ul>
           <div>
             <NavLink

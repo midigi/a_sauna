@@ -11,21 +11,19 @@ import { restoreUser } from "./store/session";
 import TaskForm from "./components/auth/TaskForm";
 import Home from "./components/Home";
 import Task from "./components/Task";
-import Calendar from "./components/Calendar";
 import Project from "./components/Project";
 import ProjectForm from "./components/auth/ProjectForm";
 import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
-  // const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(restoreUser()).then(() => {
       setLoaded(true);
     });
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -44,10 +42,6 @@ function App() {
           <NavBar />
           <TaskForm />
           <Task></Task>
-        </ProtectedRoute>
-        <ProtectedRoute path="/calendar" exact={true}>
-          <NavBar />
-          <Calendar></Calendar>
         </ProtectedRoute>
         <ProtectedRoute path="/project" exact={true}>
           <NavBar />

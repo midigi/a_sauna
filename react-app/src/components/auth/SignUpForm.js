@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, login } from "../../store/session";
-// import { signUp } from "./SignUpForm";
 import "./authStyling/form.css";
 import { Button } from "antd";
-// import { faAmericanSignLanguageInterpreting } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -13,14 +11,11 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  // const [errors, setErrors] = useState([]);
-
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    let newErrors = [];
     if (password === repeatPassword) {
       dispatch(createUser({ firstName, lastName, email, password }))
         .then(() => {
@@ -29,13 +24,6 @@ const SignUpForm = () => {
           setEmail("");
           setPassword("");
         })
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) {
-            newErrors = data.errors;
-            // setErrors(newErrors);
-          }
-        });
     }
   };
 

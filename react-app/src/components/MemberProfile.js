@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getMember, getAllMembers } from "../store/members";
-import { Avatar } from "antd";
+import { useParams} from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { getMember } from "../store/members";
 import "antd/dist/antd.css";
 import "./styling/MemberProfile.css";
 import UniqueMember from "./UniqueMember";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 const MemberProfile = () => {
   const { id } = useParams();
