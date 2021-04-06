@@ -170,7 +170,6 @@ const NavBar = () => {
                   onChange={handleUpload}
                 ></input>
                 <label for="myuniqueid">Upload Photo</label>
-                {/* <button type="submit"></button> */}
               </form>
             </div>
           </div>

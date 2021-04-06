@@ -28,11 +28,6 @@
 
 .profile_button {
   float: right;
-  /* border: none;
-  background-color: #d1496b;
-  border-radius: 50%;
-  width: 3vh;
-  height: 3vh;*/
   margin: 5px;
 }
 
@@ -76,7 +71,6 @@
   border: 1px;
   background: none;
   font-size: 3vh;
-  /* color: #edae49; */
 }
 
 .drawer_text {
