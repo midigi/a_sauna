@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Tag } from "antd";
 import "./styling/TaskForm.css";
@@ -8,14 +8,12 @@ import Info from "./Info";
 const Task = ({ id }) => {
   const dispatch = useDispatch();
   const sessionTasks = useSelector((state) => state.task.task);
-  const [data, setData] = useState();
 
   useEffect(() => {
     if (!id) {
       dispatch(seeTask());
     } else {
       dispatch(seeProjectTask(id));
-      setData(id);
     }
   }, [id]);
 

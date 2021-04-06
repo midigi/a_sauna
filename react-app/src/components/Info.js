@@ -3,11 +3,7 @@ import { useDispatch } from "react-redux";
 import { Drawer, Tag, Button } from "antd";
 import "./styling/TaskForm.css";
 import "./styling/Info.css";
-import {
-  deleteTask,
-  seeTask,
-  seeProjectTask,
-} from "../store/task";
+import { deleteTask, seeTask, seeProjectTask } from "../store/task";
 
 import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
 
@@ -197,7 +193,14 @@ const Info = ({ task }) => {
                   Edit Task
                 </Button>
                 {editVisibility && (
-                  <Button htmlType="submit">Submit Edits</Button>
+                  <Button
+                    onClick={() => {
+                      setEditVisibility(false);
+                    }}
+                    htmlType="submit"
+                  >
+                    Submit Edits
+                  </Button>
                 )}
               </div>
               <Button type="primary" shape="circle" onClick={deleteOneTask}>
