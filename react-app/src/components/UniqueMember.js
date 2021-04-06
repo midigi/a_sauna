@@ -19,7 +19,6 @@ const UniqueMember = ({ member }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const sessionProject = useSelector((state) => state.project.project.projects);
 
-  console.log(member.email);
   const showModal = () => {
     setIsModalVisible(true);
     console.log(member);
