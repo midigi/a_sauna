@@ -37,7 +37,7 @@ const RecentProjects = () => {
             color = project.color;
           }
           return (
-            <NavLink to={`/project/${project.id}`}>
+            <NavLink to={`/project/${project.id}`} key={project.id}>
               <button className="project_button">
                 <div className="project" style={{ backgroundColor: color }}>
                   <UnorderedListOutlined

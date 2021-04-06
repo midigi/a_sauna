@@ -291,7 +291,7 @@ const NavBar = () => {
                   color = project.color;
                 }
                 return (
-                  <NavLink onClick={onClose} to={`/project/${project.id}`}>
+                  <NavLink onClick={onClose} to={`/project/${project.id}`} key={project.id}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <FontAwesomeIcon
                         icon={faSquare}

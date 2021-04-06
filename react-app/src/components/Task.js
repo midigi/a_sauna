@@ -5,8 +5,6 @@ import "./styling/TaskForm.css";
 import { seeTask, seeProjectTask } from "../store/task";
 import Info from "./Info";
 
-import { useParams } from "react-router-dom";
-
 const Task = ({ id }) => {
   const dispatch = useDispatch();
   const sessionTasks = useSelector((state) => state.task.task);
