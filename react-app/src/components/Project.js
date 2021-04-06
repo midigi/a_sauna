@@ -56,7 +56,6 @@ const Project = () => {
 
   let color = "#35a7ff";
 
-
   if (project) {
     if (project.projects) {
       if (project.projects.color) {
@@ -151,9 +150,7 @@ const Project = () => {
                 </div>
               </Col>
               <Col span={6} className="right_project_edit">
-                <div>
-                  <HexColorPicker color={colorEdit} onChange={setColorEdit} />
-                </div>
+                <HexColorPicker color={colorEdit} onChange={setColorEdit} />
               </Col>
             </Row>
           </Modal>
