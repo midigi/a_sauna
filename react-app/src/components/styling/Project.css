@@ -52,6 +52,7 @@
 .selected_color_div {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .delete_project {
