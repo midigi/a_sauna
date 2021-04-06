@@ -35,7 +35,6 @@ def create_task():
     if form.validate_on_submit():
         data = Task()
         form.populate_obj(data)
-        print(str(form))
         data.assigneeId = current_user.id
         db.session.add(data)
         db.session.commit()

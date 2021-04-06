@@ -26,7 +26,6 @@ const NavBar = () => {
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
   const [bio, setBio] = useState("visible");
-  // TODO PUT needs to be finalized
   const [userAbout, setUserAbout] = useState(sessionUser.about)
   const [photoUrl, setPhotoUrl] = useState(
     sessionUser ? sessionUser.photoUrl : ""
@@ -41,7 +40,6 @@ const NavBar = () => {
     }
   };
 
-  // let projects;
   const dispatch = useDispatch();
 
   const getAllProjects = async () => {

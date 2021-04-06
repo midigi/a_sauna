@@ -12,7 +12,6 @@ const UniqueMember = ({ member }) => {
 
   const showModal = () => {
     setIsModalVisible(true);
-    console.log(member);
   };
 
   const handleOk = () => {

@@ -16,7 +16,6 @@ const MemberProfile = () => {
     if (id) {
       const res = await fetch(`/api/projects/${id}/members`);
       const resData = await res.json();
-      console.log(resData.members);
       setAllMembers(resData.members);
       await setLoading(false);
       await dispatch(getMember(resData.members));
