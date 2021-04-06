@@ -1,5 +1,4 @@
 const SET_PROJECT = "project/setProject";
-const REMOVE_PROJECT = "project/removeProject";
 const GET_PROJECT = "project/getProject";
 
 const setProject = (project) => ({
@@ -12,9 +11,6 @@ const getProject = (project) => ({
   payload: project,
 });
 
-const removeProject = () => ({
-  type: REMOVE_PROJECT,
-});
 
 export const createProject = ({ projectName, teamName }) => async (
   dispatch
@@ -42,14 +38,11 @@ export const getProjectId = (id) => async (dispatch) => {
 const initialState = { project: null };
 
 function reducer(state = initialState, action) {
-  let newState;
   switch (action.type) {
     case SET_PROJECT:
       return { ...state, project: action.payload };
     case GET_PROJECT:
       return { ...state, project: action.payload };
-    case REMOVE_PROJECT:
-    //ToDo
     default:
       return state;
   }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./styling/User.css";
-import { Row, Col, Avatar } from "antd";
+import { Avatar } from "antd";
 import "antd/dist/antd.css";
 
 function User() {
   const [user, setUser] = useState({});
-  // Notice we use useParams here instead of getting the params
-  // From props.
   const { userId } = useParams();
 
   useEffect(() => {
@@ -24,9 +22,6 @@ function User() {
   if (!user) {
     return null;
   }
-
-  console.log(user);
-
   return (
     <div className="main_contents">
       <div className="profile_header">

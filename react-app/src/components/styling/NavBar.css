@@ -28,11 +28,6 @@
 
 .profile_button {
   float: right;
-  /* border: none;
-  background-color: #d1496b;
-  border-radius: 50%;
-  width: 3vh;
-  height: 3vh;*/
   margin: 5px;
 }
 
@@ -76,7 +71,6 @@
   border: 1px;
   background: none;
   font-size: 3vh;
-  /* color: #edae49; */
 }
 
 .drawer_text {
@@ -120,7 +114,8 @@ input[type="file"] + label {
 }
 
 .about_me {
-  width: 15vh;
+  width: 75%;
+  height: 7vh;
 }
 
 .about_title {
@@ -129,6 +124,8 @@ input[type="file"] + label {
 
 .profile_textarea {
   border: 1px solid rgba(51, 51, 51, 0.077);
+  width: 75%;
+  height: 7vh;
 }
 
 .status_button {

@@ -5,14 +5,12 @@ import users from "./users";
 import task from "./task";
 import project from "./project";
 import member from "./members";
-import search from "./search";
 
 const rootReducer = combineReducers({
   session,
   users,
   task,
   project,
-  search,
   member,
 });
 

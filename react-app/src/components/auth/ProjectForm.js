@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createProject } from "../../store/project";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Redirect } from "react-router-dom";
-import TaskHeaders from "../TaskHeaders";
+import { useHistory } from "react-router-dom";
 import { Button, Row, Col, Skeleton, Progress } from "antd";
 import "./authStyling/form.css";
 
 const ProjectForm = () => {
   const [projectName, setProjectName] = useState("");
   const [teamName, setTeamName] = useState("");
-  const [submit, setSubmit] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -20,10 +18,6 @@ const ProjectForm = () => {
       history.push(`/project/${res.id}`);
     });
   };
-
-  // useEffect(() => {
-  //   onProjectCreation();
-  // }, []);
 
   return (
     <div className="project_page">

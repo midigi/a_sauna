@@ -1,7 +1,5 @@
 const SET_TASK = "task/setTask";
-const REMOVE_TASK = "task/removeTask";
 const GET_TASK = "task/getTask";
-const SET_PROJECT_TASK = "task/getTask";
 
 const setTask = (task) => ({
   type: SET_TASK,
@@ -13,12 +11,7 @@ const getTask = (task) => ({
   payload: task,
 });
 
-const removeTask = (taskId) => ({
-  type: REMOVE_TASK,
-  payload: taskId,
-});
-
-export const markComplete = (taskId, description) => async (dispatch) => {
+export const markComplete = (taskId, description) => async () => {
   const res = await fetch(`/api/tasks/${taskId}`, {
     method: "PUT",
     body: JSON.stringify({ description }),
@@ -51,11 +44,11 @@ export const createTask = ({
   dispatch(setTask(data));
 };
 
-export const deleteTask = (taskId) => async (dispatch) => {
+export const deleteTask = (taskId) => async () => {
   const res = await fetch(`/api/tasks/${taskId}`, {
     method: "DELETE",
   });
-  const deleted = await res.json();
+  await res.json();
 };
 
 export const seeTask = () => async (dispatch) => {
@@ -74,7 +67,6 @@ export const seeProjectTask = (id) => async (dispatch) => {
 const initialState = { task: null };
 
 function reducer(state = initialState, action) {
-  let newState;
   switch (action.type) {
     case SET_TASK: {
       if (state.task) {

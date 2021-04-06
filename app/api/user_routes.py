@@ -15,7 +15,6 @@ def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
-# ToDo PUT needs to be finalized
 @user_routes.route('/update', methods=['PUT'])
 @login_required
 def update_bio():
@@ -44,12 +43,10 @@ def user(id):
 @user_routes.route('/<search>/<id>')
 @login_required
 def search(search, id):
-    # print("---------------",  id)
     if search is None:
         return {"negative": "Not found"}
     member = User.query.filter_by(email=search).first()
     project = Project.query.filter_by(id=id).first()
-    # print("-------------", project.to_dict())
 
     if member is None:
         return {"negative": "Not found"}
@@ -57,13 +54,9 @@ def search(search, id):
         project.users.append(member)
         db.session.add(member)
         db.session.commit()
-        print("----------", member)
         return {"member": member.to_dict()}
-    # return member
-
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
 
 def allowed_file(filename):
     return '.' in filename and \

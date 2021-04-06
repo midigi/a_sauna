@@ -6,7 +6,7 @@ import { Button } from "antd";
 import "./authStyling/form.css";
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

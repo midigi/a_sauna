@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import { createTask } from "../../store/task";
-
 import { useDispatch, useSelector } from "react-redux";
-import Task from "../../components/Task";
 import { Row, Col, message } from "antd";
 import "../styling/TaskForm.css";
-
-import { useHistory } from "react-router-dom";
-import { NumberOutlined } from "@ant-design/icons";
 
 const PRIORITIES = ["Low", "Medium", "High"];
 
@@ -30,14 +25,12 @@ const TaskForm = ({ projectId }) => {
     message.error("Please enter a task title!");
   };
 
-  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [taskTitle, setTaskTitle] = useState("");
   const [dueDate, setDueDate] = useState(getCurrentDate);
   const [priority, setPriority] = useState("Low");
   const [status, setStatus] = useState("Incomplete");
-  const [description, setDescription] = useState("");
-  // const [header, setHeader] = useState(true);
+  const [description] = useState("");
   const dispatch = useDispatch();
 
   const onTaskCreation = async (e) => {
@@ -62,7 +55,7 @@ const TaskForm = ({ projectId }) => {
   return (
     sessionUser && (
       <div className="outside">
-        {projectId == undefined && (
+        {projectId === undefined && (
           <div style={{ marginBottom: "5vh" }}>
             {sessionUser.photoUrl != null ? (
               <img
@@ -154,16 +147,6 @@ const TaskForm = ({ projectId }) => {
                 </select>
               </Col>
               <Col span={3} className="column_border"></Col>
-
-              {/* <textarea
-                  className="task_description"
-                  name="description"
-                  type="text"
-                  placeholder="Additional task information"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                /> */}
-
               <Col span={3} className="column_border">
                 <button className="task_submit_button" type="submit">
                   Create task

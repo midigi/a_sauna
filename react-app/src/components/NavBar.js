@@ -5,9 +5,7 @@ import { Drawer, Menu, Dropdown, Modal, Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
 import LogoutButton from "./auth/LogoutButton";
-import Calender from "./Calendar";
-import { photoUpload } from "../store/session";
-import RecentProjects from "./RecentProjects";
+import { photoUpload, restoreUser } from "../store/session";
 import { update_user } from "../store/users";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
@@ -16,7 +14,6 @@ import {
   HomeOutlined,
   SmileOutlined,
   SnippetsOutlined,
-  CalendarOutlined,
   PlusOutlined,
   EditOutlined,
 } from "@ant-design/icons";
@@ -29,8 +26,7 @@ const NavBar = () => {
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
   const [bio, setBio] = useState("visible");
-  // TODO PUT needs to be finalized
-  const [userAbout, setUserAbout] = useState(sessionUser.about)
+  const [userAbout, setUserAbout] = useState(sessionUser.about);
   const [photoUrl, setPhotoUrl] = useState(
     sessionUser ? sessionUser.photoUrl : ""
   );
@@ -44,7 +40,6 @@ const NavBar = () => {
     }
   };
 
-  // let projects;
   const dispatch = useDispatch();
 
   const getAllProjects = async () => {
@@ -63,25 +58,34 @@ const NavBar = () => {
     setPhotoFile(e.target.files[0]);
   }
 
-  function submitAbout(e) {
-    e.preventDefault()
-    dispatch(update_user(userAbout))
-  };
-
+  async function submitAbout() {
+    await dispatch(update_user(userAbout));
+    await dispatch(restoreUser());
+  }
 
   function submit(e) {
     e.preventDefault();
+
+    showButtonVisible();
+
+    if (userAbout) {
+      submitAbout();
+    }
+
     dispatch(photoUpload(photoFile)).then((res) => {
       setPhotoUrl(res.url);
+      dispatch(restoreUser());
     });
   }
 
   const showButtonVisible = () => {
     if (buttonVisible === "visible") {
       setButtonVisible("hidden");
+      changeBio();
     }
     if (buttonVisible === "hidden") {
       setButtonVisible("visible");
+      changeBio();
     }
   };
 
@@ -174,20 +178,19 @@ const NavBar = () => {
                   name="user_file"
                   onChange={handleUpload}
                 ></input>
-                <label for="myuniqueid">Upload Photo</label>
-                {/* <button type="submit"></button> */}
+                <label htmlFor="myuniqueid">Upload Photo</label>
               </form>
             </div>
           </div>
           <div style={{ display: "flex", alignContent: "center" }}>
             <h4 className="about_title">About Me</h4>
-            <Button
+            {/* <Button
               shape="circle"
               style={{ marginTop: "0.5vh", marginLeft: "2vh" }}
               onClick={changeBio}
             >
               <EditOutlined />
-            </Button>
+            </Button> */}
           </div>
           {bio === "visible" ? (
             <p className="about_me">{userAbout}</p>
@@ -195,13 +198,9 @@ const NavBar = () => {
             <textarea
               className="profile_textarea"
               value={userAbout}
-              onChange={(e) => setUserAbout(e.target.value) }
-              ></textarea>
+              onChange={(e) => setUserAbout(e.target.value)}
+            ></textarea>
           )}
-          <button
-            type="submit"
-            onClick={submitAbout}
-            >Submit About</button>
         </Modal>
         <button className="hamburger" onClick={showDrawer}>
           <span>
@@ -241,7 +240,7 @@ const NavBar = () => {
               <FontAwesomeIcon
                 icon={faHotTub}
                 style={{ marginRight: "0.5vh" }}
-              />{" "}
+              />
               asauna
             </div>
           }
@@ -273,17 +272,6 @@ const NavBar = () => {
                 <SnippetsOutlined /> Tasks
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                className="drawer_link"
-                to="/calendar"
-                exact={true}
-                activeClassName="active"
-                onClick={onClose}
-              >
-                <CalendarOutlined /> Calendar
-              </NavLink>
-            </li> */}
           </ul>
           <div>
             <NavLink
@@ -305,7 +293,11 @@ const NavBar = () => {
                   color = project.color;
                 }
                 return (
-                  <NavLink onClick={onClose} to={`/project/${project.id}`}>
+                  <NavLink
+                    onClick={onClose}
+                    to={`/project/${project.id}`}
+                    key={project.id}
+                  >
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <FontAwesomeIcon
                         icon={faSquare}

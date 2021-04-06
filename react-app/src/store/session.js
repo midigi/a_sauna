@@ -31,7 +31,6 @@ export const restoreUser = () => async (dispatch) => {
 };
 
 export const createUser = (user) => async (dispatch) => {
-  const { firstName, lastName, email, password } = user;
   const res = await fetch(`/api/auth/signup`, {
     method: "POST",
     headers: {
@@ -43,24 +42,9 @@ export const createUser = (user) => async (dispatch) => {
   const data = await res.json();
 
   dispatch(setUser(data));
-  // const formData = new FormData();
-  // formData.append("first name", firstName);
-  // formData.append("last name", lastName);
-  // formData.append("email", email);
-  // formData.append("password", password);
-
-  // for multiple files
-  // if (images && images.length !== 0) {
-  //   for (var i = 0; i < images.length; i++) {
-  //     formData.append("images", images[i]);
-  //   }
-  // }
-
-  // for single file
-  // if (image) formData.append("image", image);
 };
 
-export const photoUpload = (file) => async (dispatch) => {
+export const photoUpload = (file) => async () => {
   let photoUrl;
   const formData = new FormData();
   formData.append("user_file", file);

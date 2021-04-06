@@ -11,16 +11,7 @@ const RecentProjects = () => {
     const res = await fetch("/api/projects/user");
     const data = await res.json();
     if (res.ok) {
-      // projects = data.projects;
       setProjects(data.projects);
-      // return data.projects.map((project) => {
-      //   <NavLink to={`/projects/${project.projectId}`}>
-      //     <div style={{ display: "flex", alignItems: "center" }}>
-      //       <FontAwesomeIcon icon={faSquare} className="squircle" />
-      //       <p className="drawer_text">{project.projectName}</p>
-      //     </div>
-      //   </NavLink>;
-      // });
     }
   };
 
@@ -37,7 +28,7 @@ const RecentProjects = () => {
             color = project.color;
           }
           return (
-            <NavLink to={`/project/${project.id}`}>
+            <NavLink to={`/project/${project.id}`} key={project.id}>
               <button className="project_button">
                 <div className="project" style={{ backgroundColor: color }}>
                   <UnorderedListOutlined

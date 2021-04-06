@@ -10,7 +10,7 @@ ReactDOM.render(
     <Provider store={configureStore()}>
       <script
         src="https://kit.fontawesome.com/f028fd72a9.js"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></script>
       <App />
     </Provider>

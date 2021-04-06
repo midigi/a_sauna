@@ -11,7 +11,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button type="link" danger="true" ghost="true" onClick={onLogout}>
+    <Button type="link" danger="true" onClick={onLogout}>
       Logout
     </Button>
   );
