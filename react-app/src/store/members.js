@@ -24,7 +24,7 @@ function reducer(state = initialState, action) {
       //   allMembers[user.id] = user;
       // });
       // return allMembers;
-      return { ...state, members: [...state.members, action.payload] };
+      return { ...state, members: [ ...state.members, action.payload] };
     default:
       return state;
   }

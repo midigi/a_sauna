@@ -8,6 +8,7 @@ import LogoutButton from "./auth/LogoutButton";
 import Calender from "./Calendar";
 import { photoUpload } from "../store/session";
 import RecentProjects from "./RecentProjects";
+import { update_user } from "../store/users";
 import "antd/dist/antd.css";
 import "./styling/NavBar.css";
 
@@ -28,6 +29,8 @@ const NavBar = () => {
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
   const [bio, setBio] = useState("visible");
+  // TODO PUT needs to be finalized
+  const [userAbout, setUserAbout] = useState(sessionUser.about)
   const [photoUrl, setPhotoUrl] = useState(
     sessionUser ? sessionUser.photoUrl : ""
   );
@@ -59,6 +62,12 @@ const NavBar = () => {
   function handleUpload(e) {
     setPhotoFile(e.target.files[0]);
   }
+
+  function submitAbout(e) {
+    e.preventDefault()
+    dispatch(update_user(userAbout))
+  };
+
 
   function submit(e) {
     e.preventDefault();
@@ -181,10 +190,18 @@ const NavBar = () => {
             </Button>
           </div>
           {bio === "visible" ? (
-            <p className="about_me">{sessionUser.about}</p>
+            <p className="about_me">{userAbout}</p>
           ) : (
-            <textarea className="profile_textarea"></textarea>
+            <textarea
+              className="profile_textarea"
+              value={userAbout}
+              onChange={(e) => setUserAbout(e.target.value) }
+              ></textarea>
           )}
+          <button
+            type="submit"
+            onClick={submitAbout}
+            >Submit About</button>
         </Modal>
         <button className="hamburger" onClick={showDrawer}>
           <span>
