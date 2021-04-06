@@ -42,7 +42,7 @@ const MemberProfile = () => {
               {/* <div>First Name: </div>
           <div>Last Name: </div> */}
             </div>
-          </div>
+T          </div>
         ))
       ) : (
         <div>

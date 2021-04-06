@@ -15,6 +15,16 @@ def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
+# ToDo PUT needs to be finalized
+@user_routes.route('/update', methods=['PUT'])
+@login_required
+def update_bio()
+    user = current_user
+    new_about = request.get_json()
+    user.about = new_about
+    db.session.commit()
+    return {"user": user.to_dict()}
+
 
 @user_routes.route('/member/<projectId>')
 @login_required
