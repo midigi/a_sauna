@@ -18,7 +18,7 @@ def users():
 # ToDo PUT needs to be finalized
 @user_routes.route('/update', methods=['PUT'])
 @login_required
-def update_bio()
+def update_bio():
     user = current_user
     new_about = request.get_json()
     user.about = new_about
