@@ -16,6 +16,10 @@ const LoginForm = () => {
     e.preventDefault();
     return dispatch(login({ email, password }));
   }
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    return dispatch(login({ email: "demo@asauna.com", password: "password" }));
+  };
 
   if (sessionUser) {
     return <Redirect to="/" />;
@@ -74,6 +78,16 @@ const LoginForm = () => {
             type="primary"
           >
             Login
+          </Button>
+          <Button
+            className="submit_button"
+            onClick={demoLogin}
+            shape="round"
+            htmlType="submit"
+            size="large"
+            type="primary"
+          >
+            Demo User
           </Button>
         </form>
       </div>
