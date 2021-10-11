@@ -17,33 +17,30 @@
 .splash_title {
   justify-self: center;
   align-self: center;
-  font-size: 40px;
-  margin-top: 10%;
-}
-
-.divider {
-  margin-top: 5vh;
-  width: 20vh;
-  align-self: center;
+  font-size: 60px;
+  margin-top: 50%;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .splash_text {
-  align-self: center;
-  font-size: 15px;
-  margin: 2vh;
+  align-self: flex-start;
+  width: 85%;
+  color: rgb(84, 98, 133);
+  font-size: 18px;
+  line-height: 1.34;
+  font-weight: 400;
 }
 
 .splash_button {
-  align-self: center;
-  margin-left: 2vh;
+  align-self: flex-end;
+  /* margin-left: 2vh; */
 }
 
 .image {
-  height: 100%;
-  background-image: url("../../images/peoples.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-top: 5vh;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin-top: 25%;
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.3);
+-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.3);
+box-shadow: 1px 2px 3px rgba(0,0,0,.3);
 }

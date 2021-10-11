@@ -1,10 +1,11 @@
-import React from "react";
-import { Collapse } from "antd";
-import Task from "./Task";
-import TaskHeaders from "./TaskHeaders";
-import RecentProjects from "./RecentProjects";
-import "./styling/Home.css";
-import "antd/dist/antd.css";
+import React from 'react';
+import { Collapse } from 'antd';
+import Task from './Task';
+import TaskHeaders from './TaskHeaders';
+import RecentProjects from './RecentProjects';
+import Footer from './Footer';
+import './styling/Home.css';
+import 'antd/dist/antd.css';
 const { Panel } = Collapse;
 
 function Home() {
@@ -18,7 +19,7 @@ function Home() {
           </Panel>
         </Collapse>
         <Collapse
-          defaultActiveKey={["1"]}
+          defaultActiveKey={['1']}
           bordered={false}
           className="collapse"
         >
@@ -27,20 +28,7 @@ function Home() {
           </Panel>
         </Collapse>
       </div>
-      <div className="footer">
-        <a href="https://github.com/vantanova" className="dev_link">
-          Antonio A.
-        </a>
-        <a href="https://github.com/IamDgrant" className="dev_link">
-          Andre G.
-        </a>
-        <a href="https://github.com/bparsons17" className="dev_link">
-          Brandon P.
-        </a>
-        <a href="https://github.com/midigi" className="dev_link">
-          Micheal D.
-        </a>
-      </div>
+      <Footer />
     </>
   );
 }

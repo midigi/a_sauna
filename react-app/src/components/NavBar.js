@@ -1,49 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Drawer, Menu, Dropdown, Modal, Button } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHotTub, faSquare } from "@fortawesome/free-solid-svg-icons";
-import LogoutButton from "./auth/LogoutButton";
-import { photoUpload, restoreUser } from "../store/session";
-import { update_user } from "../store/users";
-import "antd/dist/antd.css";
-import "./styling/NavBar.css";
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Drawer, Menu, Dropdown, Modal, Button } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHotTub, faSquare } from '@fortawesome/free-solid-svg-icons';
+import LogoutButton from './auth/LogoutButton';
+import { photoUpload, restoreUser } from '../store/session';
+import { update_user } from '../store/users';
+import 'antd/dist/antd.css';
+import './styling/NavBar.css';
 
 import {
   HomeOutlined,
-  SmileOutlined,
   SnippetsOutlined,
   PlusOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [visible, setVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [buttonVisible, setButtonVisible] = useState("hidden");
+  const [buttonVisible, setButtonVisible] = useState('hidden');
   const [photoFile, setPhotoFile] = useState();
   const [projects, setProjects] = useState();
-  const [bio, setBio] = useState("visible");
+  const [bio, setBio] = useState('visible');
   const [userAbout, setUserAbout] = useState(sessionUser.about);
   const [photoUrl, setPhotoUrl] = useState(
-    sessionUser ? sessionUser.photoUrl : ""
+    sessionUser ? sessionUser.photoUrl : ''
   );
 
   const changeBio = () => {
-    if (bio === "hidden") {
-      setBio("visible");
+    if (bio === 'hidden') {
+      setBio('visible');
     }
-    if (bio === "visible") {
-      setBio("hidden");
+    if (bio === 'visible') {
+      setBio('hidden');
     }
   };
 
   const dispatch = useDispatch();
 
   const getAllProjects = async () => {
-    const res = await fetch("/api/projects/user");
+    const res = await fetch('/api/projects/user');
     const data = await res.json();
     if (res.ok) {
       setProjects(data.projects);
@@ -79,12 +77,12 @@ const NavBar = () => {
   }
 
   const showButtonVisible = () => {
-    if (buttonVisible === "visible") {
-      setButtonVisible("hidden");
+    if (buttonVisible === 'visible') {
+      setButtonVisible('hidden');
       changeBio();
     }
-    if (buttonVisible === "hidden") {
-      setButtonVisible("visible");
+    if (buttonVisible === 'hidden') {
+      setButtonVisible('visible');
       changeBio();
     }
   };
@@ -114,7 +112,7 @@ const NavBar = () => {
     <Menu>
       <Menu.Item>
         <Button type="link" onClick={showModal}>
-          My Profile <SmileOutlined />
+          My Profile
         </Button>
       </Menu.Item>
       <Menu.Item>
@@ -139,7 +137,7 @@ const NavBar = () => {
   );
   return (
     sessionUser && (
-      <div style={{ width: "100%", height: "5vh" }}>
+      <div style={{ width: '100%', height: '5vh' }}>
         <Modal
           title="My Profile"
           visible={isModalVisible}
@@ -182,7 +180,7 @@ const NavBar = () => {
               </form>
             </div>
           </div>
-          <div style={{ display: "flex", alignContent: "center" }}>
+          <div style={{ display: 'flex', alignContent: 'center' }}>
             <h4 className="about_title">About Me</h4>
             {/* <Button
               shape="circle"
@@ -192,7 +190,7 @@ const NavBar = () => {
               <EditOutlined />
             </Button> */}
           </div>
-          {bio === "visible" ? (
+          {bio === 'visible' ? (
             <p className="about_me">{userAbout}</p>
           ) : (
             <textarea
@@ -207,7 +205,7 @@ const NavBar = () => {
             <FontAwesomeIcon icon={faHotTub} className="hamburger" />
           </span>
         </button>
-        <Dropdown overlay={profileMenu} trigger={["click"]}>
+        <Dropdown overlay={profileMenu} trigger={['click']}>
           <Button
             className="profile_button"
             shape="circle"
@@ -224,7 +222,7 @@ const NavBar = () => {
         </Dropdown>
         <Dropdown
           overlay={addMenu}
-          trigger={["click"]}
+          trigger={['click']}
           placement="bottomCenter"
         >
           <Button
@@ -239,7 +237,7 @@ const NavBar = () => {
             <div>
               <FontAwesomeIcon
                 icon={faHotTub}
-                style={{ marginRight: "0.5vh" }}
+                style={{ marginRight: '0.5vh' }}
               />
               asauna
             </div>
@@ -288,7 +286,7 @@ const NavBar = () => {
 
             {projects &&
               projects.map((project) => {
-                let color = "#35a7ff";
+                let color = '#35a7ff';
                 if (project.color) {
                   color = project.color;
                 }
@@ -298,7 +296,7 @@ const NavBar = () => {
                     to={`/project/${project.id}`}
                     key={project.id}
                   >
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
                       <FontAwesomeIcon
                         icon={faSquare}
                         className="squircle"

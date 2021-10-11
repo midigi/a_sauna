@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Row, Col, Button, message, Input, Modal } from "antd";
-import { getProjectId } from "../store/project";
-import TaskForm from "./auth/TaskForm";
-import "./styling/Search.css";
-import { HexColorPicker } from "react-colorful";
-import MemberProfile from "../components/MemberProfile";
-import Task from "./Task";
-import Search from "./Search";
-import { UnorderedListOutlined, SettingFilled } from "@ant-design/icons";
-import "./styling/Project.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Row, Col, Button, message, Input, Modal } from 'antd';
+import { getProjectId } from '../store/project';
+import TaskForm from './auth/TaskForm';
+import { HexColorPicker } from 'react-colorful';
+import Task from './Task';
+import { UnorderedListOutlined, SettingFilled } from '@ant-design/icons';
+import './styling/Project.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Project = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [colorEdit, setColorEdit] = useState("#aabbcc");
+  const [colorEdit, setColorEdit] = useState('#aabbcc');
   const project = useSelector((project) => project.project.project);
-  const [updatedProjectName, setUpdatedProjectName] = useState("");
-  const [updatedTeamName, setUpdatedTeamName] = useState("");
+  const [updatedProjectName, setUpdatedProjectName] = useState('');
+  const [updatedTeamName, setUpdatedTeamName] = useState('');
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -29,32 +26,32 @@ const Project = () => {
 
   const handleOk = async () => {
     await fetch(`/api/projects/edit/${project.projects.id}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ colorEdit, updatedProjectName, updatedTeamName }),
     });
 
     await dispatch(getProjectId(project.projects.id));
-    setUpdatedProjectName("");
-    setUpdatedTeamName("");
+    setUpdatedProjectName('');
+    setUpdatedTeamName('');
     setIsModalVisible(false);
   };
 
   const deleteProject = async () => {
     await fetch(`/api/projects/delete/${project.projects.id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     message.success(`Project ${project.projects.projectName} deleted`);
-    await history.push("/");
+    await history.push('/');
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-  let color = "#35a7ff";
+  let color = '#35a7ff';
 
   if (project) {
     if (project.projects) {
@@ -73,11 +70,11 @@ const Project = () => {
   return project && project.projects ? (
     <div className="projects_page">
       <div></div>
-      <Row style={{ paddingLeft: "1vh" }}>
+      <Row style={{ paddingLeft: '1vh' }}>
         <Col span={2}>
           <div className="project_page_icon" style={{ backgroundColor: color }}>
             <UnorderedListOutlined
-              style={{ fontSize: "2vh", color: "white" }}
+              style={{ fontSize: '2vh', color: 'white' }}
             />
           </div>
         </Col>
@@ -106,7 +103,7 @@ const Project = () => {
                 Submit
               </Button>,
             ]}
-            width={"90vh"}
+            width={'90vh'}
           >
             <Row>
               <Col span={11}>
@@ -139,11 +136,11 @@ const Project = () => {
                 <div className="selected_color_div">
                   <div
                     style={{
-                      width: "5vh",
-                      height: "5vh",
-                      borderRadius: "3%",
+                      width: '5vh',
+                      height: '5vh',
+                      borderRadius: '3%',
                       backgroundColor: colorEdit,
-                      marginRight: "2vh",
+                      marginRight: '2vh',
                     }}
                   ></div>
                   <h3>{colorEdit}</h3>
@@ -164,15 +161,6 @@ const Project = () => {
           </div>
         </Col>
       </Row>
-      <Row style={{ marginTop: "1vh" }}>
-        <Col span={7}>
-          <h2 className="center_search">Team Members</h2>
-        </Col>
-        <Col span={14} className="center_search">
-          <Search />
-        </Col>
-      </Row>
-      <MemberProfile />
     </div>
   ) : null;
 };

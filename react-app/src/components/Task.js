@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Tag } from "antd";
-import "./styling/TaskForm.css";
-import { seeTask, seeProjectTask } from "../store/task";
-import Info from "./Info";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Row, Col, Tag } from 'antd';
+import './styling/TaskForm.css';
+import { seeTask, seeProjectTask } from '../store/task';
+import Info from './Info';
 
 const Task = ({ id }) => {
   const dispatch = useDispatch();
@@ -18,23 +18,23 @@ const Task = ({ id }) => {
   }, [id]);
 
   const taskType = (task) => {
-    if (task === "Low") {
+    if (task === 'Low') {
       return <Tag color="green">{task}</Tag>;
-    } else if (task === "Medium") {
+    } else if (task === 'Medium') {
       return <Tag color="orange">{task}</Tag>;
-    } else if (task === "High") {
+    } else if (task === 'High') {
       return <Tag color="red">{task}</Tag>;
     }
   };
 
   const statusType = (status) => {
-    if (status === "Incomplete") {
+    if (status === 'Incomplete') {
       return <Tag color="red">{status}</Tag>;
-    } else if (status === "In Progress") {
+    } else if (status === 'In Progress') {
       return <Tag color="purple">{status}</Tag>;
-    } else if (status === "Complete") {
+    } else if (status === 'Complete') {
       return <Tag color="green">{status}</Tag>;
-    } else if (status === "Need Help") {
+    } else if (status === 'Need Help') {
       return <Tag color="magenta">{status}</Tag>;
     }
   };
@@ -44,7 +44,7 @@ const Task = ({ id }) => {
     const year = currentDate.getFullYear();
     let month = currentDate.getMonth() + 1;
     if (month.toString().length === 1) {
-      month = "0" + month;
+      month = '0' + month;
     }
     const day = currentDate.getDate();
     return `${day}/${month}/${year}`;

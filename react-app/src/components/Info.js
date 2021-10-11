@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Drawer, Tag, Button } from "antd";
-import "./styling/TaskForm.css";
-import "./styling/Info.css";
-import { deleteTask, seeTask, seeProjectTask } from "../store/task";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Drawer, Tag, Button } from 'antd';
+import './styling/TaskForm.css';
+import './styling/Info.css';
+import { deleteTask, seeTask, seeProjectTask } from '../store/task';
 
-import { DeleteOutlined, CalendarTwoTone } from "@ant-design/icons";
+import { DeleteOutlined, CalendarTwoTone } from '@ant-design/icons';
 
 const Info = ({ task }) => {
   const [visible, setVisible] = useState(false);
@@ -32,9 +32,9 @@ const Info = ({ task }) => {
     e.preventDefault();
     task = { desc, priority, status };
     await fetch(`/api/tasks/update/${taskId}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(task),
     });
@@ -64,21 +64,21 @@ const Info = ({ task }) => {
   };
 
   const taskType = (task) => {
-    if (task === "Low") {
+    if (task === 'Low') {
       return (
-        <Tag onClick={() => setPriority("Low")} color="green">
+        <Tag onClick={() => setPriority('Low')} color="green">
           {task}
         </Tag>
       );
-    } else if (task === "Medium") {
+    } else if (task === 'Medium') {
       return (
-        <Tag onClick={() => setPriority("Medium")} color="orange">
+        <Tag onClick={() => setPriority('Medium')} color="orange">
           {task}
         </Tag>
       );
-    } else if (task === "High") {
+    } else if (task === 'High') {
       return (
-        <Tag onClick={() => setPriority("High")} color="red">
+        <Tag onClick={() => setPriority('High')} color="red">
           {task}
         </Tag>
       );
@@ -86,27 +86,27 @@ const Info = ({ task }) => {
   };
 
   const statusType = (status) => {
-    if (status === "Incomplete") {
+    if (status === 'Incomplete') {
       return (
-        <Tag onClick={() => setStatus("Incomplete")} color="red">
+        <Tag onClick={() => setStatus('Incomplete')} color="red">
           {status}
         </Tag>
       );
-    } else if (status === "In Progress") {
+    } else if (status === 'In Progress') {
       return (
-        <Tag onClick={() => setStatus("In Progress")} color="purple">
+        <Tag onClick={() => setStatus('In Progress')} color="purple">
           {status}
         </Tag>
       );
-    } else if (status === "Complete") {
+    } else if (status === 'Complete') {
       return (
-        <Tag onClick={() => setStatus("Complete")} color="green">
+        <Tag onClick={() => setStatus('Complete')} color="green">
           {status}
         </Tag>
       );
-    } else if (status === "Need Help") {
+    } else if (status === 'Need Help') {
       return (
-        <Tag onClick={() => setStatus("Need Help")} color="magenta">
+        <Tag onClick={() => setStatus('Need Help')} color="magenta">
           {status}
         </Tag>
       );
@@ -124,12 +124,12 @@ const Info = ({ task }) => {
           placement="right"
           onClose={onClose}
           visible={visible}
-          width={"50vh"}
-          height={"100%"}
+          width={'50vh'}
+          height={'100%'}
           bodyStyle={{
-            backgroundColor: "white",
-            display: "flex",
-            flexDirection: "column",
+            backgroundColor: 'white',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           <form onSubmit={onTaskUpdate}>
@@ -144,13 +144,13 @@ const Info = ({ task }) => {
             {editVisibility && (
               <div className="choose_status">
                 <button className="status_button" value="Low">
-                  {taskType("Low")}
+                  {taskType('Low')}
                 </button>
                 <button className="status_button" value="Medium">
-                  {taskType("Medium")}
+                  {taskType('Medium')}
                 </button>
                 <button className="status_button" value="High">
-                  {taskType("High")}
+                  {taskType('High')}
                 </button>
               </div>
             )}
@@ -160,16 +160,16 @@ const Info = ({ task }) => {
             {editVisibility && (
               <div className="choose_status">
                 <button className="status_button" value="Incomplete">
-                  {statusType("Incomplete")}
+                  {statusType('Incomplete')}
                 </button>
                 <button className="status_button" value="In Progress">
-                  {statusType("In Progress")}
+                  {statusType('In Progress')}
                 </button>
                 <button className="status_button" value="Need Help">
-                  {statusType("Need Help")}
+                  {statusType('Need Help')}
                 </button>
                 <button className="status_button" value="Complete">
-                  {statusType("Complete")}
+                  {statusType('Complete')}
                 </button>
               </div>
             )}

@@ -15,6 +15,7 @@ def users():
     users = User.query.all()
     return {"users": [user.to_dict() for user in users]}
 
+
 @user_routes.route('/update', methods=['PUT'])
 @login_required
 def update_bio():
@@ -25,14 +26,6 @@ def update_bio():
     return {"user": user.to_dict()}
 
 
-@user_routes.route('/member/<projectId>')
-@login_required
-def members(projectId):
-    project = Project.query.filter_by(id=projectId).first()
-    members = project.users.all()
-    return {"members": [member.to_dict() for member in members]}
-
-
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -40,23 +33,8 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/<search>/<id>')
-@login_required
-def search(search, id):
-    if search is None:
-        return {"negative": "Not found"}
-    member = User.query.filter_by(email=search).first()
-    project = Project.query.filter_by(id=id).first()
-
-    if member is None:
-        return {"negative": "Not found"}
-    else:
-        project.users.append(member)
-        db.session.add(member)
-        db.session.commit()
-        return {"member": member.to_dict()}
-
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 
 def allowed_file(filename):
     return '.' in filename and \

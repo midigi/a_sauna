@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { login } from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "antd";
-import "./authStyling/form.css";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { login } from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'antd';
+import './authStyling/form.css';
 
 const LoginForm = () => {
   const [errors] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -18,7 +18,7 @@ const LoginForm = () => {
   }
   const demoLogin = async (e) => {
     e.preventDefault();
-    return dispatch(login({ email: "demo@asauna.com", password: "password" }));
+    return dispatch(login({ email: 'demo@asauna.com', password: 'password' }));
   };
 
   if (sessionUser) {

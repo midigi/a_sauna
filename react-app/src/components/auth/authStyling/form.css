@@ -3,8 +3,7 @@
   margin: auto;
   display: flex;
   background-color: white;
-  box-shadow: 3px 3px 5px 6px #ccc;
-  border-radius: 2%;
+  box-shadow: 3px 3px 5px 6px rgba(204, 204, 204, 0.479);
   padding-top: 3%;
 }
 
@@ -36,8 +35,9 @@
 }
 .form_title {
   color: #333;
-  font-family: "Poppins", sans-serif;
   margin: 0;
+  font-size: 40px;
+  font-weight: 700;
 }
 .form_link {
   color: #1446ad;
