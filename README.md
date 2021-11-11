@@ -17,7 +17,7 @@ state of the respective task.
 <img src="https://user-images.githubusercontent.com/70561117/109456977-c77e3500-7a0e-11eb-9808-ea5c5db47d77.PNG">
 </p>
 
-<h2>Try the site live: <a href=http://aurora-quora.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/midigi/a_sauna/wiki">documentation</a></h2>
+<h2>Try the site live: <a href=https://asauna-react.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/midigi/a_sauna/wiki">documentation</a></h2>
 
 ## How to run the site locally
 
