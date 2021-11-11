@@ -7,8 +7,6 @@
 Projects are compromised of tasks composed by members of the group. Tasks have status' that reflect the 
 state of the respective task. 
 
-<img alt="Logo" align="right" src="https://user-images.githubusercontent.com/70561117/103400052-8645d380-4af8-11eb-8c61-1f2bab847bfd.png" width="20%" />
-
 * Users can **log in** or **sign up** to access functionality the site.
 * A user has the ability to **make projects** with both members and tasks.
 * Posted tasks can be **completed** with their due date, status and assignee all changeable.
