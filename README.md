@@ -19,17 +19,26 @@ state of the respective task.
 
 <h2>Try the site live: <a href=https://asauna-react.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/midigi/a_sauna/wiki">documentation</a></h2>
 
-## How to run the site locally
+### To load the site locally ⬇️
+#### You will need:
+* PostgreSQL
+* Pipenv with Python v3.8
+* Node.js
 
-- Clone the repo
-- Use the command ```npm install``` to install all dependencies
-- Make a copy of the .env.example file and edit to match local db configuration
-- Create the database and user in psql
-  * Run all migrations with ```npx dotenv sequelize db:migrate```
-  * Seed all data with ```npx dotenv sequelize db:seed:all```
-- Use the start script ```npm start``` to run the server
+1. `git clone` this repo
+2. `cd` into the local repo
+3. Run `pipenv install -r --dev dev-requirements.txt && pipenv install -r requirements.txt`
+4. Create your own `.env` file based on the provided `.env.example`.
+5. Create a user and database in your PostgreSQL that matches your `.env` configuration
+6. In the first terminal, run `pipenv shell` to activate the Pipenv environment.
+7. Run `flask db upgrade` and then `flask seed all` to apply migrations and seed data to your database.
+8. Open another terminal window and `cd` into the local repo, then `cd` into `react-app`
+9. Run `npm install`
+10. In your terminal running Pipenv shell, run `flask run`.
+11. In your terminal in the `react-app`, run `npm start`.
+12. Your app should open in your default browser.
 
-## Technologies used in Aurora
+## Technologies used in Asauna
 <p align="left">
 <a href="https://flask.palletsprojects.com/en/1.1.x/">
 <img src="https://img.shields.io/badge/Flask-v1.12-blue">
